@@ -81,7 +81,7 @@
                             </svg>
                         </button>
                     </a>
-                    <a href="google.com">
+                    <a href="./Settings.php">
                         <button class="topnav-btn">
                             <svg width="16" height="16" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_11_14126)">
@@ -98,12 +98,91 @@
                 </div>
             </nav>
             <div class="secondary-container">
-                <div class="section1">
-                    
-                </div>
-                <div class="section2">
-
-                </div>
+                <section class="hero-section">
+                    <form role="search" id="input-form">
+                        <input type="search" id="query" class="search-input" name="q" placeholder="Search books..." aria-label="Search through site content">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    <div class="hero-banner">
+                        <div class="hero-welcome">
+                            <h1 class="hero-header"><span style="color: #F18912">Broaden your Horizon</span> with our Education Books</h1>
+                            <p class="hero-desc">Embark on a journey of knowledge and discovery with our extensive collection of education books. Whether you're a student looking to excel in your studies, an educator seeking valuable resources, or a lifelong learner eager to expand your horizons, our carefully curated selection has something for everyone.</p>
+                            <div class="hero-btn">
+                                <button class="btn-standard">Explore More</button>
+                            </div>
+                        </div>
+                        <img id="hero-image" src="images/hero.svg" alt="Hero Image">
+                    </div>
+                </section>
+                <section class="dashboard-section">
+                    <div class="tertiary-container">
+                        <div class="card-header">
+                            <h4 class="dashboard-header">Newest Releases</h4>
+                            <a href="google.com">
+                                <p class="see-all">See All</p>
+                            </a>
+                        </div>
+                        <div class="card-grid">
+                            <div class="book-card">
+                                <div class="book-card-container">
+                                    <img class="book-img" src="images/klara.svg" alt="Book Image">
+                                    <div class="book-card-desc">
+                                        <h4 class="book-card-title">Klara and the Sun</h4>
+                                        <p class="book-card-author">by Kazuo Ishiguro</p>
+                                        <p class="book-card-summary">Klara and The Sun tells the story of Klara, an Artificial Friend with outstanding observational qualities, who, from her place in the store, watches carefully...</p>
+                                        <a href="google.com"><p class="read-more">Read More</p></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="book-card">
+                                <div class="book-card-container">
+                                    <img class="book-img" src="images/cantik-itu-luka.svg" alt="Book Image">
+                                    <div class="book-card-desc">
+                                        <h4 class="book-card-title">Cantik itu Luka</h4>
+                                        <p class="book-card-author">by Eka Kurniawan</p>
+                                        <p class="book-card-summary">Cantik itu Luka merupakan novel pertama karya penulis Indonesia, Eka Kurniawan. Pertama kali diterbitkan tahun 2002 atas kerjasama Akademi Kebudayaan...</p>
+                                        <a href="google.com"><p class="read-more">Read More</p></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="book-card">
+                                <div class="book-card-container">
+                                    <img class="book-img" src="images/klara.svg" alt="Book Image">
+                                    <div class="book-card-desc">
+                                        <h4 class="book-card-title">Klara and the Sun</h4>
+                                        <p class="book-card-author">by Kazuo Ishiguro</p>
+                                        <p class="book-card-summary">Klara and The Sun tells the story of Klara, an Artificial Friend with outstanding observational qualities, who, from her place in the store, watches carefully...</p>
+                                        <a href="google.com"><p class="read-more">Read More</p></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="book-card">
+                                <div class="book-card-container">
+                                    <img class="book-img" src="images/cantik-itu-luka.svg" alt="Book Image">
+                                    <div class="book-card-desc">
+                                        <h4 class="book-card-title">Cantik itu Luka</h4>
+                                        <p class="book-card-author">by Eka Kurniawan</p>
+                                        <p class="book-card-summary">Cantik itu Luka merupakan novel pertama karya penulis Indonesia, Eka Kurniawan. Pertama kali diterbitkan tahun 2002 atas kerjasama Akademi Kebudayaan...</p>
+                                        <a href="google.com"><p class="read-more">Read More</p></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="book-card">
+                                <div class="book-card-container">
+                                    <img class="book-img" src="images/klara.svg" alt="Book Image">
+                                    <div class="book-card-desc">
+                                        <h4 class="book-card-title">Klara and the Sun</h4>
+                                        <p class="book-card-author">by Kazuo Ishiguro</p>
+                                        <p class="book-card-summary">Klara and The Sun tells the story of Klara, an Artificial Friend with outstanding observational qualities, who, from her place in the store, watches carefully...</p>
+                                        <a href="google.com"><p class="read-more">Read More</p></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 <div class="testing">
 
                 </div>
@@ -119,12 +198,6 @@
                 <div class="testing">
 
                 </div>
-                <!-- <div class="search-bar">
-                    <input type="text" class="search-input" placeholder="Find books...">
-                    <button class="search-button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div> -->
             </div>
         </main>
     </div>
