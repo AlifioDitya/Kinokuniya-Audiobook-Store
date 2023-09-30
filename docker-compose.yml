@@ -1,6 +1,21 @@
 version: '3.3'
 services:
   web:
-    image: tubes-1:latest
+    build: .
     ports:
       - 8008:80
+    hostname: kinukoniya
+    env_file: .env
+    volumes:
+      - ./src:/var/www/html
+  mysql:
+    image: mysql:latest
+    ports:
+      - 3307:3306
+    hostname: db-kinukoniya
+    env_file: .env
+    volumes:  
+      - ./mysql:/docker-entrypoint-initdb.d/:ro
+networks:
+  web-mysql:
+    driver: bridge

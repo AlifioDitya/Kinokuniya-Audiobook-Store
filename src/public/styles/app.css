@@ -1,0 +1,186 @@
+/* Reset some default styles */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: fixed;
+    /* max-height: 1080px; */
+    /* overflow-x: scroll; */
+}
+
+#app {
+    background-color: #000;
+    color: #f2f3f5;
+    display: flex;
+    max-height: 1080px;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-family: 'Karla', sans-serif; 
+    /* overflow-x: scroll; */
+}
+
+#sidenav-content {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #f2f3f5;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+.logo {
+    display: block;
+    align-items: center;
+    margin: 0;
+    padding-left: 28px;
+    padding-right: 28px;
+    padding-top: 40px;
+    font-family: 'Roboto Slab';
+}
+
+.kinukoniya {
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.bookstore {
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.logo > h1 {
+    margin: 0;
+}
+.logo > p {
+    margin: 0;
+}
+
+.sidenav {
+    background-color: #1c2a39;
+    height: 100%;
+    width: 240px;
+}
+
+.sidenav-opt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-inline-start: 24px;
+    align-items: flex-start;
+}
+
+.sidenav-opt > li {
+    justify-content: flex-start;
+    margin-bottom: 16px;
+}
+
+.nav-btn {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 16px;
+}
+
+.main-container {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    background-color: #FAFAFA;
+    color: #333;
+    position: relative;
+    max-width: 100%;
+}
+
+.topnav {
+    display: flex;
+    position: relative;
+    width: 100%;
+    /* max-width: 100%; */
+    height: 48px;
+    background-color: #f2f3f5;
+    /* padding: 12px;
+    padding-left: 28px;
+    padding-right: 28px; */
+    background: var(--Background-Light, #FAFAFA);
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    justify-content: space-between;
+}
+
+.topnav-label {
+    display: flex;
+    /* gap: 12px; */
+    padding: 12px;
+    align-items: center;
+    font-size: 18px;
+    color: #F18912;
+    font-size: 16px;
+}
+
+.topnav-menu {
+    display: flex;
+    /* gap: 12px; */
+    padding: 12px;
+    align-items: center;
+}
+
+.topnav-btn {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    margin: 0 4px;
+    background-color: #1c2a39;
+    border-radius: 4px;
+    border: none;
+}
+
+.secondary-container {
+    display: block;
+    height: 100%;
+    width: 100%;
+    /* padding: 10px; */
+    /* margin: 20px; */
+    /* justify-content: center; */
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
+    gap: 5rem;
+    overflow-y: scroll;
+}
+
+.section1{
+    display: block;
+    justify-content: center;
+    height: 50%;
+    /* width: 100%; */
+    margin: 20px;
+    background-color: #c5c5c5;
+}
+.section2{
+    display: block;
+    justify-content: center;
+    height: 70%;
+    /* width: 100%; */
+    margin: 20px;
+    background-color: #c5c5c5;
+    margin-bottom: 100px;
+}
+
+::-webkit-scrollbar {
+    width: 0; /* Set width to 0 to hide the track */
+}
