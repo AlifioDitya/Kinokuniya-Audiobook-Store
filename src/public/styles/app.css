@@ -123,7 +123,7 @@ button:focus {
 
 .topnav-label {
     display: flex;
-    /* gap: 12px; */
+    gap: 12px;
     padding: 12px;
     align-items: center;
     font-size: 18px;
