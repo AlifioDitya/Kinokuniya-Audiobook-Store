@@ -30,6 +30,7 @@ body {
 
 a {
     text-decoration: none;
+    cursor: pointer;
     color: #f2f3f5;
 }
 
@@ -170,18 +171,16 @@ button:focus {
     justify-content: center;
     height: fit-content;
     align-items: center;
-    /* width: 100%; */
     margin: 32px;
     margin-bottom: 8px;
-    /* background-color: #c5c5c5; */
 }
+
 .dashboard-section{
     display: block;
     justify-content: center;
     height: 70%;
-    margin: 20px;
-    /* background-color: #c5c5c5; */
-    margin-bottom: 100px;
+    margin-bottom: 200px;
+    padding: 20px;
 }
 
 ::-webkit-scrollbar {
@@ -308,7 +307,7 @@ button:focus {
     padding: 12px 20px;
 }
 
-.card-grid{
+.card-grid {
     position: relative;
     display: flex;
     width: 100%;
@@ -322,6 +321,23 @@ button:focus {
     /* overflow-y: scroll; */
     overflow-x: auto; /* Enable horizontal scrolling if content overflows */
     overflow-y: hidden;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.card-grid-pagination {
+    position: relative;
+    display: grid;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    align-content: start;
+    row-gap: 4%;
+    overflow-y: hidden;
+    overflow-x: hidden;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
 }
@@ -421,6 +437,14 @@ button:focus {
 
 .book-card-summary {
     font-size: 10px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+.book-card-price {
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
     margin-top: 12px;
     margin-bottom: 12px;
 }
@@ -436,6 +460,34 @@ button:focus {
     transform: scale(1.05);
 }
 
-.tertiary-container {
-    width: 100%;
+.book-card-brief {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: fit-content;
+    align-items: flex-start;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.book-card-brief:hover {
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.05);
+}
+
+.book-card-brief-desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Set max width to width of book-img-brief */
+    max-width: 7rem;
+}
+
+.book-img-brief {
+    /* height: 12rem; */
+    width: 7rem;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    background: cover no-repeat;
+    background-size: cover;
 }
