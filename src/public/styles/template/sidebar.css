@@ -1,3 +1,6 @@
+/* Import Roboto Slab from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&family=Roboto+Slab:wght@400;700&display=swap");
+
 *{
     margin: 0;
     padding: 0;
@@ -23,17 +26,20 @@
     display: flex;
     align-items: center;
     position: relative;
+    margin-top: 16px;
   }
   .sidebar .logo-details .icon{
     opacity: 0;
     transition: all 0.5s ease;
   }
   .sidebar .logo-details .logo_name{
+    font-family: "Roboto Slab", sans-serif;
     color: #fff;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 600;
     opacity: 0;
     transition: all 0.5s ease;
+    margin-left: 16px;
   }
   .sidebar.open .logo-details .icon,
   .sidebar.open .logo-details .logo_name{
@@ -93,6 +99,7 @@
     transition: all 0.4s ease;
     top: 50%;
     transform: translateY(-50%);
+    color: black;
   }
   .sidebar.open li .tooltip{
     display: none;
@@ -146,7 +153,7 @@
   }
   .sidebar li a .links_name{
     color: #fff;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 400;
     white-space: nowrap;
     opacity: 0;
@@ -219,27 +226,6 @@
   .sidebar.open .profile #log_out{
     width: 50px;
     background: none;
-  }
-  .home-section{
-    position: relative;
-    background: #E4E9F7;
-    min-height: 100vh;
-    top: 0;
-    left: 78px;
-    width: calc(100% - 78px);
-    transition: all 0.5s ease;
-    z-index: 2;
-  }
-  .sidebar.open ~ .home-section{
-    left: 250px;
-    width: calc(100% - 250px);
-  }
-  .home-section .text{
-    display: inline-block;
-    color: #11101d;
-    font-size: 25px;
-    font-weight: 500;
-    margin: 18px
   }
   @media (max-width: 420px) {
     .sidebar li .tooltip{

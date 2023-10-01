@@ -6,63 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     
-    <!-- Styles -->
+    <!-- Globals and Templates CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/app.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/globals.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/sidebar.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/topnav.css">
+
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/home/home.css">
+
     <!-- Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- JavaScript DOM and AJAX -->
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
 </head>
 <body>
-    <div id="app">
-        <aside class="sidenav">
-            <nav class="sidenav-content", id="sidenav-content">
-                <div class="logo">
-                    <h1 class="kinukoniya">Kinukoniya</h1>
-                    <p class="bookstore">Book Store</p>
-                </div>
-                <ul class="sidenav-opt", id="sidenav-opt">
-                    <a href="google.com">
-                        <li class="nav-btn", id="nav-dashboard">
-                            <svg width="24" height="24" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M7.66667 18.2083H14.6667C15.3083 18.2083 15.8333 17.6646 15.8333 17V7.33333C15.8333 6.66875 15.3083 6.125 14.6667 6.125H7.66667C7.025 6.125 6.5 6.66875 6.5 7.33333V17C6.5 17.6646 7.025 18.2083 7.66667 18.2083ZM7.66667 27.875H14.6667C15.3083 27.875 15.8333 27.3312 15.8333 26.6667V21.8333C15.8333 21.1687 15.3083 20.625 14.6667 20.625H7.66667C7.025 20.625 6.5 21.1687 6.5 21.8333V26.6667C6.5 27.3312 7.025 27.875 7.66667 27.875ZM19.3333 27.875H26.3333C26.975 27.875 27.5 27.3312 27.5 26.6667V17C27.5 16.3354 26.975 15.7917 26.3333 15.7917H19.3333C18.6917 15.7917 18.1667 16.3354 18.1667 17V26.6667C18.1667 27.3312 18.6917 27.875 19.3333 27.875ZM18.1667 7.33333V12.1667C18.1667 12.8312 18.6917 13.375 19.3333 13.375H26.3333C26.975 13.375 27.5 12.8312 27.5 12.1667V7.33333C27.5 6.66875 26.975 6.125 26.3333 6.125H19.3333C18.6917 6.125 18.1667 6.66875 18.1667 7.33333Z" fill="white"/>
-                            </svg>
-                            <p>Dashboard</p>
-                        </li>
-                    </a>
-                    <a href="/catalogue">
-                        <li class="nav-btn", id="nav-catalogue">
-                            <svg width="24" height="24" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_16_16207)">
-                                <path d="M22.8334 27.1667H8.83337C8.19171 27.1667 7.66671 26.6229 7.66671 25.9583V11.4583C7.66671 10.7938 7.14171 10.25 6.50004 10.25C5.85837 10.25 5.33337 10.7938 5.33337 11.4583V27.1667C5.33337 28.4958 6.38337 29.5833 7.66671 29.5833H22.8334C23.475 29.5833 24 29.0396 24 28.375C24 27.7104 23.475 27.1667 22.8334 27.1667ZM26.3334 5.41667H12.3334C11.05 5.41667 10 6.50417 10 7.83333V22.3333C10 23.6625 11.05 24.75 12.3334 24.75H26.3334C27.6167 24.75 28.6667 23.6625 28.6667 22.3333V7.83333C28.6667 6.50417 27.6167 5.41667 26.3334 5.41667ZM26.3334 17.5L23.4167 15.6875L20.5 17.5V7.83333H26.3334V17.5Z" fill="#F2F3F5"/>
-                                </g>
-                                <defs>
-                                <clipPath id="clip0_16_16207">
-                                <rect width="28" height="29" fill="white" transform="translate(3 3)"/>
-                                </clipPath>
-                                </defs>
-                            </svg>
-                            <p>Catalogue</p>
-                        </li>
-                    </a>
-                    <a href="/books">
-                        <li class="nav-btn", id="nav-books">
-                            <svg width="24" height="24" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.25004 8.5C3.47087 8.5 2.83337 9.1375 2.83337 9.91667V28.3333C2.83337 29.8917 4.10837 31.1667 5.66671 31.1667H24.0834C24.8625 31.1667 25.5 30.5292 25.5 29.75C25.5 28.9708 24.8625 28.3333 24.0834 28.3333H7.08337C6.30421 28.3333 5.66671 27.6958 5.66671 26.9167V9.91667C5.66671 9.1375 5.02921 8.5 4.25004 8.5ZM28.3334 2.83333H11.3334C9.77504 2.83333 8.50004 4.10833 8.50004 5.66667V22.6667C8.50004 24.225 9.77504 25.5 11.3334 25.5H28.3334C29.8917 25.5 31.1667 24.225 31.1667 22.6667V5.66667C31.1667 4.10833 29.8917 2.83333 28.3334 2.83333ZM25.5 15.5833H14.1667C13.3875 15.5833 12.75 14.9458 12.75 14.1667C12.75 13.3875 13.3875 12.75 14.1667 12.75H25.5C26.2792 12.75 26.9167 13.3875 26.9167 14.1667C26.9167 14.9458 26.2792 15.5833 25.5 15.5833ZM19.8334 21.25H14.1667C13.3875 21.25 12.75 20.6125 12.75 19.8333C12.75 19.0542 13.3875 18.4167 14.1667 18.4167H19.8334C20.6125 18.4167 21.25 19.0542 21.25 19.8333C21.25 20.6125 20.6125 21.25 19.8334 21.25ZM25.5 9.91667H14.1667C13.3875 9.91667 12.75 9.27917 12.75 8.5C12.75 7.72083 13.3875 7.08333 14.1667 7.08333H25.5C26.2792 7.08333 26.9167 7.72083 26.9167 8.5C26.9167 9.27917 26.2792 9.91667 25.5 9.91667Z" fill="#F2F3F5"/>
-                            </svg>
-                            <p>My Books</p>
-                        </li>
-                    </a>
-                </ul>
-            </nav>
-        </aside>
+    <div id="home">
+        <?php include(dirname(__DIR__) . '/template/sidebar.php') ?>
         <main class="main-container">
             <nav class="topnav", id="topnav">
                 <div class="topnav-label", id="topnav-label">
@@ -125,7 +93,7 @@
                 <section class="dashboard-section">
                     <div>
                         <div class="card-header">
-                            <h4 class="dashboard-header">Newest Releases</h4>
+                            <h4 class="card-header-desc">Newest Releases</h4>
                             <a href="google.com">
                                 <p class="see-all">See All</p>
                             </a>
@@ -190,7 +158,7 @@
                     </div>
                     <div>
                         <div class="card-header">
-                            <h4 class="dashboard-header">Owned Books</h4>
+                            <h4 class="card-header-desc">Owned Books</h4>
                             <a href="google.com">
                                 <p class="see-all">See All</p>
                             </a>
