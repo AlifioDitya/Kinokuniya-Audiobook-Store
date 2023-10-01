@@ -3,8 +3,8 @@ services:
   web:
     build: .
     ports:
-      - 8008:80
-    hostname: kinukoniya
+      - 8080:80
+    hostname: web-tubes-1
     env_file: .env
     volumes:
       - ./src:/var/www/html
@@ -12,9 +12,9 @@ services:
     image: mysql:latest
     ports:
       - 3307:3306
-    hostname: db-kinukoniya
+    hostname: db-tubes-1
     env_file: .env
-    volumes:  
+    volumes:
       - ./mysql:/docker-entrypoint-initdb.d/:ro
 networks:
   web-mysql:
