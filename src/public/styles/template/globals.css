@@ -243,10 +243,8 @@ body {
     padding-right: 20px;
     padding-top: 12px;
     padding-bottom: 12px;
-    /* grid-template-columns: repeat(2,1fr); */
     column-gap: 16px;
     row-gap: 5%;
-    /* overflow-y: scroll; */
     overflow-x: auto; /* Enable horizontal scrolling if content overflows */
     overflow-y: hidden;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
@@ -262,7 +260,7 @@ body {
     padding-right: 20px;
     padding-top: 12px;
     padding-bottom: 12px;
-    grid-template-columns: repeat(auto-fit, minmax(124px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(124px, 148px));
     align-content: start;
     row-gap: 4%;
     overflow-y: hidden;

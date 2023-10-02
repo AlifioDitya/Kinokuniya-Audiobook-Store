@@ -46,7 +46,9 @@
                             <h1 class="hero-header"><span style="color: #F18912">Broaden your Horizon</span> with our Education Books</h1>
                             <p class="hero-desc">Embark on a journey of knowledge and discovery with our extensive collection of education books. Whether you're a student looking to excel in your studies, an educator seeking valuable resources, or a lifelong learner eager to expand your horizons, our carefully curated selection has something for everyone.</p>
                             <div class="hero-btn">
-                                <button class="btn-standard">Explore More</button>
+                                <a href="/public/catalogue">
+                                    <button class="btn-standard" id="explore-btn">Explore More</button>
+                                </a>
                             </div>
                         </div>
                         <img id="hero-image" src="<?= BASE_URL ?>/images/vectors/hero.svg" alt="Hero Image">
