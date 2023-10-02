@@ -7,7 +7,6 @@
     <title>Home Page</title>
     
     <!-- Globals and Templates CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/app.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/globals.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/sidebar.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/topnav.css">
