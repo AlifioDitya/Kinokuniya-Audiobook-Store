@@ -57,7 +57,7 @@
                     <div>
                         <div class="card-header">
                             <h4 class="card-header-desc">Newest Releases</h4>
-                            <a href="google.com">
+                            <a href="/public/catalogue">
                                 <p class="see-all">See All</p>
                             </a>
                         </div>
@@ -122,7 +122,7 @@
                     <div>
                         <div class="card-header">
                             <h4 class="card-header-desc">Owned Books</h4>
-                            <a href="google.com">
+                            <a href="/public/mybooks">
                                 <p class="see-all">See All</p>
                             </a>
                         </div>

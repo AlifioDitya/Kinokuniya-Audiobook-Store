@@ -111,8 +111,8 @@ body {
     flex-direction:row;
     align-items:center;
     align-self: stretch;
-    border: 1px solid var(--Subtle-Stroke, rgba(209, 209, 209, 0.50));
-    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.10) inset;
+    border: 0.5px solid var(--Subtle-Stroke, rgba(209, 209, 209, 0.50));
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.10) inset;
 }
 
 .search-input {
@@ -151,7 +151,7 @@ body {
     display: flex;
     height: 40px;
     background: #fff;
-    padding: 20px;
+    padding: 16px;
     font-size: 14px;
     font-weight: 400;
     border-radius: 8px;
@@ -159,7 +159,7 @@ body {
     cursor: pointer;
     justify-content: space-between;
     border: 0.5px solid var(--Subtle-Stroke, rgba(209, 209, 209, 0.50));
-    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.10) inset;
+    box-shadow: 0.5px 0.5px 0.5px 0px rgba(0, 0, 0, 0.10) inset;
 }
 
 .select-btn {
@@ -185,8 +185,8 @@ body {
     margin-top: 10px;
     border-radius: 8px;
     background: #fff;
-    border: 1px solid var(--Subtle-Stroke, rgba(209, 209, 209, 0.50));
-    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.10) inset;
+    border: 0.5px solid var(--Subtle-Stroke, rgba(209, 209, 209, 0.50));
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.10);
     display: none;
 }
 .select-menu.active .options{
