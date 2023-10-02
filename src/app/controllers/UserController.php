@@ -132,7 +132,7 @@ class UserController extends Controller implements ControllerInterface
                 case 'POST':
 
                     $userModel = $this->model('UserModel');
-                    $userModel->register($_POST['email'], $_POST['username'], $_POST['password'], $_POST['fullname']);
+                    $userModel->register($_POST['username'], $_POST['password']);
 
                     // Return redirect_url
                     header('Content-Type: application/json');

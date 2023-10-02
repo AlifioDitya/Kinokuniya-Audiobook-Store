@@ -11,6 +11,12 @@ define('USER', $_ENV['MYSQL_USER'] ?? 'root');
 define('PASSWORD', $_ENV['MYSQL_PASSWORD']);
 define('PORT', $_ENV['MYSQL_PORT']);
 
+// Rows to fetch per page for pagination
+define('ROWS_PER_PAGE', 5);
+
+// Bcrypt for password hashing
+define('BCRYPT_COST', 10);
+
 // Session
 define('COOKIES_LIFETIME', 24 * 60 * 60);
 define('SESSION_EXPIRATION_TIME', 24 * 60 * 60);
