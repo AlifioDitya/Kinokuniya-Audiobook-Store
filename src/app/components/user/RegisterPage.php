@@ -9,7 +9,13 @@
     <!-- CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/user/login-register.css">
 
+    <!-- JavaScript Constant and Variables -->
+    <script type="text/javascript" defer>
+        const DEBOUNCE_TIMEOUT = "<?= DEBOUNCE_TIMEOUT ?>";
+    </script>
+
     <!-- JavaScript -->
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/lib/debounce.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/user/register.js" defer></script>
 </head>
 <body>

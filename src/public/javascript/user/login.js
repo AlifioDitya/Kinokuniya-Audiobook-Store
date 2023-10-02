@@ -1,35 +1,109 @@
-// Select the form element by its ID
-const loginForm = document.getElementById("login-form");
+const usernameInput = document.querySelector("#username");
+const passwordInput = document.querySelector("#password");
+const loginForm = document.querySelector(".login-form");
+const usernameError = document.querySelector("#username-error");
+const passwordError = document.querySelector("#password-error");
 
-// Add a submit event listener to the form
-loginForm.addEventListener("submit", function (event) {
-    // Prevent the default form submission behavior
-    event.preventDefault();
+const usernameRegex = /^\w+$/;
+const passwordRegex = /^\w+$/;
 
-    // Perform any form data validation or processing here
-    // ...
+let usernameValid = false;
+let passwordValid = false;
 
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const usernameError = document.getElementById("username-error");
-    const passwordError = document.getElementById("password-error");
+usernameInput &&
+    usernameInput.addEventListener(
+        "keyup",
+        debounce(() => {
+            const username = usernameInput.value;
 
-    // Clear previous error messages
-    usernameError.textContent = "";
-    passwordError.textContent = "";
+            if (!usernameRegex.test(username)) {
+                usernameError.innerText = "Invalid username format!";
+                usernameValid = false;
+            } else if (username.length < 5) {
+                usernameError.innerText = "Username must be at least 5 characters long.";
+                usernameValid = false;
+            } else {
+                usernameError.innerText = "";
+                usernameValid = true;
+            }
+        }, DEBOUNCE_TIMEOUT)
+    );
 
-    // Validate username (minimum 5 characters)
-    if (username.length < 5) {
-        usernameError.textContent = "Username must be at least 5 characters long.";
-        return;
-    }
+passwordInput &&
+    passwordInput.addEventListener(
+        "keyup",
+        debounce(() => {
+            const password = passwordInput.value;
 
-    // Validate password (minimum 8 characters)
-    if (password.length < 8) {
-        passwordError.textContent = "Password must be at least 8 characters long.";
-        return;
-    }
+            if (!passwordRegex.test(password)) {
+                passwordError.innerText = "Invalid password format!";
+                passwordValid = false;
+            } else if (password.length < 8) {
+                passwordError.innerText = "Password must be at least 8 characters long.";
+                passwordValid = false;
+            } else {
+                passwordError.innerText = "";
+                passwordValid = true;
+            }
+        })
+    );
 
-    // Redirect to the desired page (public/home)
-    window.location.href = "/public/home";
-});
+loginForm &&
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+
+        if (!username) {
+            usernameError.innerText = "Please fill out your username first!";
+            usernameValid = false;
+        } else if (!usernameRegex.test(username)) {
+            usernameError.innerText = "Invalid username format!";
+            usernameValid = false;
+        } else if (username.length < 5) {
+            usernameError.innerText = "Username must be at least 5 characters long.";
+            usernameValid = false;
+        } else {
+            usernameError.innerText = "";
+            usernameValid = true;
+        }
+
+        if (!password) {
+            passwordError.innerText = "Please fill out your password first!";
+            passwordValid = false;
+        } else if (!passwordRegex.test(password)) {
+            passwordError.innerText = "Invalid password format!";
+            passwordValid = false;
+        } else if (password.length < 8) {
+            passwordError.innerText = "Password must be at least 8 characters long.";
+            passwordValid = false;
+        } else {
+            passwordError.innerText = "";
+            passwordValid = true;
+        }
+
+        if (!usernameValid || !passwordValid) {
+            return;
+        }
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/public/user/login");
+
+        const formData = new FormData();
+        formData.append("username", username);
+        formData.append("password", password);
+
+        xhr.send(formData);
+        xhr.onreadystatechange = function () {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                if (this.status === 201) {
+                    document.querySelector("#login-error").innerText = "";
+                    const data = JSON.parse(this.responseText);
+                    location.replace(data.redirect_url);
+                } else {
+                    document.querySelector("#login-error").innerText = "Invalid username or password!";
+                }
+            }
+        };
+    });

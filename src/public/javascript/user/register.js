@@ -15,27 +15,10 @@ let usernameValid = false;
 let passwordValid = false;
 let passwordConfirmedValid = false;
 
-const debounce = (func, timeout) => {
-    let timer;
-    return (...args) => {
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-            func.apply(this, args);
-        }, timeout);
-    };
-};
-
-const DEBOUNCE_TIMEOUT = 500;
-
 usernameInput &&
     usernameInput.addEventListener(
         "keyup",
         debounce(() => {
-
-            // Clear previous error messages
-            usernameError.textContent = "";
-            passwordError.textContent = "";
-            passwordConfirmedError.textContent = "";
 
             const username = usernameInput.value;
 
@@ -71,11 +54,6 @@ passwordInput &&
         "keyup",
         debounce(() => {
 
-            // Clear previous error messages
-            usernameError.textContent = "";
-            passwordError.textContent = "";
-            passwordConfirmedError.textContent = "";
-
             const password = passwordInput.value;
             const passwordConfirmed = passwordConfirmedInput.value;
 
@@ -105,11 +83,6 @@ passwordConfirmedInput &&
     passwordConfirmedInput.addEventListener(
         "keyup",
         debounce(() => {
-
-            // Clear previous error messages
-            usernameError.textContent = "";
-            passwordError.textContent = "";
-            passwordConfirmedError.textContent = "";
 
             const password = passwordInput.value;
             const passwordConfirmed = passwordConfirmedInput.value;

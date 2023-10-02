@@ -9,7 +9,13 @@
     <!-- CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/user/login-register.css">
 
+    <!-- JavaScript Constant and Variables -->
+    <script type="text/javascript" defer>
+        const DEBOUNCE_TIMEOUT = "<?= DEBOUNCE_TIMEOUT ?>";
+    </script>
+
     <!-- JavaScript -->
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/lib/debounce.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/user/login.js" defer></script>
 </head>
 <body>
@@ -21,6 +27,7 @@
                 <input type="text" id="username" name="username" placeholder="Enter your username">
                 <div class="error-message" id="password-error"></div>
                 <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="on">
+                <div class="error-message" id="login-error"></div>
                 <input type="submit" class="sign-in-button" value="Login">
             </form>
             <div class="signup">
