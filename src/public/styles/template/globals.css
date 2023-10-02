@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&family=Roboto+Slab:wght@400;700&display=swap");
 
+/* Essentials */
 * {
   margin: 0;
   padding: 0;
@@ -40,6 +41,7 @@ body {
     overflow-x: hidden;
 }
 
+/* Containers */
 .main-container {
     position: relative;
     display: inline-block;
@@ -76,14 +78,23 @@ body {
     width: 0; /* Set width to 0 to hide the track */
 }
 
-
 /* Searches */
+.search-panel {
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    margin: 16px;
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
 #input-form {
     background-color: white;
     color: #333;
     width: 100%;
     height: 40px;
-    border-radius: 5px;
+    border-radius: 8px;
     display:flex;
     flex-direction:row;
     align-items:center;
@@ -112,6 +123,84 @@ body {
     cursor: pointer;
     width: 44px;
     height: 44px;
+}
+
+/* Dropdowns */
+.select-menu{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: fit-content;
+    margin-left: 16px;
+    /* margin-right: 16px; */
+    /* margin: 140px auto; */
+}
+.select-menu .select-btn{
+    display: flex;
+    height: 40px;
+    background: #fff;
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 8px;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+    border: 0.5px solid var(--Subtle-Stroke, rgba(209, 209, 209, 0.50));
+    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.10) inset;
+}
+
+.select-btn {
+    min-width: 11rem;
+}
+.select-btn i{
+    font-size: 25px;
+    transition: 0.3s;
+}
+.select-btn-text{
+    color: #333;
+    opacity: 0.7;
+}
+.select-menu.active .select-btn i{
+    transform: rotate(-180deg);
+}
+.select-menu .options{
+    position: absolute; /* Change from relative to absolute */
+    top: 100%; /* Position the options below the select button */
+    left: 0;
+    z-index: 1; /* Ensure the options appear above other content */
+    padding: 20px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid var(--Subtle-Stroke, rgba(209, 209, 209, 0.50));
+    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.10) inset;
+    display: none;
+}
+.select-menu.active .options{
+    display: block;
+}
+.options .option{
+    display: flex;
+    height: 40px;
+    cursor: pointer;
+    padding: 0 16px;
+    border-radius: 8px;
+    align-items: center;
+    background: #fff;
+}
+.options .option:hover{
+    background: #F2F2F2;
+}
+.option i{
+    font-size: 24px;
+    margin-right: 12px;
+}
+.option .option-text{
+    font-size: 16px;
+    color: #333;
 }
 
 /* Buttons */
@@ -167,12 +256,13 @@ body {
 .card-grid-pagination {
     position: relative;
     display: grid;
+    align-items: start;
     width: 100%;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 12px;
     padding-bottom: 12px;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 180px));
+    grid-template-columns: repeat(auto-fit, minmax(124px, 1fr));
     align-content: start;
     row-gap: 4%;
     overflow-y: hidden;
@@ -311,7 +401,7 @@ body {
 
 .book-img-brief {
     /* height: 12rem; */
-    width: 7rem;
+    height: 11rem;
     border-radius: 8px;
     margin-bottom: 16px;
     background: cover no-repeat;
