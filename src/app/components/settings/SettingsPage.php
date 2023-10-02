@@ -47,10 +47,7 @@
                     <button class="logout">Logout</button>
                 </div>
             </div>
-            
-        
         </main>
-
     </div>   
 </body>
 </html>
