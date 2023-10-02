@@ -28,7 +28,7 @@
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
 </head>
 <body>
-    <div id="home">
+    <div id="root">
         <?php include(dirname(__DIR__) . '/template/sidebar.php') ?>
         <main class="main-container">
             <?php include(dirname(__DIR__) . '/template/topnav.php') ?>

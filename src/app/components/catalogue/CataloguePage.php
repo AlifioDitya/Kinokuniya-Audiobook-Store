@@ -14,9 +14,6 @@
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/catalogue/catalogue.css">
-
     <!-- Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
@@ -26,11 +23,11 @@
 
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
-    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/dropdown.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/searchpanel.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/catalogue/catalogue.js" defer></script>
 </head>
 <body>
-    <div id="catalogue">
+    <div id="root">
         <?php include(dirname(__DIR__) . '/template/sidebar.php') ?>
         <main class="main-container">
             <?php include(dirname(__DIR__) . '/template/topnav.php') ?>
@@ -70,6 +67,26 @@
                             </li>
                             <li class="option">
                                 <span class="option-text">> 1000k Rp</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select-menu">
+                        <div class="select-btn">
+                            <span class="select-btn-text">Sort By</span>
+                            <i class="bx bx-sort-alt-2"></i>
+                        </div>
+                        <ul class="options">
+                            <li class="option">
+                                <span class="option-text">Price: Low to High</span>
+                            </li>
+                            <li class="option">
+                                <span class="option-text">Price: High to Low</span>
+                            </li>
+                            <li class="option">
+                                <span class="option-text">Newest First</span>
+                            </li>
+                            <li class="option">
+                                <span class="option-text">Oldest First</span>
                             </li>
                         </ul>
                     </div>
