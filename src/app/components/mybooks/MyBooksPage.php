@@ -28,7 +28,7 @@
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/dropdown.js" defer></script>
-    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/catalogue/catalogue.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/mybooks/mybooks.js" defer></script>
 </head>
 <body>
     <div id="catalogue">
@@ -84,7 +84,6 @@
                             <div class="book-card-brief-desc">
                                 <h4 class="book-card-title">Klara and the Sun</h4>
                                 <p class="book-card-author">by Kazuo Ishiguro</p>
-                                <p class="book-card-price">Rp 150.000</p>
                             </div>
                         </div>
                         <div class="book-card-brief">
@@ -94,7 +93,6 @@
                             <div class="book-card-brief-desc">
                                 <h4 class="book-card-title">Cantik itu Luka</h4>
                                 <p class="book-card-author">by Eka Kurniawan</p>
-                                <p class="book-card-price">Rp 150.000</p>
                             </div>
                         </div>
                         <div class="book-card-brief">
@@ -104,7 +102,6 @@
                             <div class="book-card-brief-desc">
                                 <h4 class="book-card-title">Laut Bercerita</h4>
                                 <p class="book-card-author">by Leila S. Chudori</p>
-                                <p class="book-card-price">Rp 150.000</p>
                             </div>
                         </div>
                         <div class="book-card-brief">
@@ -114,7 +111,6 @@
                             <div class="book-card-brief-desc">
                                 <h4 class="book-card-title">Nebula</h4>
                                 <p class="book-card-author">by Tere Liye</p>
-                                <p class="book-card-price">Rp 150.000</p>
                             </div>
                         </div>
                         <div class="book-card-brief">
@@ -124,7 +120,6 @@
                             <div class="book-card-brief-desc">
                                 <h4 class="book-card-title">Rich People Problem</h4>
                                 <p class="book-card-author">by Kevin Kwan</p>
-                                <p class="book-card-price">Rp 150.000</p>
                             </div>
                         </div>
                     </div>
