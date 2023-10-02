@@ -57,21 +57,21 @@
             <div class="input-container">
                 <div class="input-group">
                     <label for="Publication">Publication Date</label><br>
-                    <input class="input placeholder"type="text" id="Publication">
+                    <input class="input placeholder"type="date" id="Publication">
                 </div>
                 <div class="input-group">
                     <label for="summary">Upload Book Summary</label><br>
-                    <input class="input placeholder"type="text" id="summary">
+                    <input class="input placeholder"type="file" id="summary">
                 </div>
             </div>
             <div class="input-container">
                 <div class="input-group">
                     <label for="textbook">Upload Text Book</label><br>
-                    <input class="input placeholder"type="text" id="textbook">
+                    <input class="input placeholder"type="file" id="textbook">
                 </div>
                 <div class="input-group">
                     <label for="Audio">Upload Audio Book</label><br>
-                    <input class="input placeholder"type="text" id="Audio">
+                    <input class="input placeholder"type="file" id="Audio">
                 </div>
                 
             </div>
