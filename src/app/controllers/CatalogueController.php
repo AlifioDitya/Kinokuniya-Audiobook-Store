@@ -1,6 +1,6 @@
 <?php
 
-class HomeController extends Controller implements ControllerInterface
+class CatalogueController extends Controller implements ControllerInterface
 {
     public function index()
     {
@@ -8,7 +8,7 @@ class HomeController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
 
-                    $homeView = $this->view('home', 'MainView');
+                    $homeView = $this->view('catalogue', 'CatalogueView');
                     $homeView->render();
 
                     break;
