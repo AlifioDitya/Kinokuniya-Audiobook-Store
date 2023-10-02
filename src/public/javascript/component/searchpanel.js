@@ -17,5 +17,15 @@ function initializeDropdown(dropdownSelector) {
     });
 }
 
+// Remove the property "transform: rotate(-180deg);" if the dropdown icon is of the class "bx-sort-alt-2"
+function removeDropdownIconTransform() {
+    const dropdownIcon = document.querySelector(".bx-sort-alt-2");
+
+    if (dropdownIcon) {
+        dropdownIcon.style.transform = "rotate(0deg)";
+    }
+}
+
 // Initialize all dropdowns with the class "select-menu"
 initializeDropdown(".select-menu");
+removeDropdownIconTransform();
