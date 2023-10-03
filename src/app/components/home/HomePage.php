@@ -56,6 +56,7 @@
                     </div>
                 </section>
                 <section class="dashboard-section">
+
                     <?php
                         $newestReleases = $this->data['newestReleases'];
 
@@ -90,66 +91,38 @@
                         }
                     ?>
 
-                    <!-- <div>
-                        <div class="card-header">
-                            <h4 class="card-header-desc">Owned Books</h4>
-                            <a href="/public/mybooks">
-                                <p class="see-all">See All</p>
-                            </a>
-                        </div>
-                        <div class="card-grid-pagination">
-                            <div class="book-card-brief">
-                                <a>
-                                    <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/klara.svg" alt="Book Image">
-                                </a>
-                                <div class="book-card-brief-desc">
-                                    <h4 class="book-card-title">Klara and the Sun</h4>
-                                    <p class="book-card-author">by Kazuo Ishiguro</p>
-                                    <p class="book-card-price">Rp 150.000</p>
-                                </div>
-                            </div>
-                            <div class="book-card-brief">
-                                <a>
-                                    <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/cantik-itu-luka.svg" alt="Book Image">
-                                </a>
-                                <div class="book-card-brief-desc">
-                                    <h4 class="book-card-title">Cantik itu Luka</h4>
-                                    <p class="book-card-author">by Eka Kurniawan</p>
-                                    <p class="book-card-price">Rp 150.000</p>
-                                </div>
-                            </div>
-                            <div class="book-card-brief">
-                                <a>
-                                    <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/laut-bercerita.svg" alt="Book Image">
-                                </a>
-                                <div class="book-card-brief-desc">
-                                    <h4 class="book-card-title">Laut Bercerita</h4>
-                                    <p class="book-card-author">by Leila S. Chudori</p>
-                                    <p class="book-card-price">Rp 150.000</p>
-                                </div>
-                            </div>
-                            <div class="book-card-brief">
-                                <a>
-                                    <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/nebula.svg" alt="Book Image">
-                                </a>
-                                <div class="book-card-brief-desc">
-                                    <h4 class="book-card-title">Nebula</h4>
-                                    <p class="book-card-author">by Tere Liye</p>
-                                    <p class="book-card-price">Rp 150.000</p>
-                                </div>
-                            </div>
-                            <div class="book-card-brief">
-                                <a>
-                                    <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/rich-people-problem.svg" alt="Book Image">
-                                </a>
-                                <div class="book-card-brief-desc">
-                                    <h4 class="book-card-title">Rich People Problem</h4>
-                                    <p class="book-card-author">by Kevin Kwan</p>
-                                    <p class="book-card-price">Rp 150.000</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                    <?php
+                        $ownedBooks = $this->data['ownedBooks'];
+
+                        // Check if there are owned books to display
+                        if (!empty($ownedBooks)) {
+                            echo '<div>';
+                            echo '<div class="card-header">';
+                            echo '<h4 class="card-header-desc">Owned Books</h4>';
+                            echo '<a href="/public/mybooks">';
+                            echo '<p class="see-all">See All</p>';
+                            echo '</a>';
+                            echo '</div>';
+                            echo '<div class="card-grid-pagination">';
+
+                            foreach ($ownedBooks as $book) {
+                                echo '<div class="book-card-brief">';
+                                echo '<a href="/public/catalogue/?book_id=' . $book->book_id . '">';
+                                echo '<img class="book-img-brief" src="' . $book->cover_img_url . '" alt="Book Image">';
+                                echo '</a>';
+                                echo '<div class="book-card-brief-desc">';
+                                echo '<h4 class="book-card-title">' . $book->title . '</h4>';
+                                echo '<p class="book-card-author">by ' . $book->author . '</p>';
+                                echo '<p class="book-card-price">Rp ' . number_format($book->price, 0, ',', '.') . '</p>';
+                                echo '</div>';
+                                echo '</div>';
+                            }
+
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    ?>
+                    
                 </section>
             </div>
         </main>

@@ -61,6 +61,12 @@ class UserController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
 
+                    // Redirect to home page if already logged in
+                    if (isset($_SESSION['user_id'])) {
+                        header('Location: ' . BASE_URL . '/home');
+                        exit;
+                    }
+
                     $loginView = $this->view('user', 'LoginView');
                     $loginView->render();
                     exit;
@@ -114,6 +120,12 @@ class UserController extends Controller implements ControllerInterface
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
+
+                    // Redirect to home page if already logged in
+                    if (isset($_SESSION['user_id'])) {
+                        header('Location: ' . BASE_URL . '/home');
+                        exit;
+                    }
 
                     $registerView = $this->view('user', 'RegisterView');
                     $registerView->render();
