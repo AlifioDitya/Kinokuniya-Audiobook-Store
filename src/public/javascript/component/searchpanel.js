@@ -26,6 +26,25 @@ function removeDropdownIconTransform() {
     }
 }
 
+
+// Function to filter categories
+const categoryQuery = document.querySelector('#category-query');
+const categoryList = document.getElementById('category-options').getElementsByTagName('li');
+const filterCategories = () => {
+
+    categoryList.forEach((category) => {
+        const categoryName = category.querySelector('.option-text').innerText;
+
+        if (categoryName.includes(categoryQuery.value)) {
+            category.style.display = 'block';
+        } else {
+            category.style.display = 'none';
+        }
+    });
+};
+
+categoryQuery.addEventListener('keyup', filterCategories);
+
 // Initialize all dropdowns with the class "select-menu"
 initializeDropdown(".select-menu");
 removeDropdownIconTransform();

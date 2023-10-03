@@ -23,10 +23,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    <!-- JavaScript Constant and Variables -->
+    <script type="text/javascript" defer>
+        const DEBOUNCE_TIMEOUT = "<?= DEBOUNCE_TIMEOUT ?>";
+    </script>
+
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/searchpanel.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/catalogue/catalogue.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/debounce.js" defer></script>
 </head>
 <body>
     <div id="root">
@@ -46,38 +52,45 @@
                             <span class="select-btn-text">All Categories</span>
                             <i class="bx bx-chevron-down"></i>
                         </div>
-                        <ul class="options">
-                            <li class="option">
-                                <span class="option-text">Fiction</span>
-                            </li>
-                            <li class="option">
-                                <span class="option-text">Non-fiction</span>
-                            </li>
-                        </ul>
+                        <div class="options">
+                            <div class="category-search">
+                                <input type="search" id="category-query" class="search-input" name="q" placeholder="Search categories.." aria-label="Search through categories" autocomplete="on">
+                            </div>
+                            <ul id="category-options">
+                                <li class="option">
+                                    <span class="option-text">Fiction</span>
+                                </li>
+                                <li class="option">
+                                    <span class="option-text">Non-fiction</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="select-menu">
                         <div class="select-btn">
                             <span class="select-btn-text">All Price Range</span>
                             <i class="bx bx-chevron-down"></i>
                         </div>
-                        <ul class="options">
-                            <li class="option">
-                                <span class="option-text">< 500k Rp</span>
-                            </li>
-                            <li class="option">
-                                <span class="option-text">500k-1000k Rp</span>
-                            </li>
-                            <li class="option">
-                                <span class="option-text">> 1000k Rp</span>
-                            </li>
-                        </ul>
+                        <div class="options">
+                            <ul id="price-options">
+                                <li class="option">
+                                    <span class="option-text">< Rp500k</span>
+                                </li>
+                                <li class="option">
+                                    <span class="option-text">Rp500-1000k</span>
+                                </li>
+                                <li class="option">
+                                    <span class="option-text">> Rp1000K</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="select-menu">
+                    <div class="select-menu" id="sort-menu">
                         <div class="select-btn">
                             <span class="select-btn-text">Sort By</span>
                             <i class="bx bx-sort-alt-2"></i>
                         </div>
-                        <ul class="options">
+                        <ul class="options" id="sort-options">
                             <li class="option">
                                 <span class="option-text">Price: Low to High</span>
                             </li>
