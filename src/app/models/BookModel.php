@@ -63,6 +63,28 @@ class BookModel
         return $returnArr;
     }
 
+    public function getBooksByQuery($q, $page)
+    {
+        $query = 'SELECT title, author, category, book_desc, price, publication_date, cover_img_url, audio_url FROM book WHERE title LIKE :q OR author LIKE :q OR category LIKE :q LIMIT :limit OFFSET :offset';
+
+        $this->database->query($query);
+        $this->database->bind('q', '%' . $q . '%');
+        $this->database->bind('limit', ROWS_PER_PAGE);
+        $this->database->bind('offset', ($page - 1) * ROWS_PER_PAGE);
+        $books = $this->database->fetchAll();
+
+        $query = 'SELECT CEIL(COUNT(book_id) / :rows_per_page) AS page_count FROM book WHERE title LIKE :q OR author LIKE :q OR category LIKE :q';
+
+        $this->database->query($query);
+        $this->database->bind('q', '%' . $q . '%');
+        $this->database->bind('rows_per_page', ROWS_PER_PAGE);
+        $book = $this->database->fetch();
+        $pageCount = $book->page_count;
+
+        $returnArr = ['books' => $books, 'pages' => $pageCount];
+        return $returnArr;
+    }
+
     public function getFilteredBooks($q, $category, $priceRange, $sortBy, $sortOrder, $page)
     {
         // Construct the base SQL query
@@ -182,5 +204,16 @@ class BookModel
         return $ownedBooks;
     }
 
+    public function getBookCategories()
+    {
+        // Construct the SQL query to fetch all book categories
+        $query = 'SELECT DISTINCT category FROM book';
 
+        // Execute the query
+        $this->database->query($query);
+        $categories = $this->database->fetchAll();
+
+        // Return the result
+        return $categories;
+    }
 }

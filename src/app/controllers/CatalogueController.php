@@ -14,10 +14,38 @@ class CatalogueController extends Controller implements ControllerInterface
                         exit;
                     }
 
-                    $homeView = $this->view('catalogue', 'CatalogueView');
-                    $homeView->render();
+                    $bookModel = $this->model('BookModel');
+
+                    $bookList = $bookModel->getBooks(1);
+                    $bookCategories = $bookModel->getBookCategories();
+                    $books = $bookList['books'];
+
+                    $catalogueView = $this->view('catalogue', 'CatalogueView', ['bookCategories' => $bookCategories, 'books' => $books]);
+                    $catalogueView->render();
 
                     break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+        }
+    }
+
+    public function search()
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+
+                    $bookModel = $this->model('BookModel');
+
+                    $bookList = $bookModel->getBooksByQuery($_GET['query'], $_GET['page']);
+
+                    header('Content-Type: application/json');
+                    echo json_encode($bookList);
+                    http_response_code(200);
+                    exit;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
             }

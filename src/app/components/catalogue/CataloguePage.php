@@ -29,10 +29,11 @@
     </script>
 
     <!-- JavaScript DOM and AJAX -->
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/lib/debounce.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/searchpanel.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/search.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/catalogue/catalogue.js" defer></script>
-    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/debounce.js" defer></script>
 </head>
 <body>
     <div id="root">
@@ -49,7 +50,7 @@
                     </form>
                     <div class="select-menu">
                         <div class="select-btn">
-                            <span class="select-btn-text">All Categories</span>
+                            <span class="select-btn-text" id="category-filter-text">All Categories</span>
                             <i class="bx bx-chevron-down"></i>
                         </div>
                         <div class="options">
@@ -57,18 +58,17 @@
                                 <input type="search" id="category-query" class="search-input" name="q" placeholder="Search categories.." aria-label="Search through categories" autocomplete="on">
                             </div>
                             <ul id="category-options">
-                                <li class="option">
-                                    <span class="option-text">Fiction</span>
-                                </li>
-                                <li class="option">
-                                    <span class="option-text">Non-fiction</span>
-                                </li>
+                                <?php foreach ($this->data['bookCategories'] as $category) : ?>
+                                    <li class="option">
+                                        <span class="option-text"><?= $category->category ?></span>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                     </div>
                     <div class="select-menu">
                         <div class="select-btn">
-                            <span class="select-btn-text">All Price Range</span>
+                            <span class="select-btn-text" id="price-filter-text">All Prices</span>
                             <i class="bx bx-chevron-down"></i>
                         </div>
                         <div class="options">
@@ -87,7 +87,7 @@
                     </div>
                     <div class="select-menu" id="sort-menu">
                         <div class="select-btn">
-                            <span class="select-btn-text">Sort By</span>
+                            <span class="select-btn-text" id="sort-text">Sort By</span>
                             <i class="bx bx-sort-alt-2"></i>
                         </div>
                         <ul class="options" id="sort-options">
@@ -107,18 +107,20 @@
                     </div>
                 </div>
                 <section class="books-section">
-                    <div class="card-grid-pagination">
-                        <div class="book-card-brief">
-                            <a>
-                                <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/klara.svg" alt="Book Image">
-                            </a>
-                            <div class="book-card-brief-desc">
-                                <h4 class="book-card-title">Klara and the Sun</h4>
-                                <p class="book-card-author">by Kazuo Ishiguro</p>
-                                <p class="book-card-price">Rp 150.000</p>
+                    <div class="card-grid-pagination" id="book-list">
+                        <?php foreach ($this->data['books'] as $book) : ?>
+                            <div class="book-card-brief">
+                                <a>
+                                    <img class="book-img-brief" src="<?= $book->cover_img_url ?>" alt="Book Image">
+                                </a>
+                                <div class="book-card-brief-desc">
+                                    <h4 class="book-card-title"><?= $book->title ?></h4>
+                                    <p class="book-card-author">by <?= $book->author ?></p>
+                                    <p class="book-card-price">Rp <?= number_format($book->price, 0, ',', '.') ?></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="book-card-brief">
+                        <?php endforeach; ?>
+                        <!-- <div class="book-card-brief">
                             <a>
                                 <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/cantik-itu-luka.svg" alt="Book Image">
                             </a>
@@ -157,7 +159,7 @@
                                 <p class="book-card-author">by Kevin Kwan</p>
                                 <p class="book-card-price">Rp 150.000</p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </section>
             </div>
