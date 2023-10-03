@@ -8,6 +8,12 @@ class MyBooksController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
 
+                    // Redirect to Login Page if not logged in
+                    if (!isset($_SESSION['user_id'])) {
+                        header('Location: ' . BASE_URL . '/user/login');
+                        exit;
+                    }
+
                     $homeView = $this->view('mybooks', 'MyBooksView');
                     $homeView->render();
 

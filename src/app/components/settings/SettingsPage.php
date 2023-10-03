@@ -33,7 +33,7 @@
         <?php include(dirname(__DIR__) . '/template/sidebar.php') ?>
         <main class="main-container">
             <?php include(dirname(__DIR__) . '/template/topnav.php') ?>
-            <div class="section1-settings">
+            <form class="section1-settings" method="post">
                 <div class="input-group">
                     <label for="username">Username</label><br>
                     <input class="input placeholder"type="text" id="username">
@@ -44,10 +44,10 @@
                 </div>
                 <div class="input-group">
                     <button class="save">Save</button>
-                    <button class="logout">Logout</button>
+                    <button id="log-out" class="logout">Logout</button>
                 </div>
-            </div>
+            </form>
         </main>
-    </div>   
+    </div>
 </body>
 </html>
