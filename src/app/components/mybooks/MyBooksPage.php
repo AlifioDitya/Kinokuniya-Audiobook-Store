@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/globals.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/sidebar.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/topnav.css">
+    <link rel = "icon" href = "https://ugc.production.linktr.ee/HgDUQezLRzaAhdOsHX7E_757110a46f23cdba31b42e43f2c1a7fb.png" 
+    type = "image/x-icon">
 
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
