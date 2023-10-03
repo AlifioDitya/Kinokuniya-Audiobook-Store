@@ -27,8 +27,7 @@ class App
         }
         unset($url[0]);
 
-        // Check if method exists: if yes, use that method; if not, use index method (index.php)
-        // Note: index.php is the default method for every controller
+        // Check if method exists: if yes, use that method; if not, use index method
         $methodPart = $url[1] ?? null;
         if (isset($methodPart) && method_exists($this->controller, $methodPart)) {
             $this->method = $methodPart;

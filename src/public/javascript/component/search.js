@@ -1,5 +1,5 @@
 
-const searchBar = document.querySelector("#input-form");
+const searchBar = document.getElementById("query");
 const categoryFilter = document.querySelector("#category-filter");
 const priceFilter = document.querySelector("#price-filter");
 const sort = document.querySelector("#sort");
@@ -17,7 +17,7 @@ searchBar &&
 searchBar.addEventListener(
     "keyup",
     debounce(() => {
-        const queryValue = searchBar.value;
+        const queryValue = searchBar.value.trim();
 
         xhr = new XMLHttpRequest();
         xhr.open(
