@@ -73,7 +73,6 @@ loginForm &&
         }
 
         if (!usernameValid || !passwordValid) {
-            loginError.innerText = "Make sure your inputs are valid.";
             return;
         }
 

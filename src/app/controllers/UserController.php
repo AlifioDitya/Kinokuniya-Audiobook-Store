@@ -81,7 +81,6 @@ class UserController extends Controller implements ControllerInterface
                     throw new LoggedException('Method Not Allowed', 405);
             }
         } catch (Exception $e) {
-            print_r($e);
             http_response_code($e->getCode());
             exit;
         }
