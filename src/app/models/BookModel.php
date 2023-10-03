@@ -23,7 +23,7 @@ class BookModel
 
     public function getBooks($page)
     {
-        $query = 'SELECT title, author, category, book_desc, price, publication_date, cover_img_url, audio_url FROM book LIMIT :limit OFFSET :offset';
+        $query = 'SELECT book_id, title, author, category, book_desc, price, publication_date, cover_img_url, audio_url FROM book LIMIT :limit OFFSET :offset';
 
         $this->database->query($query);
         $this->database->bind('limit', ROWS_PER_PAGE);

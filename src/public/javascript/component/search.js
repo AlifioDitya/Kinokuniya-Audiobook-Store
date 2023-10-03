@@ -22,7 +22,7 @@ searchBar.addEventListener(
         xhr = new XMLHttpRequest();
         xhr.open(
             "GET",
-            `/public/catalogue/search?query=${queryValue}&page=${page}`
+            `/public/catalogue/search?q=${queryValue}&page=${page}`
         );
 
         xhr.send();

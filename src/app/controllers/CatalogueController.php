@@ -40,10 +40,12 @@ class CatalogueController extends Controller implements ControllerInterface
 
                     $bookModel = $this->model('BookModel');
 
-                    $bookList = $bookModel->getBooksByQuery($_GET['query'], $_GET['page']);
+                    $bookList = $bookModel->getBooksByQuery($_GET['q'], $_GET['page']);
+                    $books = $bookList['books'];
+                    // $pages = $bookList['pages'];
 
                     header('Content-Type: application/json');
-                    echo json_encode($bookList);
+                    echo error_log(json_encode($books));
                     http_response_code(200);
                     exit;
                 default:
