@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <link rel = "icon" href = "https://ugc.production.linktr.ee/HgDUQezLRzaAhdOsHX7E_757110a46f23cdba31b42e43f2c1a7fb.png" 
+    type = "image/x-icon">
+    <title>Edit Book</title>
     
     <!-- Globals and Templates CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/globals.css">
