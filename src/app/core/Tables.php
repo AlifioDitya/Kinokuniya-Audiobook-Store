@@ -2,7 +2,7 @@
 
 class Tables {
     public const USER_TABLE = "
-        CREATE TABLE IF NOT EXISTS User (
+        CREATE TABLE IF NOT EXISTS user (
             user_id INT AUTO_INCREMENT PRIMARY KEY,
             username VARCHAR(255) NOT NULL UNIQUE,
             password VARCHAR(255) NOT NULL,
@@ -13,7 +13,7 @@ class Tables {
     ";
 
     public const BOOK_TABLE = "
-        CREATE TABLE IF NOT EXISTS Book (
+        CREATE TABLE IF NOT EXISTS book (
             book_id INT AUTO_INCREMENT PRIMARY KEY,
             title VARCHAR(255) NOT NULL UNIQUE,
             author VARCHAR(100) NOT NULL,
@@ -28,22 +28,22 @@ class Tables {
     ";
 
     public const BOOK_OWNERSHIP_TABLE = "
-        CREATE TABLE IF NOT EXISTS BookOwnership (
+        CREATE TABLE IF NOT EXISTS book_ownership (
             user_id INT NOT NULL,
             book_id INT NOT NULL,
             PRIMARY KEY (user_id, book_id),
-            FOREIGN KEY (user_id) REFERENCES User(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
-            FOREIGN KEY (book_id) REFERENCES Book(book_id) ON UPDATE CASCADE ON DELETE CASCADE
+            FOREIGN KEY (user_id) REFERENCES user(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+            FOREIGN KEY (book_id) REFERENCES book(book_id) ON UPDATE CASCADE ON DELETE CASCADE
         );
     ";
 
     public const CART_TABLE = "
-        CREATE TABLE IF NOT EXISTS Cart (
+        CREATE TABLE IF NOT EXISTS cart (
             user_id INT NOT NULL,
             book_id INT NOT NULL,
             PRIMARY KEY (user_id, book_id),
-            FOREIGN KEY (user_id) REFERENCES User(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
-            FOREIGN KEY (book_id) REFERENCES Book(book_id) ON UPDATE CASCADE ON DELETE CASCADE
+            FOREIGN KEY (user_id) REFERENCES user(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+            FOREIGN KEY (book_id) REFERENCES book(book_id) ON UPDATE CASCADE ON DELETE CASCADE
         );
     ";
 }

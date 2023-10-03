@@ -7,26 +7,16 @@ class UserController extends Controller implements ControllerInterface
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    // Prevent Access except Admin
-                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
-                    $authMiddleware->isAdmin();
+                    // // Prevent Access except Admin
+                    // $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    // $authMiddleware->isAdmin();
 
-                    // Grab user data
-                    $userModel = $this->model('UserModel');
-                    $res = $userModel->getUsers(1);
+                    // // Grab user data
+                    // $userModel = $this->model('UserModel');
+                    // $res = $userModel->getUsers(1);
 
-                    // Keperluan navbar
-                    if (isset($_SESSION['user_id'])) {
-                        // Ada data user_id, coba fetch data username!
-                        $userModel = $this->model('UserModel');
-                        $user = $userModel->getUserFromID($_SESSION['user_id']);
-                        $nav = ['username' => $user->username, 'is_admin' => $user->is_admin];
-                    } else {
-                        $nav = ['username' => null];
-                    }
-
-                    $userListView = $this->view('user', 'UserListView', array_merge($nav, $res));
-                    $userListView->render();
+                    // $userListView = $this->view('user', 'UserListView', array_merge($nav, $res));
+                    // $userListView->render();
                     exit;
 
                 default:
@@ -91,6 +81,7 @@ class UserController extends Controller implements ControllerInterface
                     throw new LoggedException('Method Not Allowed', 405);
             }
         } catch (Exception $e) {
+            print_r($e);
             http_response_code($e->getCode());
             exit;
         }
@@ -161,7 +152,7 @@ class UserController extends Controller implements ControllerInterface
                         throw new LoggedException('Not Found', 404);
                     }
 
-                    http_response_code(200);
+                    http_response_code(400);
                     exit;
 
                 default:

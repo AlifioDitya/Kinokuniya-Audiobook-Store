@@ -1,8 +1,9 @@
 const usernameInput = document.querySelector("#username");
 const passwordInput = document.querySelector("#password");
-const loginForm = document.querySelector(".login-form");
+const loginForm = document.querySelector("#login-form");
 const usernameError = document.querySelector("#username-error");
 const passwordError = document.querySelector("#password-error");
+const loginError = document.querySelector("#login-error");
 
 const usernameRegex = /^\w+$/;
 const passwordRegex = /^\w+$/;
@@ -18,9 +19,6 @@ usernameInput &&
 
             if (!usernameRegex.test(username)) {
                 usernameError.innerText = "Invalid username format!";
-                usernameValid = false;
-            } else if (username.length < 5) {
-                usernameError.innerText = "Username must be at least 5 characters long.";
                 usernameValid = false;
             } else {
                 usernameError.innerText = "";
@@ -38,9 +36,6 @@ passwordInput &&
             if (!passwordRegex.test(password)) {
                 passwordError.innerText = "Invalid password format!";
                 passwordValid = false;
-            } else if (password.length < 8) {
-                passwordError.innerText = "Password must be at least 8 characters long.";
-                passwordValid = false;
             } else {
                 passwordError.innerText = "";
                 passwordValid = true;
@@ -55,28 +50,22 @@ loginForm &&
         const username = usernameInput.value;
         const password = passwordInput.value;
 
-        if (!username) {
+        if (!username || username==="") {
             usernameError.innerText = "Please fill out your username first!";
             usernameValid = false;
         } else if (!usernameRegex.test(username)) {
             usernameError.innerText = "Invalid username format!";
-            usernameValid = false;
-        } else if (username.length < 5) {
-            usernameError.innerText = "Username must be at least 5 characters long.";
             usernameValid = false;
         } else {
             usernameError.innerText = "";
             usernameValid = true;
         }
 
-        if (!password) {
+        if (!password || password==="") {
             passwordError.innerText = "Please fill out your password first!";
             passwordValid = false;
         } else if (!passwordRegex.test(password)) {
             passwordError.innerText = "Invalid password format!";
-            passwordValid = false;
-        } else if (password.length < 8) {
-            passwordError.innerText = "Password must be at least 8 characters long.";
             passwordValid = false;
         } else {
             passwordError.innerText = "";
@@ -84,6 +73,7 @@ loginForm &&
         }
 
         if (!usernameValid || !passwordValid) {
+            loginError.innerText = "Make sure your inputs are valid.";
             return;
         }
 

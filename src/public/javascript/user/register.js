@@ -1,7 +1,7 @@
 const usernameInput = document.querySelector("#username");
 const passwordInput = document.querySelector("#password");
 const passwordConfirmedInput = document.querySelector("#confirm-password");
-const registrationForm = document.querySelector(".registration-form");
+const registrationForm = document.querySelector("#registration-form");
 const usernameError = document.querySelector("#username-error");
 const passwordError = document.querySelector("#password-error");
 const passwordConfirmedError = document.querySelector(
@@ -31,8 +31,7 @@ usernameInput &&
             xhr.send();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
-                    console.log(this.responseText);
-                    if (this.status === 200) {
+                    if (this.status === 400) {
                         usernameError.innerText = "Username already taken!";
                         usernameValid = false;
                     } else if (!usernameRegex.test(username)) {
@@ -109,6 +108,8 @@ registrationForm &&
         if (!usernameValid) {
             e.preventDefault();
             usernameError.innerText = "Please fill out a valid username first!";
+        } else if (!usernameValid) {
+            usernameError.innerText = "Invalid username format!";
         } else {
             usernameError.innerText = "";
         }
@@ -116,6 +117,8 @@ registrationForm &&
         if (!passwordValid) {
             e.preventDefault();
             passwordError.innerText = "Please fill out a valid password first!";
+        } else if (!passwordValid) {
+            passwordError.innerText = "Invalid password format!";
         } else {
             passwordError.innerText = "";
         }
