@@ -1,4 +1,4 @@
-#editbookadmin {
+#edituser {
     background-color: #000;
     color: #f2f3f5;
     display: flex;
@@ -14,12 +14,11 @@
 .input-group {
     margin-top: 24;
     height: 88px;
-    width: 50%;
+    width: 40%;
     font-weight: bold;
     font-size: 23px;
-    margin-left: -15%;    
+    margin-left: 28px;
     margin-top: 24px;
-    margin-right: -15%;
 }
 
 .placeholder{
@@ -31,7 +30,6 @@
 
 .input-container {
     display: flex;           
-    /* justify-content: space-between;   */
     flex-wrap: wrap;       
 }
 

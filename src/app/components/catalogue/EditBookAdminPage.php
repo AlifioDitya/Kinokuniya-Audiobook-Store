@@ -15,8 +15,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/editbookadmin/editbookadmin.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/settings/settings.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/catalogue/editbookadmin.css">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -27,14 +26,14 @@
 
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
-    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/editbookadmin/editbookadmin.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/catalogue/editbookadmin.js" defer></script>
 </head>
 <body>
-<div id="settings">
+<div id="editbookadmin">
         <?php include(dirname(__DIR__) . '/template/sidebar.php') ?>
         <main class="main-container">
             <?php include(dirname(__DIR__) . '/template/topnav.php') ?>
-            <div class="input-container">
+             <div class="input-container">
                 <div class="input-group">
                     <label for="Book Title">Book Title</label><br>
                     <input class="input placeholder"type="text" id="Book Title">
@@ -77,7 +76,7 @@
             </div>
             <div class="input-group">
                     <button class="save">Save</button>
-                </div>
+                </div> 
         </main>
 
     </div>   

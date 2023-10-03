@@ -16,7 +16,6 @@
 
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/user/edituser.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/settings/settings.css">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -30,7 +29,7 @@
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/user/edituser.js" defer></script>
 </head>
 <body>
-<div id="settings">
+<div id="edituser">
         <?php include(dirname(__DIR__) . '/template/sidebar.php') ?>
         <main class="main-container">
             <?php include(dirname(__DIR__) . '/template/topnav.php') ?>
