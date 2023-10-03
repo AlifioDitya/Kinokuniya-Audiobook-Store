@@ -15,7 +15,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/edituser/edituser.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/user/edituser.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/settings/settings.css">
 
     <!-- Icons -->
@@ -27,7 +27,7 @@
 
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
-    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/edituser/edituser.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/user/edituser.js" defer></script>
 </head>
 <body>
 <div id="settings">

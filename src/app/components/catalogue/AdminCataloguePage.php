@@ -24,7 +24,7 @@
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/searchpanel.js" defer></script>
-    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/admincatalogue/admincatalogue.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/catalogue/admincatalogue.js" defer></script>
 </head>
 <body>
     <div id="root">

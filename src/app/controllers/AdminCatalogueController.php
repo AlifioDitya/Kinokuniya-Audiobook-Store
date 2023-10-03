@@ -8,7 +8,7 @@ class AdminCatalogueController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
 
-                    $homeView = $this->view('admincatalogue', 'AdminCatalogueView');
+                    $homeView = $this->view('catalogue', 'AdminCatalogueView');
                     $homeView->render();
 
                     break;

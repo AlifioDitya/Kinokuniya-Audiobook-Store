@@ -8,7 +8,7 @@ class EditUserController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
 
-                    $homeView = $this->view('edituser', 'EditUserView');
+                    $homeView = $this->view('user', 'EditUserView');
                     $homeView->render();
 
                     break;

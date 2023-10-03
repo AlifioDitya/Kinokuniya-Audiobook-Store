@@ -8,7 +8,7 @@ class EditBookAdminController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
 
-                    $homeView = $this->view('editbookadmin', 'EditBookAdminView');
+                    $homeView = $this->view('catalogue', 'EditBookAdminView');
                     $homeView->render();
 
                     break;

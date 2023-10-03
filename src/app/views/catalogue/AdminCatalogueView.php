@@ -8,6 +8,6 @@ class AdminCatalogueView implements ViewInterface
     }
 
     public function render() {
-        require_once __DIR__ . '/../../components/admincatalogue/AdminCataloguePage.php';
+        require_once __DIR__ . '/../../components/catalogue/AdminCataloguePage.php';
     }
 }
