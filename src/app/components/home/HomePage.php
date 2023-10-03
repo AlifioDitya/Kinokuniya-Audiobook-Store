@@ -56,72 +56,41 @@
                     </div>
                 </section>
                 <section class="dashboard-section">
-                    <div>
-                        <div class="card-header">
-                            <h4 class="card-header-desc">Newest Releases</h4>
-                            <a href="/public/catalogue">
-                                <p class="see-all">See All</p>
-                            </a>
-                        </div>
-                        <div class="card-grid">
-                            <div class="book-card">
-                                <div class="book-card-container">
-                                    <img class="book-img" src="<?= STORAGE_URL ?>/book-img/klara.svg" alt="Book Image">
-                                    <div class="book-card-desc">
-                                        <h4 class="book-card-title">Klara and the Sun</h4>
-                                        <p class="book-card-author">by Kazuo Ishiguro</p>
-                                        <p class="book-card-summary">Klara and The Sun tells the story of Klara, an Artificial Friend with outstanding observational qualities, who, from her place in the store, watches carefully...</p>
-                                        <a href="google.com"><p class="read-more">Read More</p></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="book-card">
-                                <div class="book-card-container">
-                                    <img class="book-img" src="<?= STORAGE_URL ?>/book-img/cantik-itu-luka.svg" alt="Book Image">
-                                    <div class="book-card-desc">
-                                        <h4 class="book-card-title">Cantik itu Luka</h4>
-                                        <p class="book-card-author">by Eka Kurniawan</p>
-                                        <p class="book-card-summary">Cantik itu Luka merupakan novel pertama karya penulis Indonesia, Eka Kurniawan. Pertama kali diterbitkan tahun 2002 atas kerjasama Akademi Kebudayaan...</p>
-                                        <a href="google.com"><p class="read-more">Read More</p></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="book-card">
-                                <div class="book-card-container">
-                                    <img class="book-img" src="<?= STORAGE_URL ?>/book-img/klara.svg" alt="Book Image">
-                                    <div class="book-card-desc">
-                                        <h4 class="book-card-title">Klara and the Sun</h4>
-                                        <p class="book-card-author">by Kazuo Ishiguro</p>
-                                        <p class="book-card-summary">Klara and The Sun tells the story of Klara, an Artificial Friend with outstanding observational qualities, who, from her place in the store, watches carefully...</p>
-                                        <a href="google.com"><p class="read-more">Read More</p></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="book-card">
-                                <div class="book-card-container">
-                                    <img class="book-img" src="<?= STORAGE_URL ?>/book-img/cantik-itu-luka.svg" alt="Book Image">
-                                    <div class="book-card-desc">
-                                        <h4 class="book-card-title">Cantik itu Luka</h4>
-                                        <p class="book-card-author">by Eka Kurniawan</p>
-                                        <p class="book-card-summary">Cantik itu Luka merupakan novel pertama karya penulis Indonesia, Eka Kurniawan. Pertama kali diterbitkan tahun 2002 atas kerjasama Akademi Kebudayaan...</p>
-                                        <a href="google.com"><p class="read-more">Read More</p></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="book-card">
-                                <div class="book-card-container">
-                                    <img class="book-img" src="<?= STORAGE_URL ?>/book-img/klara.svg" alt="Book Image">
-                                    <div class="book-card-desc">
-                                        <h4 class="book-card-title">Klara and the Sun</h4>
-                                        <p class="book-card-author">by Kazuo Ishiguro</p>
-                                        <p class="book-card-summary">Klara and The Sun tells the story of Klara, an Artificial Friend with outstanding observational qualities, who, from her place in the store, watches carefully...</p>
-                                        <a href="google.com"><p class="read-more">Read More</p></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
+                    <?php
+                        $newestReleases = $this->data['newestReleases'];
+
+                        // Check if there are books to display
+                        if (!empty($newestReleases)) {
+                            echo '<div>';
+                            echo '<div class="card-header">';
+                            echo '<h4 class="card-header-desc">Newest Releases</h4>';
+                            echo '<a href="/public/catalogue">';
+                            echo '<p class="see-all">See All</p>';
+                            echo '</a>';
+                            echo '</div>';
+                            echo '<div class="card-grid">';
+
+                            foreach ($newestReleases as $book) {
+                                echo '<div class="book-card">';
+                                echo '<div class="book-card-container">';
+                                echo '<img class="book-img" src="' . $book->cover_img_url . '" alt="Book Image">';
+                                echo '<div class="book-card-desc">';
+                                echo '<h4 class="book-card-title">' . $book->title . '</h4>';
+                                echo '<p class="book-card-author">by ' . $book->author . '</p>';
+                                $shortDesc = (strlen($book->book_desc) > 230) ? substr($book->book_desc, 0, 230) . '...' : $book->book_desc;
+                                echo '<p class="book-card-summary">' . $shortDesc . '</p>';
+                                echo '<a href="/public/catalogue/?book_id=' . $book->book_id . '"><p class="read-more">Read More</p></a>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                            }
+
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    ?>
+
+                    <!-- <div>
                         <div class="card-header">
                             <h4 class="card-header-desc">Owned Books</h4>
                             <a href="/public/mybooks">
@@ -180,6 +149,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div> -->
                 </section>
             </div>
         </main>

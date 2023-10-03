@@ -14,7 +14,20 @@ class HomeController extends Controller implements ControllerInterface
                         exit;
                     }
 
-                    $homeView = $this->view('home', 'MainView');
+                    // Open connection to Book Model
+                    $bookModel = $this->model('BookModel');
+
+                    // Get newest releases from Book Model
+                    $newestReleases = $bookModel->getNewestReleases();
+
+                    // Get owned books from Book Model
+                    $ownedBooks = $bookModel->getOwnedBooksByUserId($_SESSION['user_id']);
+
+                    $homeView = $this->view('home', 'MainView', [
+                        'newestReleases' => $newestReleases,
+                        'ownedBooks' => $ownedBooks
+                    ]);
+                    
                     $homeView->render();
 
                     break;
