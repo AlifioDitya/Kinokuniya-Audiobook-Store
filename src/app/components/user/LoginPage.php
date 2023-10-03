@@ -20,13 +20,13 @@
 </head>
 <body>
     <div class="login-container">
-        <div class="login form" method="post">
+        <div class="login form" method="post" autocomplete="on">
             <header>Login</header>
-            <form id="login-form" method="post">
+            <form id="login-form" method="post" autocomplete="on">
                 <div class="error-message" id="username-error"></div>
                 <input type="text" id="username" name="username" placeholder="Enter your username">
                 <div class="error-message" id="password-error"></div>
-                <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="on">
+                <input type="password" id="password" name="password" placeholder="Enter your password">
                 <div class="error-message" id="login-error"></div>
                 <input type="submit" class="sign-in-button" value="Login">
             </form>

@@ -28,9 +28,8 @@ class Database
         try {
             $this->db_connection->exec(Tables::USER_TABLE);
             $this->db_connection->exec(Tables::BOOK_TABLE);
-            $this->db_connection->exec(Tables::CATEGORY_TABLE);
             $this->db_connection->exec(Tables::BOOK_OWNERSHIP_TABLE);
-            $this->db_connection->exec(Tables::BOOK_CATEGORY_TABLE);
+            $this->db_connection->exec(Tables::CART_TABLE);
         } catch (PDOException) {
             throw new LoggedException('Internal Server Error', 500);
         }

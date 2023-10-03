@@ -1,48 +1,49 @@
 <?php
 
 class Tables {
-    // Create the User table
-    public const USER_TABLE =
-    "CREATE TABLE User (
-        user_id SERIAL PRIMARY KEY AUTO_INCREMENT,
-        username VARCHAR(255) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL,
-        is_admin BOOLEAN NOT NULL
-    );";
+    public const USER_TABLE = "
+        CREATE TABLE IF NOT EXISTS User (
+            user_id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(255) NOT NULL UNIQUE,
+            password VARCHAR(255) NOT NULL,
+            is_admin BOOLEAN NOT NULL DEFAULT FALSE,
+            CONSTRAINT CheckPasswordLength CHECK (CHAR_LENGTH(password) >= 8),
+            CONSTRAINT CheckUsernameLength CHECK (CHAR_LENGTH(username) >= 5)
+        );
+    ";
 
-    // Create the BookOwnership table to represent the relationship between users and books they own
-    public const BOOK_OWNERSHIP_TABLE =
-    "CREATE TABLE BookOwnership (
-        user_id INT REFERENCES User(user_id) ON DELETE SET NULL ON UPDATE CASCADE,
-        book_id INT REFERENCES Book(book_id) ON DELETE SET NULL ON UPDATE CASCADE,
-        PRIMARY KEY (user_id, book_id)
-    );";
+    public const BOOK_TABLE = "
+        CREATE TABLE IF NOT EXISTS Book (
+            book_id INT AUTO_INCREMENT PRIMARY KEY,
+            title VARCHAR(255) NOT NULL UNIQUE,
+            author VARCHAR(100) NOT NULL,
+            category VARCHAR(255) NOT NULL UNIQUE,
+            book_desc TEXT,
+            price DECIMAL(10, 2) NOT NULL,
+            publication_date DATE,
+            cover_img_url VARCHAR(255),
+            audio_url VARCHAR(255),
+            CONSTRAINT CheckPositivePrice CHECK (price > 0)
+        );
+    ";
 
-    // Create the Book table to store information about books
-    public const BOOK_TABLE =
-    "CREATE TABLE Book (
-        book_id SERIAL PRIMARY KEY AUTO_INCREMENT,
-        title VARCHAR(255) NOT NULL,
-        author VARCHAR(100) NOT NULL,
-        book_desc TEXT,
-        price DECIMAL(10, 2) NOT NULL,
-        publication_date DATE,
-        content_url VARCHAR(255), -- URL to the book content (e.g., e-book or audio file)
-        cover_img_url VARCHAR(255), -- URL to the book cover image
-        audio_url VARCHAR(255) -- URL to the audio content
-    );";
+    public const BOOK_OWNERSHIP_TABLE = "
+        CREATE TABLE IF NOT EXISTS BookOwnership (
+            user_id INT NOT NULL,
+            book_id INT NOT NULL,
+            PRIMARY KEY (user_id, book_id),
+            FOREIGN KEY (user_id) REFERENCES User(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+            FOREIGN KEY (book_id) REFERENCES Book(book_id) ON UPDATE CASCADE ON DELETE CASCADE
+        );
+    ";
 
-    // Create the BookCategory table to represent the relationship between books and categories
-    public const BOOK_CATEGORY_TABLE =
-    "CREATE TABLE BookCategory (
-        category_id SERIAL PRIMARY KEY AUTO_INCREMENT,
-        book_id INT REFERENCES Book(book_id) ON DELETE SET NULL
-    );";
-
-    // Create the Category table to store book categories
-    public const CATEGORY_TABLE =
-    "CREATE TABLE Category (
-        category_id SERIAL PRIMARY KEY AUTO_INCREMENT,
-        category_name VARCHAR(255) NOT NULL
-    );";
+    public const CART_TABLE = "
+        CREATE TABLE IF NOT EXISTS Cart (
+            user_id INT NOT NULL,
+            book_id INT NOT NULL,
+            PRIMARY KEY (user_id, book_id),
+            FOREIGN KEY (user_id) REFERENCES User(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+            FOREIGN KEY (book_id) REFERENCES Book(book_id) ON UPDATE CASCADE ON DELETE CASCADE
+        );
+    ";
 }

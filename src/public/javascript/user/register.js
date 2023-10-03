@@ -31,6 +31,7 @@ usernameInput &&
             xhr.send();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
+                    console.log(this.responseText);
                     if (this.status === 200) {
                         usernameError.innerText = "Username already taken!";
                         usernameValid = false;

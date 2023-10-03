@@ -34,7 +34,7 @@
             <?php include(dirname(__DIR__) . '/template/topnav.php') ?>
             <div class="secondary-container">
                 <section class="hero-section">
-                    <form role="search" id="input-form">
+                    <form role="search" id="input-form" autocomplete="on">
                         <input type="search" id="query" class="search-input" name="q" placeholder="Search books..." aria-label="Search through site content">
                         <button class="search-btn">
                             <i class="fas fa-search"></i>
