@@ -85,6 +85,45 @@ class BookModel
         return $returnArr;
     }
 
+    public function getOwnedBooksByQuery($q, $page, $user_id)
+    {
+        // Fetch only user owned books
+        $query = 'SELECT b.book_id, b.title, b.author, b.category, b.book_desc, b.price, b.publication_date, b.cover_img_url, b.audio_url
+                FROM book AS b
+                INNER JOIN book_ownership AS bo ON b.book_id = bo.book_id
+                WHERE (b.title LIKE :q OR b.author LIKE :q OR b.category LIKE :q) AND bo.user_id = :user_id LIMIT :limit OFFSET :offset';
+
+        // Bind the search query parameter
+        $this->database->query($query);
+        $this->database->bind('q', '%' . $q . '%');
+        $this->database->bind('user_id', $user_id);
+        $this->database->bind('limit', ROWS_PER_PAGE);
+        $this->database->bind('offset', ($page - 1) * ROWS_PER_PAGE);
+
+        // Execute the query
+        $books = $this->database->fetchAll();
+
+        // Calculate the total number of pages
+        $countQuery = 'SELECT CEIL(COUNT(b.book_id) / :rows_per_page) AS page_count 
+                    FROM book AS b
+                    INNER JOIN book_ownership AS bo ON b.book_id = bo.book_id
+                    WHERE (b.title LIKE :q OR b.author LIKE :q OR b.category LIKE :q) AND bo.user_id = :user_id';
+
+        // Bind the search query parameter
+        $this->database->query($countQuery);
+        $this->database->bind('q', '%' . $q . '%');
+        $this->database->bind('user_id', $user_id);
+        $this->database->bind('rows_per_page', ROWS_PER_PAGE);
+
+        // Execute the query
+        $book = $this->database->fetch();
+        $pageCount = $book->page_count;
+
+        // Create the return array
+        $returnArr = ['books' => $books, 'pages' => $pageCount];
+        return $returnArr;
+    }
+
     public function getFilteredBooks($q, $category, $priceRange, $sortBy, $sortOrder, $page)
     {
         // Construct the base SQL query

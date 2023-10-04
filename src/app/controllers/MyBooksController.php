@@ -46,7 +46,7 @@ class MyBooksController extends Controller implements ControllerInterface
 
                     $bookModel = $this->model('BookModel');
 
-                    $bookList = $bookModel->getBooksByQuery($_GET['q'], 1);
+                    $bookList = $bookModel->getOwnedBooksByQuery($_GET['q'], 1, $_SESSION['user_id']);
                     $books = $bookList['books'];
                     $pages = $bookList['pages'];
 
