@@ -14,8 +14,20 @@ class MyBooksController extends Controller implements ControllerInterface
                         exit;
                     }
 
-                    $homeView = $this->view('mybooks', 'MyBooksView');
-                    $homeView->render();
+                    $bookModel = $this->model('BookModel');
+
+                    $bookList = $bookModel->getOwnedBooksByUserId($_SESSION['user_id'], 1);
+                    $bookCategories = $bookModel->getBookCategories();
+                    
+                    // Check if bookList is an empty array
+                    if (empty($bookList)) {
+                        $ownedBooks = null;
+                    } else {
+                        $ownedBooks = $bookList['books'];
+                    }
+
+                    $myBooksView = $this->view('mybooks', 'MyBooksView', ['bookCategories' => $bookCategories, 'ownedBooks' => $ownedBooks]);
+                    $myBooksView->render();
 
                     break;
                 default:

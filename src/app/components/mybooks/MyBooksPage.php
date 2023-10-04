@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogue</title>
+    <link rel = "icon" href = "https://ugc.production.linktr.ee/HgDUQezLRzaAhdOsHX7E_757110a46f23cdba31b42e43f2c1a7fb.png" 
+    type = "image/x-icon">
+    <title>My Books</title>
     
     <!-- Globals and Templates CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/globals.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/sidebar.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/topnav.css">
-    <link rel = "icon" href = "https://ugc.production.linktr.ee/HgDUQezLRzaAhdOsHX7E_757110a46f23cdba31b42e43f2c1a7fb.png" 
-    type = "image/x-icon">
 
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -23,9 +23,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    <!-- JavaScript Constant and Variables -->
+    <script type="text/javascript" defer>
+        const DEBOUNCE_TIMEOUT = "<?= DEBOUNCE_TIMEOUT ?>";
+    </script>
+
     <!-- JavaScript DOM and AJAX -->
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/lib/debounce.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/searchpanel.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/search.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/mybooks/mybooks.js" defer></script>
 </head>
 <body>
@@ -43,83 +50,80 @@
                     </form>
                     <div class="select-menu">
                         <div class="select-btn">
-                            <span class="select-btn-text">All Categories</span>
+                            <span class="select-btn-text" id="category-filter-text">All Categories</span>
                             <i class="bx bx-chevron-down"></i>
                         </div>
-                        <ul class="options">
-                            <li class="option">
-                                <span class="option-text">Fiction</span>
-                            </li>
-                            <li class="option">
-                                <span class="option-text">Non-fiction</span>
-                            </li>
-                        </ul>
+                        <div class="options">
+                            <div class="category-search">
+                                <input type="search" id="category-query" class="search-input" name="q" placeholder="Search categories.." aria-label="Search through categories" autocomplete="on">
+                            </div>
+                            <ul id="category-options">
+                                <?php foreach ($this->data['bookCategories'] as $category) : ?>
+                                    <li class="option">
+                                        <span class="option-text"><?= $category->category ?></span>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
                     </div>
                     <div class="select-menu">
                         <div class="select-btn">
-                            <span class="select-btn-text">All Price Range</span>
+                            <span class="select-btn-text" id="price-filter-text">All Prices</span>
                             <i class="bx bx-chevron-down"></i>
                         </div>
-                        <ul class="options">
+                        <div class="options">
+                            <ul id="price-options">
+                                <li class="option">
+                                    <span class="option-text">< Rp500k</span>
+                                </li>
+                                <li class="option">
+                                    <span class="option-text">Rp500-1000k</span>
+                                </li>
+                                <li class="option">
+                                    <span class="option-text">> Rp1000K</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="select-menu" id="sort-menu">
+                        <div class="select-btn">
+                            <span class="select-btn-text" id="sort-text">Sort By</span>
+                            <i class="bx bx-sort-alt-2"></i>
+                        </div>
+                        <ul class="options" id="sort-options">
                             <li class="option">
-                                <span class="option-text">< 500k Rp</span>
+                                <span class="option-text">Price: Low to High</span>
                             </li>
                             <li class="option">
-                                <span class="option-text">500k-1000k Rp</span>
+                                <span class="option-text">Price: High to Low</span>
                             </li>
                             <li class="option">
-                                <span class="option-text">> 1000k Rp</span>
+                                <span class="option-text">Newest First</span>
+                            </li>
+                            <li class="option">
+                                <span class="option-text">Oldest First</span>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <section class="books-section">
-                    <div class="card-grid-pagination">
-                        <div class="book-card-brief">
-                            <a>
-                                <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/klara.svg" alt="Book Image">
-                            </a>
-                            <div class="book-card-brief-desc">
-                                <h4 class="book-card-title">Klara and the Sun</h4>
-                                <p class="book-card-author">by Kazuo Ishiguro</p>
+                    <div class="card-grid-pagination" id="book-list">
+                    <?php if (!empty($this->data['ownedBooks'])) : ?>
+                        <?php foreach ($this->data['ownedBooks'] as $book) : ?>
+                            <div class="book-card-brief">
+                                <a href="<?= BASE_URL ?>/catalogue/preview/?book_id=<?= $book->book_id ?>">
+                                    <img class="book-img-brief" src="<?= $book->cover_img_url ?>" alt="Book Image">
+                                </a>
+                                <div class="book-card-brief-desc">
+                                    <h4 class="book-card-title"><?= $book->title ?></h4>
+                                    <p class="book-card-author">by <?= $book->author ?></p>
+                                    <p class="book-card-price">Rp <?= number_format($book->price, 0, ',', '.') ?></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="book-card-brief">
-                            <a>
-                                <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/cantik-itu-luka.svg" alt="Book Image">
-                            </a>
-                            <div class="book-card-brief-desc">
-                                <h4 class="book-card-title">Cantik itu Luka</h4>
-                                <p class="book-card-author">by Eka Kurniawan</p>
-                            </div>
-                        </div>
-                        <div class="book-card-brief">
-                            <a>
-                                <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/laut-bercerita.svg" alt="Book Image">
-                            </a>
-                            <div class="book-card-brief-desc">
-                                <h4 class="book-card-title">Laut Bercerita</h4>
-                                <p class="book-card-author">by Leila S. Chudori</p>
-                            </div>
-                        </div>
-                        <div class="book-card-brief">
-                            <a>
-                                <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/nebula.svg" alt="Book Image">
-                            </a>
-                            <div class="book-card-brief-desc">
-                                <h4 class="book-card-title">Nebula</h4>
-                                <p class="book-card-author">by Tere Liye</p>
-                            </div>
-                        </div>
-                        <div class="book-card-brief">
-                            <a>
-                                <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/rich-people-problem.svg" alt="Book Image">
-                            </a>
-                            <div class="book-card-brief-desc">
-                                <h4 class="book-card-title">Rich People Problem</h4>
-                                <p class="book-card-author">by Kevin Kwan</p>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <p class='no-book-text'>No books yet...</p>
+                    <?php endif; ?>
                     </div>
                 </section>
             </div>

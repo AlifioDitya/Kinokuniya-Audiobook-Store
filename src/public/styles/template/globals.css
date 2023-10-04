@@ -415,6 +415,12 @@ body {
     max-width: 7rem;
 }
 
+.no-book-text {
+    width: 100vh;
+    margin-left: 20px;
+    font-size: 24px;
+}
+
 /* Images and Icons */
 .book-img {
     width: 80px;

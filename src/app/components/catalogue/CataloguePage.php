@@ -108,6 +108,7 @@
                 </div>
                 <section class="books-section">
                     <div class="card-grid-pagination" id="book-list">
+                    <?php if (!empty($this->data['books'])) : ?>
                         <?php foreach ($this->data['books'] as $book) : ?>
                             <div class="book-card-brief">
                                 <a href="<?= BASE_URL ?>/catalogue/preview/?book_id=<?= $book->book_id ?>">
@@ -120,6 +121,9 @@
                                 </div>
                             </div>
                         <?php endforeach; ?>
+                    <?php else : ?>
+                        <p class='no-book-text'>No books yet...</p>
+                    <?php endif; ?>
                     </div>
                 </section>
             </div>
