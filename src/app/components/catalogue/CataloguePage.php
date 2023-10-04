@@ -59,11 +59,21 @@
                                 <input type="search" id="category-query" class="search-input" name="q" placeholder="Search..." aria-label="Search through categories" autocomplete="on">
                             </div>
                             <ul id="category-options">
-                                <?php foreach ($this->data['bookCategories'] as $category) : ?>
-                                    <li class="option">
-                                        <span class="option-text"><?= $category->category ?></span>
-                                    </li>
-                                <?php endforeach; ?>
+                                <?php
+                                    $categories = $this->data['bookCategories'];
+
+                                    echo "<li class='option'>";
+                                    echo "<span class='option-text'>All Categories</span>";
+                                    echo "</li>";
+
+                                    if (!empty($categories)) {
+                                        foreach ($categories as $category) {
+                                            echo "<li class='option'>";
+                                            echo "<span class='option-text'>" . $category->category . "</span>";
+                                            echo "</li>";
+                                        }
+                                    }
+                                ?>
                             </ul>
                         </div>
                     </div>
@@ -74,6 +84,9 @@
                         </div>
                         <div class="options">
                             <ul id="price-options">
+                                <li class="option">
+                                    <span class="option-text">All Prices</span>
+                                </li>
                                 <li class="option">
                                     <span class="option-text">< Rp500k</span>
                                 </li>
@@ -88,7 +101,7 @@
                     </div>
                     <div class="select-menu" id="sort-menu">
                         <div class="select-btn">
-                            <span class="select-btn-text" id="sort-text">Sort By</span>
+                            <span class="select-btn-text" id="sort-text">Newest First</span>
                             <i class="bx bx-sort-alt-2"></i>
                         </div>
                         <ul class="options" id="sort-options">

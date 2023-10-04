@@ -45,4 +45,36 @@ checkoutButton.addEventListener("click", () => {
         }
     }
 });
-    
+
+// Get all the remove buttons
+const removeButtons = document.querySelectorAll(".remove-btn");
+
+// Loop through the remove buttons and add a click event listener to each
+removeButtons.forEach(removeButton => {
+    removeButton.addEventListener("click", () => {
+        // Get the book id
+        const bookId = removeButton.parentElement.querySelector(".book-id-hidden").textContent;
+
+        // Remove the book from the cart
+        xhrPost = new XMLHttpRequest();
+        xhrPost.open("POST", "/public/cart/remove");
+        xhrPost.setRequestHeader("Content-Type", "application/json");
+        xhrPost.send(JSON.stringify({ book_id: bookId }));
+
+        xhrPost.onreadystatechange = function () {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                if (this.status == 204) {
+
+                    // If the book was removed successfully, alert the user
+                    alert("You have successfully removed the book from your cart.");
+
+                    // Reload the page
+                    location.reload();
+                } else {
+                    // If the book was not removed successfully, alert the user
+                    alert("There was an error removing the book from your cart.");
+                }
+            }
+        }
+    });
+});

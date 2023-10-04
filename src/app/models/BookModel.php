@@ -318,4 +318,18 @@ class BookModel
         // Execute the query
         $this->database->execute();
     }
+
+    public function removeFromCart($user_id, $book_id)
+    {
+        // Construct the SQL query to remove a book from a user's cart
+        $query = 'DELETE FROM cart WHERE user_id = :user_id AND book_id = :book_id';
+
+        // Bind the parameters
+        $this->database->query($query);
+        $this->database->bind('user_id', $user_id);
+        $this->database->bind('book_id', $book_id);
+
+        // Execute the query
+        $this->database->execute();
+    }
 }

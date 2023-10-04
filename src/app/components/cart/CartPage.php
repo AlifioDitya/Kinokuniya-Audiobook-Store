@@ -42,7 +42,7 @@
                             <?php if (!empty($this->data['cartBooks'])) : ?>
                                 <?php foreach ($this->data['cartBooks'] as $book) : ?>
                                     <div class="book-card-brief">
-                                        <a>
+                                        <a class="remove-btn">
                                             <i class="bx bx-x"></i>
                                         </a>
                                         <!-- Hidden book_id -->

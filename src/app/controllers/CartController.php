@@ -36,23 +36,24 @@ class CartController extends Controller implements ControllerInterface
         }
     }
 
-    public function fetch()
+    public function remove()
     {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
-                case 'GET':
+                case 'POST':
 
                     $bookModel = $this->model('BookModel');
 
-                    $cartBooks = $bookModel->getBooksInCart($_SESSION['user_id']);
+                    // Takes raw data from the request
+                    $json = file_get_contents('php://input');
 
-                    if ($cartBooks == null || empty($cartBooks)) {
-                        $cartBooks = [];
-                    }
+                    // Converts it into a PHP object
+                    $data = json_decode($json);
 
-                    header('Content-Type: application/json');
-                    echo json_encode($cartBooks);
-                    http_response_code(200);
+                    // Remove the book from the cart
+                    $bookModel->removeFromCart($_SESSION['user_id'], $data->book_id);
+
+                    http_response_code(204);
                     exit;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
