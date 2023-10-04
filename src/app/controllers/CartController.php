@@ -14,8 +14,16 @@ class CartController extends Controller implements ControllerInterface
                         exit;
                     }
 
-                    $homeView = $this->view('cart', 'CartView');
-                    $homeView->render();
+                    $bookModel = $this->model('BookModel');
+
+                    // $cartBooks = $bookModel->getBooksInCart($_SESSION['user_id']);
+
+                    if (empty($cartBooks)) {
+                        $cartBooks = [];
+                    }
+
+                    $cartView = $this->view('cart', 'CartView', ['cartBooks' => $cartBooks]);
+                    $cartView->render();
 
                     break;
                 default:

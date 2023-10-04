@@ -233,4 +233,23 @@ class BookModel
         // Return the result
         return $result->count > 0;
     }
+
+    public function getBooksInCart($user_id)
+    {
+        // Construct the SQL query to fetch books in a user's cart
+        $query = 'SELECT b.title, b.author, b.price, b.cover_img_url
+                FROM book AS b
+                INNER JOIN cart AS c ON b.book_id = c.book_id
+                WHERE c.user_id = :user_id';
+
+        // Bind the user_id parameter
+        $this->database->query($query);
+        $this->database->bind('user_id', $user_id);
+
+        // Execute the query
+        $cartBooks = $this->database->fetchAll();
+
+        // Return the result
+        return $cartBooks;
+    }
 }

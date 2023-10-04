@@ -39,7 +39,24 @@
                 <section class="cart-section">
                     <div class="payment-container">
                         <div class="card-grid-pagination">
-                            <div class="book-card-brief">
+                            <?php if (!empty($this->data['cartBooks'])) : ?>
+                                <?php foreach ($this->data['cartBooks'] as $book) : ?>
+                                    <div class="book-card-brief">
+                                        <a>
+                                            <i class="bx bx-x"></i>
+                                        </a>
+                                        <img class="book-img-brief" src="<?= $book->cover_img_url ?>" alt="Book Image">
+                                        <div class="book-card-brief-desc">
+                                            <h4 class="book-card-title"><?= $book->title ?></h4>
+                                            <p class="book-card-author">by <?= $book->author ?></p>
+                                            <p class="book-card-price">Rp<?= $book->price ?></p>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php else : ?>
+                                <p class='no-book-text'>Cart is empty...</p>
+                            <?php endif; ?>
+                            <!-- <div class="book-card-brief">
                                 <a>
                                     <i class="bx bx-x"></i>
                                 </a>
@@ -88,7 +105,7 @@
                                     <h4 class="book-card-title">Rich People Problem</h4>
                                     <p class="book-card-author">by Kevin Kwan</p>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="payment-checkout">
                             <div class="payment-checkout-header">
@@ -97,17 +114,34 @@
                             <div class="payment-checkout-body">
                                 <div class="payment-checkout-item">
                                     <p class="payment-checkout-item-title">Subtotal</p>
-                                    <p class="payment-checkout-item-price">Rp750.000</p>
+                                    <?php
+                                        if (!empty($this->data['subtotal'])) {
+                                            $subtotal = 0;
+                                            foreach ($this->data['subtotal'] as $book) {
+                                                $subtotal += $book->price;
+                                            }
+                                        } else {
+                                            $subtotal = 0;
+                                        }
+
+                                        echo '<p class="payment-checkout-item-price">Rp' . $subtotal . '</p>';
+                                    ?>
                                 </div>
                                 <div class="payment-checkout-item">
                                     <p class="payment-checkout-item-title">Tax (10% subtotal)</p>
-                                    <p class="payment-checkout-item-price">Rp40.000</p>
+                                    <?php
+                                        $tax = $subtotal * 0.1;
+                                        echo '<p class="payment-checkout-item-price">Rp' . $tax . '</p>';
+                                    ?>
                                 </div>
                             <div class="payment-checkout-footer">
                                 <div class="payment-checkout-footer-line"></div>
                                 <div class="payment-checkout-item">
                                     <p class="payment-checkout-footer-total">Grand Total</p>
-                                    <p class="payment-checkout-footer-total">Rp790.000</p>
+                                    <?php
+                                        $grandTotal = $subtotal + $tax;
+                                        echo '<p class="payment-checkout-footer-total">Rp' . $grandTotal . '</p>';
+                                    ?>
                                 </div>
                                 <button class="payment-checkout-footer-btn">Checkout</button>
                             </div>

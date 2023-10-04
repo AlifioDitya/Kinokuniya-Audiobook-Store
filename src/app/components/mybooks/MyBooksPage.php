@@ -117,7 +117,6 @@
                                 <div class="book-card-brief-desc">
                                     <h4 class="book-card-title"><?= $book->title ?></h4>
                                     <p class="book-card-author">by <?= $book->author ?></p>
-                                    <p class="book-card-price">Rp <?= number_format($book->price, 0, ',', '.') ?></p>
                                 </div>
                             </div>
                         <?php endforeach; ?>
