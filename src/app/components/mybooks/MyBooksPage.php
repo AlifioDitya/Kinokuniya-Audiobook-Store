@@ -106,16 +106,16 @@
                         </div>
                         <ul class="options" id="sort-options">
                             <li class="option">
-                                <span class="option-text">Price: Low to High</span>
-                            </li>
-                            <li class="option">
-                                <span class="option-text">Price: High to Low</span>
-                            </li>
-                            <li class="option">
                                 <span class="option-text">Newest First</span>
                             </li>
                             <li class="option">
                                 <span class="option-text">Oldest First</span>
+                            </li>
+                            <li class="option">
+                                <span class="option-text">Price: Low to High</span>
+                            </li>
+                            <li class="option">
+                                <span class="option-text">Price: High to Low</span>
                             </li>
                         </ul>
                     </div>
