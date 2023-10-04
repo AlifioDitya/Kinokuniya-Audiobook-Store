@@ -47,6 +47,7 @@
                         <?php
                             $bookData = $this->data['bookData'];
                             
+                            echo '<div id="book-id-hidden" hidden>' . $bookData->book_id . '</div>';
                             echo '<img src="' . $bookData->cover_img_url . '" alt="Book Cover" class="book-cover">';
                             echo '<div class="book-info-text">';
                             echo '<p class="book-category">' . $bookData->category . '</p>';
