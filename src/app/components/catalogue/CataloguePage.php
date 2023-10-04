@@ -49,9 +49,9 @@
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
-                    <div class="select-menu">
+                    <div class="select-menu" id="category-menu">
                         <div class="select-btn">
-                            <span class="select-btn-text" id="category-filter-text">All Categories</span>
+                            <span class="select-btn-text">All Categories</span>
                             <i class="bx bx-chevron-down"></i>
                         </div>
                         <div class="options">
@@ -77,9 +77,9 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="select-menu">
+                    <div class="select-menu" id="price-menu">
                         <div class="select-btn">
-                            <span class="select-btn-text" id="price-filter-text">All Prices</span>
+                            <span class="select-btn-text">All Prices</span>
                             <i class="bx bx-chevron-down"></i>
                         </div>
                         <div class="options">

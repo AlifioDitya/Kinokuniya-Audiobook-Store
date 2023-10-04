@@ -1,21 +1,19 @@
-
-const searchBar = document.getElementById("query");
-const categoryFilter = document.querySelector("#category-filter");
-const priceFilter = document.querySelector("#price-filter");
-const sort = document.querySelector("#sort");
 const form = document.getElementById("input-form");
+const searchBar = document.getElementById("query");
+const currentPage = document.getElementById("page-name-hidden").innerText;
+const selectMenus = document.querySelectorAll('.select-menu');
+const categoryOptionsList = document.getElementById("category-options");
 
-const page = 1; // Change this later to the current page
-let order = "asc";
+let page = 1; // Change this later to the current page
+let order = "desc";
+let categoryFilter = "All Categories";
+let priceFilter = "All Prices";
+let sort = "Newest First";
 
-// Add a submit event listener to the form
+// Prevent the form from submitting
 form.addEventListener("submit", function (event) {
     event.preventDefault();
 });
-
-const currentPage = document.getElementById("page-name-hidden").innerText;
-
-console.log(currentPage);
 
 searchBar &&
 searchBar.addEventListener(
@@ -26,7 +24,7 @@ searchBar.addEventListener(
         xhr = new XMLHttpRequest();
         xhr.open(
             "GET",
-            `/public/${currentPage}/search/?q=${queryValue}&page=${page}` // Change this later for the current page
+            `/public/${currentPage}/search/?q=${queryValue}&page=${page}&order=${order}&category=${categoryFilter}&price=${priceFilter}&sort=${sort}`
         );
 
         xhr.send();
@@ -45,9 +43,6 @@ searchBar.addEventListener(
 )
 
 // When dropdown is out of focus, close it
-const selectMenus = document.querySelectorAll('.select-menu');
-
-// Add a click event listener to the document body
 document.body.addEventListener('click', function (event) {
     // Check if the click target is within the select menu or its options
     selectMenus.forEach(selectMenu => {
@@ -58,10 +53,54 @@ document.body.addEventListener('click', function (event) {
     });
 });
 
-// Get a reference to the category options list
-const categoryOptionsList = document.getElementById("category-options");
+// Add event listeners for each select menu
+selectMenus.forEach(selectMenu => {
+    const selectButton = selectMenu.querySelector('.select-btn');
+    const optionsList = selectMenu.querySelector('.options');
+    const filterTextElement = selectMenu.querySelector('.select-btn-text');
 
-// Add a click event listener to the list
+    // Add a click event listener to the select button
+    selectButton.addEventListener('click', function () {
+        optionsList.classList.toggle('active');
+    });
+
+    // Add a click event listener to the options list
+    optionsList.addEventListener('click', function (event) {
+        if (event.target.classList.contains('option-text')) {
+            const selectedFilterValue = event.target.textContent.trim();
+            filterTextElement.textContent = selectedFilterValue;
+            optionsList.classList.remove('active');
+    
+            // Update the appropriate variable based on the select menu
+            if (selectMenu.id === 'category-menu') {
+                categoryFilter = selectedFilterValue;
+            } else if (selectMenu.id === 'price-menu') {
+                priceFilter = selectedFilterValue;
+            } else if (selectMenu.id === 'sort-menu') {
+                sort = selectedFilterValue;
+
+                if (sort === 'Newest First') {
+                    order = 'desc';
+                } else if (sort === 'Oldest First') {
+                    order = 'asc';
+                } else if (sort === 'Price: Low to High') {
+                    order = 'asc';
+                } else if (sort === 'Price: High to Low') {
+                    order = 'desc';
+                }
+            }
+    
+            // Now, the categoryFilter, priceFilter, or sort variables are updated
+            // with the selected values based on the select menu.
+            console.log('Category Filter:', categoryFilter);
+            console.log('Price Filter:', priceFilter);
+            console.log('Sort:', sort);
+            console.log('Order:', order);
+        }
+    });
+});
+
+// Add a click event listener to the category options list
 categoryOptionsList.addEventListener("click", function (event) {
     // Check if the clicked element is an <li> element
     if (event.target && event.target.nodeName === "LI") {
