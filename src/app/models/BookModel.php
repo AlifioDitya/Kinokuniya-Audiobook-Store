@@ -188,7 +188,7 @@ class BookModel
     public function getOwnedBooksByUserId($userId)
     {
         // Construct the SQL query to fetch owned books for a user
-        $query = 'SELECT b.title, b.author, b.category, b.book_desc, b.price, b.publication_date, b.cover_img_url, b.audio_url
+        $query = 'SELECT b.book_id, b.title, b.author, b.category, b.book_desc, b.price, b.publication_date, b.cover_img_url, b.audio_url
                 FROM book AS b
                 INNER JOIN book_ownership AS bo ON b.book_id = bo.book_id
                 WHERE bo.user_id = :user_id';

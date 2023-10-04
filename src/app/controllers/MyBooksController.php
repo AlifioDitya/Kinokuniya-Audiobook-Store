@@ -16,14 +16,14 @@ class MyBooksController extends Controller implements ControllerInterface
 
                     $bookModel = $this->model('BookModel');
 
-                    $bookList = $bookModel->getOwnedBooksByUserId($_SESSION['user_id'], 1);
+                    $bookList = $bookModel->getOwnedBooksByUserId($_SESSION['user_id']);
                     $bookCategories = $bookModel->getBookCategories();
                     
                     // Check if bookList is an empty array
                     if (empty($bookList)) {
                         $ownedBooks = null;
                     } else {
-                        $ownedBooks = $bookList['books'];
+                        $ownedBooks = $bookList;
                     }
 
                     $myBooksView = $this->view('mybooks', 'MyBooksView', ['bookCategories' => $bookCategories, 'ownedBooks' => $ownedBooks]);

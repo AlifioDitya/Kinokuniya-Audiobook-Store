@@ -21,7 +21,7 @@ class HomeController extends Controller implements ControllerInterface
                     $newestReleases = $bookModel->getNewestReleases();
 
                     // Get owned books from Book Model
-                    $ownedBooks = $bookModel->getOwnedBooksByUserId($_SESSION['user_id'], 1);
+                    $ownedBooks = $bookModel->getOwnedBooksByUserId($_SESSION['user_id']);
 
                     $homeView = $this->view('home', 'MainView', [
                         'newestReleases' => $newestReleases,

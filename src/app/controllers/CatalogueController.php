@@ -97,7 +97,7 @@ class CatalogueController extends Controller implements ControllerInterface
                     $bookModel = $this->model('BookModel');
 
                     // Check if the current book is already in the cart
-                    $inCart = $bookModel->isInCart($_POST['book_id'], $_SESSION['user_id']);
+                    $inCart = $bookModel->isInCart($_SESSION['user_id'], $_POST['book_id']);
 
                     // If the book is already in the cart
                     if ($inCart) {
