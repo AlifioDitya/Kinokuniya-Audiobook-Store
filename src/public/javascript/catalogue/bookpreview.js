@@ -38,8 +38,6 @@ addToCartButton &&
         const formData = new FormData();
         formData.append("book_id", book_id);
 
-        console.log(book_id);
-
         xhrPost.send(formData);
         xhrPost.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE) {

@@ -21,8 +21,6 @@ checkoutButton.addEventListener("click", () => {
         bookIds.push(bookIdHiddenElement.textContent);
     });
 
-    console.log(bookIds);
-
     // Buy the books in the cart
     xhrPost = new XMLHttpRequest();
     xhrPost.open("POST", "/public/cart/buy");
@@ -35,8 +33,6 @@ checkoutButton.addEventListener("click", () => {
                 // Parse the response
                 let data = JSON.parse(this.responseText);
 
-                console.log(data);
-
                 // If the books were bought successfully, alert the user
                 alert("You have successfully bought the books in your cart.");
 
@@ -44,8 +40,6 @@ checkoutButton.addEventListener("click", () => {
                 location.replace(data.redirect_url);
             } else {
                 // If the books were not bought successfully, alert the user
-
-                console.log(xhrPost.status);
                 alert("There was an error buying the books in your cart.");
             }
         }
