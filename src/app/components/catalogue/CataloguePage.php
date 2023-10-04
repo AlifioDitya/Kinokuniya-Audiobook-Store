@@ -110,7 +110,7 @@
                     <div class="card-grid-pagination" id="book-list">
                         <?php foreach ($this->data['books'] as $book) : ?>
                             <div class="book-card-brief">
-                                <a href="<?= BASE_URL ?>/catalogue/?book_id=<?= $book->book_id ?>">
+                                <a href="<?= BASE_URL ?>/catalogue/preview/?book_id=<?= $book->book_id ?>">
                                     <img class="book-img-brief" src="<?= $book->cover_img_url ?>" alt="Book Image">
                                 </a>
                                 <div class="book-card-brief-desc">

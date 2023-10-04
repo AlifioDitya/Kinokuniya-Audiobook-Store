@@ -80,7 +80,7 @@
                                 echo '<p class="book-card-author">by ' . $book->author . '</p>';
                                 $shortDesc = (strlen($book->book_desc) > 230) ? substr($book->book_desc, 0, 230) . '...' : $book->book_desc;
                                 echo '<p class="book-card-summary">' . $shortDesc . '</p>';
-                                echo '<a href="/public/catalogue/?book_id=' . $book->book_id . '"><p class="read-more">Read More</p></a>';
+                                echo '<a href="/public/catalogue/preview/?book_id=' . $book->book_id . '"><p class="read-more">Read More</p></a>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
@@ -107,7 +107,7 @@
 
                             foreach ($ownedBooks as $book) {
                                 echo '<div class="book-card-brief">';
-                                echo '<a href="/public/catalogue/?book_id=' . $book->book_id . '">';
+                                echo '<a href="/public/catalogue/preview/?book_id=' . $book->book_id . '">';
                                 echo '<img class="book-img-brief" src="' . $book->cover_img_url . '" alt="Book Image">';
                                 echo '</a>';
                                 echo '<div class="book-card-brief-desc">';

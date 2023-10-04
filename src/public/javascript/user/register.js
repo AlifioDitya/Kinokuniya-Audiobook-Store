@@ -25,7 +25,7 @@ usernameInput &&
             const xhr = new XMLHttpRequest();
             xhr.open(
                 "GET",
-                `/public/user/username?username=${username}`
+                `/public/user/username/?username=${username}`
             );
 
             xhr.send();

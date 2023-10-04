@@ -9,7 +9,7 @@ class BookModel
         $this->database = new Database();
     }
 
-    public function getBookFromID($book_id)
+    public function getBookByID($book_id)
     {
         $query = 'SELECT title, author, category, book_desc, price, publication_date, cover_img_url, audio_url FROM book WHERE book_id = :book_id LIMIT 1';
 
@@ -215,5 +215,22 @@ class BookModel
 
         // Return the result
         return $categories;
+    }
+
+    public function isOwnedByID($book_id, $user_id)
+    {
+        // Construct the SQL query to check if a book is owned by a user
+        $query = 'SELECT COUNT(*) AS count FROM book_ownership WHERE book_id = :book_id AND user_id = :user_id';
+
+        // Bind the parameters
+        $this->database->query($query);
+        $this->database->bind('book_id', $book_id);
+        $this->database->bind('user_id', $user_id);
+
+        // Execute the query
+        $result = $this->database->fetch();
+
+        // Return the result
+        return $result->count > 0;
     }
 }

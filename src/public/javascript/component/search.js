@@ -22,7 +22,7 @@ searchBar.addEventListener(
         xhr = new XMLHttpRequest();
         xhr.open(
             "GET",
-            `/public/catalogue/search?q=${queryValue}&page=${page}`
+            `/public/catalogue/search/?q=${queryValue}&page=${page}`
         );
 
         xhr.send();
@@ -32,7 +32,7 @@ searchBar.addEventListener(
                 if (this.status === 200) {
                     const data = JSON.parse(this.responseText);
                     updateData(data);
-                } else {
+                } else {    
                     alert("An error occured, please try again!");
                 }
             }
@@ -75,7 +75,7 @@ const updateData = (data) => {
         bookCard.classList.add("book-card-brief");
 
         const bookLink = document.createElement("a");
-        bookLink.href = `/public/catalogue/${book.book_id}`;
+        bookLink.href = `/public/catalogue/preview/?book_id=${book.book_id}`;
 
         const bookImg = document.createElement("img");
         bookImg.classList.add("book-img-brief");
