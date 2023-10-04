@@ -37,6 +37,7 @@
 </head>
 <body>
     <div id="root">
+        <div id="page-name-hidden" hidden>catalogue</div>
         <?php include(dirname(__DIR__) . '/template/sidebar.php') ?>
         <main class="main-container">
             <?php include(dirname(__DIR__) . '/template/topnav.php') ?>

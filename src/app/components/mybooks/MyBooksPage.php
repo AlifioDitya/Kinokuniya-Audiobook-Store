@@ -37,6 +37,7 @@
 </head>
 <body>
     <div id="root">
+        <div id="page-name-hidden" hidden>mybooks</div>
         <?php include(dirname(__DIR__) . '/template/sidebar.php') ?>
         <main class="main-container">
             <?php include(dirname(__DIR__) . '/template/topnav.php') ?>
@@ -111,7 +112,7 @@
                     <?php if (!empty($this->data['ownedBooks'])) : ?>
                         <?php foreach ($this->data['ownedBooks'] as $book) : ?>
                             <div class="book-card-brief">
-                                <a href="<?= BASE_URL ?>/catalogue/preview/?book_id=<?= $book->book_id ?>">
+                                <a href="<?= BASE_URL ?>/mybooks/preview/?book_id=<?= $book->book_id ?>">
                                     <img class="book-img-brief" src="<?= $book->cover_img_url ?>" alt="Book Image">
                                 </a>
                                 <div class="book-card-brief-desc">

@@ -23,4 +23,4 @@ define('SESSION_EXPIRATION_TIME', 24 * 60 * 60);
 define('SESSION_REGENERATION_TIME', 30 * 60);
 
 // Debounce
-define('DEBOUNCE_TIMEOUT', 500);
+define('DEBOUNCE_TIMEOUT', 300);

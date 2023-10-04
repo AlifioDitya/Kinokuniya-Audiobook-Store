@@ -13,6 +13,10 @@ form.addEventListener("submit", function (event) {
     event.preventDefault();
 });
 
+const currentPage = document.getElementById("page-name-hidden").innerText;
+
+console.log(currentPage);
+
 searchBar &&
 searchBar.addEventListener(
     "keyup",
@@ -22,7 +26,7 @@ searchBar.addEventListener(
         xhr = new XMLHttpRequest();
         xhr.open(
             "GET",
-            `/public/catalogue/search/?q=${queryValue}&page=${page}`
+            `/public/${currentPage}/search/?q=${queryValue}&page=${page}` // Change this later for the current page
         );
 
         xhr.send();
@@ -31,13 +35,13 @@ searchBar.addEventListener(
             if (this.readyState === XMLHttpRequest.DONE) {
                 if (this.status === 200) {
                     const data = JSON.parse(this.responseText);
-                    updateData(data);
-                } else {    
+                    updateData(data['books']);
+                } else {
                     alert("An error occured, please try again!");
                 }
             }
         };
-    }, DEBOUNCE_TIMEOUT)
+    }, 100)
 )
 
 // Get a reference to the category options list
@@ -54,18 +58,6 @@ categoryOptionsList.addEventListener("click", function (event) {
     }
 });
 
-// Example data HTML
-/* <div class="book-card-brief">
-    <a>
-        <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/klara.svg" alt="Book Image">
-    </a>
-    <div class="book-card-brief-desc">
-        <h4 class="book-card-title">Klara and the Sun</h4>
-        <p class="book-card-author">by Kazuo Ishiguro</p>
-        <p class="book-card-price">Rp 150.000</p>
-    </div>
-</div> */
-
 const updateData = (data) => {
     const bookList = document.getElementById("book-list");
     bookList.innerHTML = "";
@@ -79,7 +71,7 @@ const updateData = (data) => {
 
         const bookImg = document.createElement("img");
         bookImg.classList.add("book-img-brief");
-        bookImg.src = book.book_img_url;
+        bookImg.src = book.cover_img_url;
         bookImg.alt = "Book Image";
 
         const bookDesc = document.createElement("div");
@@ -93,13 +85,21 @@ const updateData = (data) => {
         bookAuthor.classList.add("book-card-author");
         bookAuthor.innerText = `by ${book.author}`;
 
-        const bookPrice = document.createElement("p");
-        bookPrice.classList.add("book-card-price");
-        bookPrice.innerText = `Rp ${book.price}`;
+        let bookPrice = null;
+        if (currentPage === 'catalogue') {
+            bookPrice = document.createElement("p");
+            bookPrice.classList.add("book-card-price");
+            bookPrice.innerText = `Rp ${book.price}`;
+        } else {
+            bookPrice = null;
+        }
 
         bookDesc.appendChild(bookTitle);
         bookDesc.appendChild(bookAuthor);
-        bookDesc.appendChild(bookPrice);
+
+        if (bookPrice !== null) {
+            bookDesc.appendChild(bookPrice);
+        }
 
         bookLink.appendChild(bookImg);
 

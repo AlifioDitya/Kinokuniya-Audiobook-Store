@@ -48,10 +48,10 @@ class MyBooksController extends Controller implements ControllerInterface
 
                     $bookList = $bookModel->getBooksByQuery($_GET['q'], 1);
                     $books = $bookList['books'];
-                    // $pages = $bookList['pages'];
+                    $pages = $bookList['pages'];
 
                     header('Content-Type: application/json');
-                    echo error_log(json_encode($books));
+                    echo json_encode(['books' => $books, 'pages' => $pages]);
                     http_response_code(200);
                     exit;
                 default:
