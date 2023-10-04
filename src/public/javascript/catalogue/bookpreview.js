@@ -23,3 +23,44 @@ topnavLabel.insertBefore(backIcon, topnavLabel.childNodes[0]);
 backIcon.addEventListener("click", () => {
     window.history.back();
 });
+
+// Add event listener to the add to cart button
+const addToCartButton = document.getElementById("add-to-cart");
+const book_id = document.getElementById("book-id-hidden").textContent;
+
+addToCartButton &&
+    addToCartButton.addEventListener("click", () => {
+
+        // Add the book to the cart
+        xhrPost = new XMLHttpRequest();
+        xhrPost.open("POST", "/public/catalogue/preview");
+        
+        const formData = new FormData();
+        formData.append("book_id", book_id);
+
+        console.log(book_id);
+
+        xhrPost.send(formData);
+        xhrPost.onreadystatechange = function () {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                if (xhrPost.status == 200) {
+                    // Parse the response
+                    let data = JSON.parse(this.responseText);
+
+                    // If the book was added to the cart successfully, alert the user
+                    location.replace('/public/cart');
+                    alert("You have successfully added the book to your cart.");
+
+                    // Redirect to redirect_url
+                    location.replace(data.redirect_url);
+
+                } else if (xhrPost.status == 302) {
+                    // Already in cart, alert the user
+                    alert("This book is already in your cart.");
+                } else {
+                    // If the book was not added to the cart successfully, alert the user
+                    alert(`There was an error adding the book to your cart. (${xhrPost.status})`);
+                }
+            }
+        }
+    });

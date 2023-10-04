@@ -90,10 +90,35 @@ class CatalogueController extends Controller implements ControllerInterface
                     $bookView->render();
 
                     break;
+
+                case 'POST':
+                    // Add the book to cart
+                    // Open connection to Book Model
+                    $bookModel = $this->model('BookModel');
+
+                    // Check if the current book is already in the cart
+                    $inCart = $bookModel->isInCart($_POST['book_id'], $_SESSION['user_id']);
+
+                    // If the book is already in the cart
+                    if ($inCart) {
+                        http_response_code(302);
+                        exit;
+                    }
+
+                    // Add the book to the cart
+                    $bookModel->addToCart($_SESSION['user_id'], $_POST['book_id']);
+
+                    // Return redirect_url
+                    http_response_code(200);
+
+                    // Redirect to cart
+                    echo json_encode(['redirect_url' => BASE_URL . '/cart']);
+                    
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
             }
         } catch (Exception $e) {
+            // print_r($e);
             http_response_code($e->getCode());
         }
     }

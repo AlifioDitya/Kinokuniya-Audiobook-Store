@@ -45,6 +45,8 @@
                                         <a>
                                             <i class="bx bx-x"></i>
                                         </a>
+                                        <!-- Hidden book_id -->
+                                        <div class="book-id-hidden" hidden><?= $book->book_id ?></div>
                                         <img class="book-img-brief" src="<?= $book->cover_img_url ?>" alt="Book Image">
                                         <div class="book-card-brief-desc">
                                             <h4 class="book-card-title"><?= $book->title ?></h4>
@@ -56,56 +58,6 @@
                             <?php else : ?>
                                 <p class='no-book-text'>Cart is empty...</p>
                             <?php endif; ?>
-                            <!-- <div class="book-card-brief">
-                                <a>
-                                    <i class="bx bx-x"></i>
-                                </a>
-                                <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/klara.svg" alt="Book Image">
-                                <div class="book-card-brief-desc">
-                                    <h4 class="book-card-title">Klara and the Sun</h4>
-                                    <p class="book-card-author">by Kazuo Ishiguro</p>
-                                </div>
-                            </div>
-                            <div class="book-card-brief">
-                                <a>
-                                    <i class="bx bx-x"></i>
-                                </a>
-                                <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/cantik-itu-luka.svg" alt="Book Image">
-                                <div class="book-card-brief-desc">
-                                    <h4 class="book-card-title">Cantik itu Luka</h4>
-                                    <p class="book-card-author">by Eka Kurniawan</p>
-                                </div>
-                            </div>
-                            <div class="book-card-brief">
-                                <a>
-                                    <i class="bx bx-x"></i>
-                                </a>
-                                <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/laut-bercerita.svg" alt="Book Image">
-                                <div class="book-card-brief-desc">
-                                    <h4 class="book-card-title">Laut Bercerita</h4>
-                                    <p class="book-card-author">by Leila S. Chudori</p>
-                                </div>
-                            </div>
-                            <div class="book-card-brief">
-                                <a>
-                                    <i class="bx bx-x"></i>
-                                </a>
-                                <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/nebula.svg" alt="Book Image">
-                                <div class="book-card-brief-desc">
-                                    <h4 class="book-card-title">Nebula</h4>
-                                    <p class="book-card-author">by Tere Liye</p>
-                                </div>
-                            </div>
-                            <div class="book-card-brief">
-                                <a>
-                                    <i class="bx bx-x"></i>
-                                </a>
-                                <img class="book-img-brief" src="<?= STORAGE_URL ?>/book-img/rich-people-problem.svg" alt="Book Image">
-                                <div class="book-card-brief-desc">
-                                    <h4 class="book-card-title">Rich People Problem</h4>
-                                    <p class="book-card-author">by Kevin Kwan</p>
-                                </div>
-                            </div> -->
                         </div>
                         <div class="payment-checkout">
                             <div class="payment-checkout-header">
@@ -115,15 +67,14 @@
                                 <div class="payment-checkout-item">
                                     <p class="payment-checkout-item-title">Subtotal</p>
                                     <?php
-                                        if (!empty($this->data['subtotal'])) {
+                                        if (!empty($this->data['cartBooks'])) {
                                             $subtotal = 0;
-                                            foreach ($this->data['subtotal'] as $book) {
+                                            foreach ($this->data['cartBooks'] as $book) {
                                                 $subtotal += $book->price;
                                             }
                                         } else {
                                             $subtotal = 0;
                                         }
-
                                         echo '<p class="payment-checkout-item-price">Rp' . $subtotal . '</p>';
                                     ?>
                                 </div>
@@ -143,7 +94,7 @@
                                         echo '<p class="payment-checkout-footer-total">Rp' . $grandTotal . '</p>';
                                     ?>
                                 </div>
-                                <button class="payment-checkout-footer-btn">Checkout</button>
+                                <button class="payment-checkout-footer-btn" id="checkout-btn">Checkout</button>
                             </div>
                         </div>
                     </div>

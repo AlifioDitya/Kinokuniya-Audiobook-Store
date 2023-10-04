@@ -11,7 +11,7 @@ class BookModel
 
     public function getBookByID($book_id)
     {
-        $query = 'SELECT title, author, category, book_desc, price, publication_date, cover_img_url, audio_url FROM book WHERE book_id = :book_id LIMIT 1';
+        $query = 'SELECT book_id, title, author, category, book_desc, price, publication_date, cover_img_url, audio_url FROM book WHERE book_id = :book_id LIMIT 1';
 
         $this->database->query($query);
         $this->database->bind('book_id', $book_id);
@@ -237,7 +237,7 @@ class BookModel
     public function getBooksInCart($user_id)
     {
         // Construct the SQL query to fetch books in a user's cart
-        $query = 'SELECT b.title, b.author, b.price, b.cover_img_url
+        $query = 'SELECT b.book_id, b.title, b.author, b.price, b.cover_img_url
                 FROM book AS b
                 INNER JOIN cart AS c ON b.book_id = c.book_id
                 WHERE c.user_id = :user_id';
@@ -251,5 +251,58 @@ class BookModel
 
         // Return the result
         return $cartBooks;
+    }
+
+    public function buyBooks($user_id, $book_ids)
+    {
+        // Construct the SQL query to buy books
+        $query = 'INSERT INTO book_ownership (user_id, book_id) VALUES ';
+
+        // Construct the query parameters
+        $params = [];
+        foreach ($book_ids as $book_id) {
+            $params[] = '(:user_id, ' . $book_id . ')';
+        }
+
+        // Join the query parameters
+        $query .= implode(', ', $params);
+
+        // Bind the user_id parameter
+        $this->database->query($query);
+        $this->database->bind('user_id', $user_id);
+
+        // Execute the query
+        $this->database->execute();
+    }
+
+    public function isInCart($user_id, $book_id)
+    {
+        // Construct the SQL query to check if a book is in a user's cart
+        $query = 'SELECT COUNT(*) AS count FROM cart WHERE user_id = :user_id AND book_id = :book_id';
+
+        // Bind the parameters
+        $this->database->query($query);
+        $this->database->bind('user_id', $user_id);
+        $this->database->bind('book_id', $book_id);
+
+        // Execute the query
+        $result = $this->database->fetch();
+
+        // Return the result
+        return $result->count > 0;
+    }
+
+    public function addToCart($user_id, $book_id)
+    {
+        // Construct the SQL query to add a book to a user's cart
+        $query = 'INSERT INTO cart (user_id, book_id) VALUES (:user_id, :book_id)';
+
+        // Bind the parameters
+        $this->database->query($query);
+        $this->database->bind('user_id', $user_id);
+        $this->database->bind('book_id', $book_id);
+
+        // Execute the query
+        $this->database->execute();
     }
 }
