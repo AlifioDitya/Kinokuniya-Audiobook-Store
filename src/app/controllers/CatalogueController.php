@@ -79,7 +79,7 @@ class CatalogueController extends Controller implements ControllerInterface
 
                     // If the book is owned, redirect to owned book preview
                     if ($owner) {
-                        header('Location: ' . BASE_URL . '/mybooks/preview?book_id=' . $_GET['book_id']);
+                        header('Location: ' . BASE_URL . '/mybooks/preview/?book_id=' . $_GET['book_id']);
                         exit;
                     }
 
@@ -118,7 +118,6 @@ class CatalogueController extends Controller implements ControllerInterface
                     throw new LoggedException('Method Not Allowed', 405);
             }
         } catch (Exception $e) {
-            // print_r($e);
             http_response_code($e->getCode());
         }
     }

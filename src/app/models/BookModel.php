@@ -305,4 +305,17 @@ class BookModel
         // Execute the query
         $this->database->execute();
     }
+
+    public function flushCart($user_id)
+    {
+        // Construct the SQL query to flush a user's cart
+        $query = 'DELETE FROM cart WHERE user_id = :user_id';
+
+        // Bind the user_id parameter
+        $this->database->query($query);
+        $this->database->bind('user_id', $user_id);
+
+        // Execute the query
+        $this->database->execute();
+    }
 }

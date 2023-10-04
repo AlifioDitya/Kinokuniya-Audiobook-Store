@@ -16,6 +16,8 @@ class CartController extends Controller implements ControllerInterface
 
                     $bookModel = $this->model('BookModel');
 
+                    // 
+
                     $cartBooks = $bookModel->getBooksInCart($_SESSION['user_id']);
 
                     if ($cartBooks == null || empty($cartBooks)) {
@@ -74,7 +76,11 @@ class CartController extends Controller implements ControllerInterface
                     // Converts it into a PHP object
                     $data = json_decode($json);
 
+                    // Buy the books
                     $bookModel->buyBooks($_SESSION['user_id'], $data->book_ids);
+
+                    // Flush the cart contents
+                    $bookModel->flushCart($_SESSION['user_id']);
 
                     header('Content-Type: application/json');
 

@@ -1,6 +1,6 @@
 <?php
 
-class MyBooksView implements ViewInterface
+class AudiobookView implements ViewInterface
 {
     public $data;
     public function __construct($data = []) {
