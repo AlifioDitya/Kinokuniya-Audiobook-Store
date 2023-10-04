@@ -244,6 +244,31 @@ body {
     padding: 12px 20px;
 }
 
+.icon-btn {
+    display: flex;
+    width: fit-content;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: #66acff;
+    border-radius: 8px;
+    color: #f2f3f5
+}
+
+.icon-btn-alt {
+    display: flex;
+    width: fit-content;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    border-color: #66ACFF;
+    border-radius: 8px;
+    color: #66ACFF;
+}
+
 .see-all {
     font-size: 16px;
     font-weight: 400;

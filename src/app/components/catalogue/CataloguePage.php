@@ -55,7 +55,7 @@
                         </div>
                         <div class="options">
                             <div class="category-search">
-                                <input type="search" id="category-query" class="search-input" name="q" placeholder="Search categories.." aria-label="Search through categories" autocomplete="on">
+                                <input type="search" id="category-query" class="search-input" name="q" placeholder="Search..." aria-label="Search through categories" autocomplete="on">
                             </div>
                             <ul id="category-options">
                                 <?php foreach ($this->data['bookCategories'] as $category) : ?>

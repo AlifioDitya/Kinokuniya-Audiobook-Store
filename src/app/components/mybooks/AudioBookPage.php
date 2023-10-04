@@ -57,9 +57,9 @@
                     </div>
                     <div class="book-buttons-container">
                         <div class="book-buttons">
-                            <button class="icon-btn" id="add-to-cart">
-                                <i class="bx bx-cart"></i>
-                                <span>Add to Cart</span>
+                            <button class="icon-btn" id="play">
+                                <i class="bx bx-play"></i>
+                                <span>Play Audiobook</span>
                             </button>
                         </div>
                     </div>
