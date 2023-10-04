@@ -93,12 +93,14 @@ body {
 /* Searches */
 .search-panel {
     display: flex;
+    justify-content: flex-start;
     height: fit-content;
     align-items: center;
-    justify-content: center;
     margin: 16px;
     margin-left: 32px;
     margin-right: 32px;
+    min-width: 20vw;
+    gap: 16px;
 }
 
 #input-form {
@@ -113,6 +115,7 @@ body {
     align-self: stretch;
     border: 0.5px solid var(--Subtle-Stroke, rgba(209, 209, 209, 0.50));
     box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.10) inset;
+    min-width: 16rem;
 }
 
 .search-input {
@@ -123,7 +126,6 @@ body {
     width: 100%;
     padding: 6px 10px;
     margin-right: 12px;
-    min-width: 40px;
 }
 
 .category-search {
@@ -158,14 +160,16 @@ body {
     justify-content: center;
     height: 100%;
     width: fit-content;
-    margin-left: 16px;
+    /* margin-left: 16px; */
 }
 .select-menu .select-btn{
     display: flex;
     height: 40px;
+    width: 10rem;
     background: #fff;
     padding: 16px;
     font-size: 14px;
+    gap: 16px;
     font-weight: 400;
     border-radius: 8px;
     align-items: center;
@@ -174,16 +178,14 @@ body {
     border: 0.5px solid var(--Subtle-Stroke, rgba(209, 209, 209, 0.50));
     box-shadow: 0.5px 0.5px 0.5px 0px rgba(0, 0, 0, 0.10) inset;
 }
-.select-btn {
-    min-width: 11rem;
-}
-.select-btn i{
+.select-btn i {
     font-size: 24px;
     transition: 0.3s;
 }
-.select-btn-text{
+.select-btn-text {
     color: #333;
     opacity: 0.7;
+    width: fit-content;
 }
 .select-menu.active .select-btn i{
     transform: rotate(-180deg);

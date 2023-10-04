@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/sidebar.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/topnav.css">
 
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/catalogue/bookpreview.css">
+
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -48,20 +51,29 @@
                             echo '<div class="book-info-text">';
                             echo '<p class="book-category">' . $bookData->category . '</p>';
                             echo '<h1 class="book-title">' . $bookData->title . '</h1>';
-                            echo '<h2 class="book-author">' . $bookData->author . '</h2>';
+                            echo '<h2 class="book-author">by ' . $bookData->author . '</h2>';
                             echo '</div>';
-                        ?>
+                            ?>
                     </div>
-                    <button class="add-to-cart-btn">
-                        <i class="bx bx-cart"></i>
-                        <span>Add to Cart</span>
-                    </button>
+                    <div class="book-buttons-container">
+                        <div class="book-buttons">
+                            <button class="add-to-cart-btn">
+                                <i class="bx bx-cart"></i>
+                                <span>Add to Cart</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="line">
                     <hr>
                 </div>
                 <div class="summary-section">
-
+                    <h2 class="summary-title">Summary</h2>
+                    <p class="summary-text">
+                        <?php
+                            echo $bookData->book_desc;
+                        ?>
+                    </p>
                 </div>
             </div>
         </main>

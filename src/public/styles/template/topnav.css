@@ -11,9 +11,9 @@
 
 .topnav-label {
     display: flex;
-    gap: 8px;
+    gap: 12px;
     padding: 12px;
-    margin-left: 12px;
+    margin-left: 20px;
     align-items: center;
     font-size: 18px;
     color: #F18912;
@@ -38,4 +38,8 @@
     background-color: #1c2a39;
     border-radius: 4px;
     border: none;
+}
+
+.topnav-label i {
+    font-size: 16px;
 }
