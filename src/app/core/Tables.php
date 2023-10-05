@@ -17,7 +17,7 @@ class Tables {
             book_id INT AUTO_INCREMENT PRIMARY KEY,
             title VARCHAR(255) NOT NULL UNIQUE,
             author VARCHAR(100) NOT NULL,
-            category VARCHAR(255) NOT NULL UNIQUE,
+            category VARCHAR(255) NOT NULL,
             book_desc TEXT,
             price DECIMAL(10, 2) NOT NULL,
             publication_date DATE,

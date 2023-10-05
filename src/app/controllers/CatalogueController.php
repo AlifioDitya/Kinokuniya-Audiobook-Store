@@ -24,8 +24,9 @@ class CatalogueController extends Controller implements ControllerInterface
                     $bookList = $bookModel->getBooks(1);
                     $bookCategories = $bookModel->getBookCategories();
                     $books = $bookList['books'];
+                    $pages = $bookList['pages'];
 
-                    $catalogueView = $this->view('catalogue', 'CatalogueView', ['bookCategories' => $bookCategories, 'books' => $books]);
+                    $catalogueView = $this->view('catalogue', 'CatalogueView', ['bookCategories' => $bookCategories, 'books' => $books, 'pages' => $pages]);
                     $catalogueView->render();
 
                     break;

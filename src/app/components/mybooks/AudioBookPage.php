@@ -57,16 +57,10 @@
                         ?>
                     </div>
                     <div class="book-buttons-container">
-                        <!-- <div class="book-buttons">
-                            <button class="icon-btn" id="play">
-                                <i class="bx bx-play"></i>
-                                <span>Play Audiobook</span>
-                            </button>
-                        </div> -->
                         <div class="audio-player">
                             <button class="audio-control-button" id="play-pause-button">
-                                <i id="play-icon" class="fa fa-play"></i>
-                                <i id="pause-icon" class="fa fa-pause" style="display: none;"></i>
+                                <i id="play-icon" class="bx bx-play"></i>
+                                <i id="pause-icon" class="bx bx-pause"></i>
                             </button>
                             <div class="progress-container" id="progress-container">
                                 <div class="progress-bar" id="progress-bar"></div>

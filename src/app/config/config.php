@@ -12,7 +12,7 @@ define('PASSWORD', $_ENV['MYSQL_PASSWORD']);
 define('PORT', $_ENV['MYSQL_PORT']);
 
 // Rows to fetch per page for pagination
-define('ROWS_PER_PAGE', 10);
+define('ROWS_PER_PAGE', 12);
 
 // Bcrypt for password hashing
 define('BCRYPT_COST', 10);

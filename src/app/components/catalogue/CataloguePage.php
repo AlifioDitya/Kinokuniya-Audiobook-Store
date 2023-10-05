@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/globals.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/sidebar.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/topnav.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/pagination.css">
 
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -31,8 +32,8 @@
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/lib/debounce.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
-    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/searchpanel.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/search.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/pagination.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/catalogue/catalogue.js" defer></script>
 </head>
 <body>
@@ -139,6 +140,29 @@
                         <p class='no-book-text'>No books yet...</p>
                     <?php endif; ?>
                     </div>
+                    <?php if (!empty($this->data['books']) && $this->data['pages'] > 1) : ?>
+                        <div class="pagination-panel">
+                            <div class="pagination-container">
+                                <button class="pagination-button" id="startBtn" disabled>
+                                    <i class="bx bx-chevrons-left"></i>
+                                </button>
+                                <button class="pagination-button prevNext" id="prev" disabled>
+                                    <i class="bx bx-chevron-left"></i>
+                                </button>
+                                <div class="pagination-links">
+                                    <?php for ($i = 1; $i <= $this->data['pages']; $i++) : ?>
+                                        <a href="#" class="p-link <?= $i == 1 ? 'active' : '' ?>"><?= $i ?></a>
+                                    <?php endfor; ?>
+                                </div>
+                                <button class="pagination-button prevNext" id="next">
+                                    <i class="bx bx-chevron-right"></i>
+                                </button>
+                                <button class="pagination-button" id="endBtn">
+                                    <i class="bx bx-chevrons-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </section>
             </div>
         </main>

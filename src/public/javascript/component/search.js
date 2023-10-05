@@ -55,6 +55,38 @@ searchBar.addEventListener(
 
 /* FILTERS */
 
+function initializeDropdown(dropdownSelector) {
+    const optionMenu = document.querySelectorAll(dropdownSelector);
+
+    optionMenu.forEach((menu) => {
+        const selectBtn = menu.querySelector(".select-btn");
+        const options = menu.querySelectorAll(".option");
+        const sBtn_text = menu.querySelector(".select-btn-text");
+
+        selectBtn.addEventListener("click", () => menu.classList.toggle("active"));
+        options.forEach((option) => {
+            option.addEventListener("click", () => {
+                const selectedOption = option.querySelector(".option-text").innerText;
+                sBtn_text.innerText = selectedOption;
+                menu.classList.remove("active");
+            });
+        });
+    });
+}
+
+// Remove the property "transform: rotate(-180deg);" if the dropdown icon is of the class "bx-sort-alt-2"
+function removeDropdownIconTransform() {
+    const dropdownIcon = document.querySelector(".bx-sort-alt-2");
+
+    if (dropdownIcon) {
+        dropdownIcon.style.transform = "rotate(0deg)";
+    }
+}
+
+// Initialize all dropdowns with the class "select-menu"
+initializeDropdown(".select-menu");
+removeDropdownIconTransform();
+
 // When dropdown is out of focus, close it
 document.body.addEventListener('click', function (event) {
     // Check if the click target is within the select menu or its options
@@ -187,6 +219,20 @@ categorySearchInput.addEventListener(
 );
 
 /* HELPER */
+// Function to format price
+function formatPrice(price) {
+    // Convert the price to a string
+    const priceString = price.toString();
+
+    // Split the string into parts before and after the decimal point (if present)
+    const parts = priceString.split('.');
+
+    // Format the integer part with period as the thousands separator
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+    // Combine the parts back together with a commas as the decimal separator
+    return parts.join(',');
+}
 
 // To update the book page based on passed in data
 const updateData = (data) => {
@@ -220,7 +266,7 @@ const updateData = (data) => {
         if (currentPage === 'catalogue') {
             bookPrice = document.createElement("p");
             bookPrice.classList.add("book-card-price");
-            bookPrice.innerText = `Rp ${book.price}`;
+            bookPrice.innerText = `Rp ${formatPrice(book.price)}`;
         } else {
             bookPrice = null;
         }

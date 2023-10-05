@@ -61,7 +61,7 @@ body {
     top: 0;
     left: 78px;
     width: calc(100% - 78px);
-    height: 100%;
+    height: 100vh;
     background-color: #FAFAFA;
     color: #333;
     transition: all 0.5s ease;
@@ -77,10 +77,9 @@ body {
 .secondary-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: calc(100vh - 48px);
     width: 100%;
     overflow-y: scroll;
-    margin-bottom: 56px;
     overflow-x: hidden;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
@@ -304,7 +303,7 @@ body {
     position: relative;
     display: grid;
     align-items: start;
-    height: 100%;
+    height: fit-content;
     width: 100%;
     padding-left: 20px;
     padding-right: 20px;
@@ -313,8 +312,8 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(124px, 148px));
     align-content: start;
     row-gap: 4%;
-    overflow-y: scroll;
     overflow-x: hidden;
+    overflow-y: hidden;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
 }
@@ -338,8 +337,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    /* width: 25rem; */
     background-color: #ffedec;
     border-radius: 8px;
     transition: all 0.2s ease-in-out;

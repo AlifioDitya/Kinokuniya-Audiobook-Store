@@ -22,6 +22,9 @@
 
 .book-cover {
     height: 12rem;
+    border-radius: 8px;
+    background: cover no-repeat;
+    background-size: cover;
 }
 
 .book-category {
@@ -125,10 +128,23 @@
     background: none;
     border: none;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Time left display styles */
 .time-left {
     font-size: 12px;
     color: #666;
+}
+
+#play-icon {
+    font-size: 24px;
+}
+
+#pause-icon {
+    font-size: 24px;
+    display: none;
 }
