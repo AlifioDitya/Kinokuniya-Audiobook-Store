@@ -46,13 +46,13 @@ class MyBooksController extends Controller implements ControllerInterface
 
                     $bookModel = $this->model('BookModel');
 
-                    $bookList = $bookModel->getOwnedBooksByQuery($_GET['q'], 1, $_SESSION['user_id']);
+                    $bookList = $bookModel->getOwnedBooksByQuery($_GET['q'], 1, $_GET['category'], $_GET['price'], $_GET['sort'], $_SESSION['user_id']);
                     $books = $bookList['books'];
                     $pages = $bookList['pages'];
 
                     header('Content-Type: application/json');
-                    echo json_encode(['books' => $books, 'pages' => $pages]);
                     http_response_code(200);
+                    echo json_encode(['books' => $books, 'pages' => $pages]);
                     exit;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);

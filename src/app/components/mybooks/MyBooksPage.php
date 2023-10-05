@@ -91,10 +91,10 @@
                                     <span class="option-text">< Rp500k</span>
                                 </li>
                                 <li class="option">
-                                    <span class="option-text">Rp500-1000k</span>
+                                    <span class="option-text">Rp500K-Rp1M</span>
                                 </li>
                                 <li class="option">
-                                    <span class="option-text">> Rp1000K</span>
+                                    <span class="option-text">> Rp1M</span>
                                 </li>
                             </ul>
                         </div>

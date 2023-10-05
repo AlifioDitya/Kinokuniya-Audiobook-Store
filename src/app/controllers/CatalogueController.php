@@ -39,14 +39,15 @@ class CatalogueController extends Controller implements ControllerInterface
                 case 'GET':
 
                     $bookModel = $this->model('BookModel');
+                    $page = $_GET['page'] ?? 1;
 
-                    $bookList = $bookModel->getBooksByQuery($_GET['q'], 1);
+                    $bookList = $bookModel->getBooksByQuery($_GET['q'], $page, $_GET['category'], $_GET['price'], $_GET['sort']);
                     $books = $bookList['books'];
                     $pages = $bookList['pages'];
 
                     header('Content-Type: application/json');
-                    echo json_encode(['books' => $books, 'pages' => $pages]);
                     http_response_code(200);
+                    echo json_encode(['books' => $books, 'pages' => $pages]);
                     exit;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
