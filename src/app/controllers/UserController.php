@@ -61,15 +61,22 @@ class UserController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
 
-                    // Redirect to home page if already logged in
-                    if (isset($_SESSION['user_id'])) {
+                    // Open middleware for authentication
+                    $auth = $this->middleware('AuthenticationMiddleware');
+
+                    // Redirect to Login Page if not logged in
+                    try {
+                        $auth->isAuthenticated();
+
+                        // Redirect to home page if already logged in
                         header('Location: ' . BASE_URL . '/home');
                         exit;
+                    } catch (Exception $e) {
+                        // Else, render login page
+                        $loginView = $this->view('user', 'LoginView');
+                        $loginView->render();
+                        exit;
                     }
-
-                    $loginView = $this->view('user', 'LoginView');
-                    $loginView->render();
-                    exit;
 
                 case 'POST':
 

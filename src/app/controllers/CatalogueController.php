@@ -8,8 +8,13 @@ class CatalogueController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
 
+                    // Open middleware for authentication
+                    $auth = $this->middleware('AuthenticationMiddleware');
+
                     // Redirect to Login Page if not logged in
-                    if (!isset($_SESSION['user_id'])) {
+                    try {
+                        $auth->isAuthenticated();
+                    } catch (Exception $e) {
                         header('Location: ' . BASE_URL . '/user/login');
                         exit;
                     }
