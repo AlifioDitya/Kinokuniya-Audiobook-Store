@@ -63,20 +63,61 @@ class BookModel
         return $returnArr;
     }
 
-    public function getBooksByQuery($q, $page)
+    public function getBooksByQuery($q, $page, $category, $priceRange, $sortBy)
     {
-        $query = 'SELECT title, author, category, book_desc, price, publication_date, cover_img_url, audio_url FROM book WHERE title LIKE :q OR author LIKE :q OR category LIKE :q LIMIT :limit OFFSET :offset';
+        $priceQuery = "";
+        if ($priceRange == "< Rp500K") {
+            $priceQuery = "price < 500000";
+        } else if ($priceRange == "Rp500K-Rp1M") {
+            $priceQuery = "price BETWEEN 500000 AND 1000000";
+        } else if ($priceRange == "> Rp1M") {
+            $priceQuery = "price > 1000000";
+        } else {
+            $priceQuery = "price > 0";
+        }
+
+        $sortQuery = "";
+        if ($sortBy == "Newest First") {
+            $sortQuery = "publication_date DESC";
+        } else if ($sortBy == "Oldest First") {
+            $sortQuery = "publication_date ASC";
+        } else if ($sortBy == "Price: Low to High") {
+            $sortQuery = "price ASC";
+        } else if ($sortBy == "Price: High to Low") {
+            $sortQuery = "price DESC";
+        } else {
+            $sortQuery = "publication_date DESC";
+        }
+
+        $query = 'SELECT title, author, category, book_desc, price, publication_date, cover_img_url, audio_url FROM book 
+        WHERE title LIKE :q OR author LIKE :q 
+        AND category = :category
+        AND :priceQuery
+        ORDER BY :sortQuery
+        LIMIT :limit OFFSET :offset';
 
         $this->database->query($query);
         $this->database->bind('q', '%' . $q . '%');
+        $this->database->bind('category', $category);
+        $this->database->bind('priceQuery', $priceQuery);
+        $this->database->bind('sortQuery', $sortQuery);
         $this->database->bind('limit', ROWS_PER_PAGE);
         $this->database->bind('offset', ($page - 1) * ROWS_PER_PAGE);
+        
         $books = $this->database->fetchAll();
 
-        $query = 'SELECT CEIL(COUNT(book_id) / :rows_per_page) AS page_count FROM book WHERE title LIKE :q OR author LIKE :q OR category LIKE :q';
+        print_r($books);
+
+        $query = 'SELECT CEIL(COUNT(book_id) / :rows_per_page) AS page_count 
+        FROM book 
+        WHERE title LIKE :q OR author LIKE :q
+        AND category = :category
+        AND :priceQuery';
 
         $this->database->query($query);
         $this->database->bind('q', '%' . $q . '%');
+        $this->database->bind('category', $category);
+        $this->database->bind('priceQuery', $priceQuery);
         $this->database->bind('rows_per_page', ROWS_PER_PAGE);
         $book = $this->database->fetch();
         $pageCount = $book->page_count;
@@ -85,17 +126,48 @@ class BookModel
         return $returnArr;
     }
 
-    public function getOwnedBooksByQuery($q, $page, $user_id)
+    public function getOwnedBooksByQuery($q, $page, $category, $priceRange, $sortBy, $user_id)
     {
+        $priceQuery = "";
+        if ($priceRange == "< Rp500K") {
+            $priceQuery = "price < 500000";
+        } else if ($priceRange == "Rp500K-Rp1M") {
+            $priceQuery = "price BETWEEN 500000 AND 1000000";
+        } else if ($priceRange == "> Rp1M") {
+            $priceQuery = "price > 1000000";
+        } else {
+            $priceQuery = "price > 0";
+        }
+
+        $sortQuery = "";
+        if ($sortBy == "Newest First") {
+            $sortQuery = "publication_date DESC";
+        } else if ($sortBy == "Oldest First") {
+            $sortQuery = "publication_date ASC";
+        } else if ($sortBy == "Price: Low to High") {
+            $sortQuery = "price ASC";
+        } else if ($sortBy == "Price: High to Low") {
+            $sortQuery = "price DESC";
+        } else {
+            $sortQuery = "publication_date DESC";
+        }
+
         // Fetch only user owned books
         $query = 'SELECT b.book_id, b.title, b.author, b.category, b.book_desc, b.price, b.publication_date, b.cover_img_url, b.audio_url
                 FROM book AS b
                 INNER JOIN book_ownership AS bo ON b.book_id = bo.book_id
-                WHERE (b.title LIKE :q OR b.author LIKE :q OR b.category LIKE :q) AND bo.user_id = :user_id LIMIT :limit OFFSET :offset';
+                WHERE (b.title LIKE :q OR b.author LIKE :q) AND bo.user_id = :user_id 
+                AND category = :category
+                AND :priceQuery
+                ORDER BY :sortQuery
+                LIMIT :limit OFFSET :offset';
 
         // Bind the search query parameter
         $this->database->query($query);
         $this->database->bind('q', '%' . $q . '%');
+        $this->database->bind('category', $category);
+        $this->database->bind('priceQuery', $priceQuery);
+        $this->database->bind('sortQuery', $sortQuery);
         $this->database->bind('user_id', $user_id);
         $this->database->bind('limit', ROWS_PER_PAGE);
         $this->database->bind('offset', ($page - 1) * ROWS_PER_PAGE);
@@ -107,11 +179,15 @@ class BookModel
         $countQuery = 'SELECT CEIL(COUNT(b.book_id) / :rows_per_page) AS page_count 
                     FROM book AS b
                     INNER JOIN book_ownership AS bo ON b.book_id = bo.book_id
-                    WHERE (b.title LIKE :q OR b.author LIKE :q OR b.category LIKE :q) AND bo.user_id = :user_id';
+                    WHERE (b.title LIKE :q OR b.author LIKE :q) AND bo.user_id = :user_id
+                    AND category = :category
+                    AND :priceQuery';
 
         // Bind the search query parameter
         $this->database->query($countQuery);
         $this->database->bind('q', '%' . $q . '%');
+        $this->database->bind('category', $category);
+        $this->database->bind('priceQuery', $priceQuery);
         $this->database->bind('user_id', $user_id);
         $this->database->bind('rows_per_page', ROWS_PER_PAGE);
 
@@ -129,7 +205,7 @@ class BookModel
         // Construct the base SQL query
         $query = 'SELECT title, author, category, book_desc, price, publication_date, cover_img_url, audio_url
                 FROM book 
-                WHERE (title LIKE :q OR author LIKE :q OR category LIKE :q)';
+                WHERE (title LIKE :q OR author LIKE :q)';
 
         // Apply additional filters based on category and price range
         if ($category !== 'all') {
@@ -176,7 +252,7 @@ class BookModel
         // Calculate the total number of pages
         $countQuery = 'SELECT CEIL(COUNT(book_id) / :rows_per_page) AS page_count 
                     FROM book
-                    WHERE (title LIKE :q OR author LIKE :q OR category LIKE :q)';
+                    WHERE (title LIKE :q OR author LIKE :q)';
 
         // Apply the same filters for counting
         if ($category !== 'all') {

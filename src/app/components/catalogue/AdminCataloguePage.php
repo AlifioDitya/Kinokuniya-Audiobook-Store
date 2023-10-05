@@ -63,13 +63,13 @@
                         </div>
                         <ul class="options">
                             <li class="option">
-                                <span class="option-text">< 500k Rp</span>
+                                <span class="option-text">< Rp500k</span>
                             </li>
                             <li class="option">
-                                <span class="option-text">500k-1000k Rp</span>
+                                <span class="option-text">Rp500k-1000k</span>
                             </li>
                             <li class="option">
-                                <span class="option-text">> 1000k Rp</span>
+                                <span class="option-text">> Rp1M</span>
                             </li>
                         </ul>
                     </div>
