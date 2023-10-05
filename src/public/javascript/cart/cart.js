@@ -44,7 +44,7 @@ checkoutButton.addEventListener("click", () => {
                     waitForTransitionEnd = new Promise(resolve => {
                         setTimeout(() => {
                             resolve();
-                        }, 3000);
+                        }, 1000);
                     });
 
                     waitForTransitionEnd.then(() => {
