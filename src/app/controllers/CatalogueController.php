@@ -40,8 +40,11 @@ class CatalogueController extends Controller implements ControllerInterface
 
                     $bookModel = $this->model('BookModel');
                     $page = $_GET['page'] ?? 1;
+                    $category = $_GET['category'] ?? 'All Categories';
+                    $price = $_GET['price'] ?? 'All Prices';
+                    $sort = $_GET['sort'] ?? 'Newest Releases';
 
-                    $bookList = $bookModel->getBooksByQuery($_GET['q'], $page, $_GET['category'], $_GET['price'], $_GET['sort']);
+                    $bookList = $bookModel->getBooksByQuery($_GET['q'], $page, $category, $price, $sort);
                     $books = $bookList['books'];
                     $pages = $bookList['pages'];
 

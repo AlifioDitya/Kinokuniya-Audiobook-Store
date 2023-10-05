@@ -18,7 +18,6 @@ let selectedSort = "Newest First";
 let order = "desc";
 let page = 1; // Change this later to the current page
 
-
 /* SEARCH BAR */
 
 // Prevent the form from submitting

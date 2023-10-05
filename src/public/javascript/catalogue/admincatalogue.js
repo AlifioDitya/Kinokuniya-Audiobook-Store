@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Remove "Settings" Text
-    let settingsLink = Array.from(document.querySelectorAll('.nav-list li .links_name')).find(el => el.textContent.trim() === "Settings");
-    if (settingsLink) {
-        settingsLink.closest('li').style.display = 'none';
-    }
+    // let settingsLink = Array.from(document.querySelectorAll('.nav-list li .links_name')).find(el => el.textContent.trim() === "Settings");
+    // if (settingsLink) {
+    //     settingsLink.closest('li').style.display = 'none';
+    // }
 
     let iconElement = document.querySelector(".bx-book");
 

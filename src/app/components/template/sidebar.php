@@ -26,11 +26,11 @@
             <span class="tooltip">My Books</span>
         </li>
         <li>
-            <a href="/public/settings" >
-                <i class='bx bx-cog'></i>
-                <span class="links_name">Settings</span>
+            <a id="log-out">
+                <i class='bx bx-log-out'></i>
+                <span class="links_name">Log Out</span>
             </a>
-            <span class="tooltip">Settings</span>
+            <span class="tooltip">Log Out</span>
         </li>
     </ul>
 </div>

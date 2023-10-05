@@ -16,4 +16,20 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
 });
-  
+
+const logOutButton = document.querySelector("#log-out");
+
+logOutButton &&
+    logOutButton.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const xhr = new XMLHttpRequest();
+
+        xhr.open("POST", "/public/user/logout");
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                const data = JSON.parse(this.responseText);
+                location.replace(data.redirect_url);
+            }
+        };
+    });

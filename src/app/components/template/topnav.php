@@ -9,10 +9,5 @@
                 <i class="bx bx-cart-alt" style="color: white; font-size: 16px"></i>
             </button>
         </a>
-        <a href="/public/settings">
-            <button class="topnav-btn">
-                <i class="bx bx-cog" style="color: white; font-size: 16px"></i>
-            </button>
-        </a>
     </div>
 </nav>

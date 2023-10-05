@@ -45,8 +45,12 @@ class MyBooksController extends Controller implements ControllerInterface
                 case 'GET':
 
                     $bookModel = $this->model('BookModel');
+                    $page = $_GET['page'] ?? 1;
+                    $category = $_GET['category'] ?? 'All Categories';
+                    $price = $_GET['price'] ?? 'All Prices';
+                    $sort = $_GET['sort'] ?? 'Newest Releases';
 
-                    $bookList = $bookModel->getOwnedBooksByQuery($_GET['q'], 1, $_GET['category'], $_GET['price'], $_GET['sort'], $_SESSION['user_id']);
+                    $bookList = $bookModel->getOwnedBooksByQuery($_GET['q'], $page, $category, $price, $sort, $_SESSION['user_id']);
                     $books = $bookList['books'];
                     $pages = $bookList['pages'];
 
