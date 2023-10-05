@@ -159,6 +159,33 @@ sortOptions.forEach(option => {
     });
 });
 
+// Function to update the filter dropdown options
+function updateCategoryOptions() {
+    const searchInput = document.getElementById("category-query");
+    const queryValue = searchInput.value.trim().toLowerCase();
+    const options = document.querySelectorAll("#category-options li.option");
+
+    // Hide all options initially
+    options.forEach(option => {
+        option.style.display = "none";
+    });
+
+    // Show options that match the query
+    options.forEach(option => {
+        const optionText = option.querySelector(".option-text").textContent.toLowerCase();
+        if (optionText.includes(queryValue) || queryValue === "") {
+            option.style.display = "flex";
+        }
+    });
+}
+
+// Add an event listener to the category search input with debounce
+const categorySearchInput = document.getElementById("category-query");
+categorySearchInput.addEventListener(
+    "keyup",
+    debounce(updateCategoryOptions, DEBOUNCE_TIMEOUT)
+);
+
 /* HELPER */
 
 // To update the book page based on passed in data
