@@ -38,11 +38,14 @@
             <div class="input-container">
                 <div class="input-group">
                     <label for="username">Username</label><br>
-                    <input class="input placeholder"type="text" id="username">
+                    <input class="search-input input placeholder"type="search" id="username" placeholder="Input Username">
                 </div>
                 <div class="input-group">
                     <label for="status">Status</label><br>
-                    <input class="input placeholder"type="text" id="status">
+                    <input class="search-input input placeholder" list="statusOptions" type="search" id="status" placeholder="Input Status">
+                    <datalist id="statusOptions">
+                        <option value="Active">
+                        <option value="Inactive">
                 </div>
                 
             </div>
