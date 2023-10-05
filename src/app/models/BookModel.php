@@ -64,76 +64,77 @@ class BookModel
     }
 
     public function getBooksByQuery($q, $page, $category, $priceRange, $sortBy)
-{
-    // Prepare conditions for category and price
-    $categoryCondition = '';
-    if ($category !== "All Categories") {
-        $categoryCondition = "category = :category";
+    {
+        // Prepare conditions for category and price
+        $categoryCondition = '';
+        if ($category !== "All Categories") {
+            $categoryCondition = "category = :category";
+        }
+
+        $priceCondition = '';
+        if ($priceRange == "< Rp500K") {
+            $priceCondition = "price < 500000";
+        } elseif ($priceRange == "Rp500K-Rp1M") {
+            $priceCondition = "price BETWEEN 500000 AND 1000000";
+        } elseif ($priceRange == "> Rp1M") {
+            $priceCondition = "price > 1000000";
+        }
+
+        // Prepare the sort by parameter
+        $sort = 'publication_date DESC';
+        if ($sortBy == "Newest First") {
+            $sort = "publication_date DESC";
+        } elseif ($sortBy == "Oldest First") {
+            $sort = "publication_date ASC";
+        } elseif ($sortBy == "Price: Low to High") {
+            $sort = "price ASC";
+        } elseif ($sortBy == "Price: High to Low") {
+            $sort = "price DESC";
+        }
+
+        // Prepare the SQL query
+        $query = 'SELECT book_id, title, author, category, book_desc, price, publication_date, cover_img_url, audio_url FROM book 
+            WHERE (title LIKE :q OR author LIKE :q) 
+            ' . ($categoryCondition ? 'AND ' . $categoryCondition : '') . '
+            ' . ($priceCondition ? 'AND ' . $priceCondition : '') . '
+            ORDER BY ' . $sort . ' LIMIT :limit OFFSET :offset';
+
+        $this->database->query($query);
+        $this->database->bind('q', '%' . $q . '%');
+        
+        // Bind category parameter if it's not empty
+        if ($categoryCondition) {
+            $this->database->bind('category', $category);
+        }
+
+        $this->database->bind('limit', ROWS_PER_PAGE);
+        $this->database->bind('offset', ($page - 1) * ROWS_PER_PAGE);
+        
+        $books = $this->database->fetchAll();
+
+        // Count the total number of pages
+        $countQuery = 'SELECT CEIL(COUNT(book_id) / :rows_per_page) AS page_count 
+            FROM book 
+            WHERE (title LIKE :q OR author LIKE :q) 
+            ' . ($categoryCondition ? 'AND ' . $categoryCondition : '') . '
+            ' . ($priceCondition ? 'AND ' . $priceCondition : '');
+
+        $this->database->query($countQuery);
+        $this->database->bind('q', '%' . $q . '%');
+        
+        // Bind category parameter if it's not empty
+        if ($categoryCondition) {
+            $this->database->bind('category', $category);
+        }
+
+        $this->database->bind('rows_per_page', ROWS_PER_PAGE);
+        $book = $this->database->fetch();
+        $pageCount = $book->page_count;
+
+        $returnArr = ['books' => $books, 'pages' => $pageCount];
+        return $returnArr;
     }
 
-    $priceCondition = '';
-    if ($priceRange == "< Rp500K") {
-        $priceCondition = "price < 500000";
-    } elseif ($priceRange == "Rp500K-Rp1M") {
-        $priceCondition = "price BETWEEN 500000 AND 1000000";
-    } elseif ($priceRange == "> Rp1M") {
-        $priceCondition = "price > 1000000";
-    }
-
-    // Prepare the sort by parameter
-    $sortBy = 'publication_date DESC';
-    if ($sortBy == "Newest First") {
-        $sortBy = "publication_date DESC";
-    } elseif ($sortBy == "Oldest First") {
-        $sortBy = "publication_date ASC";
-    } elseif ($sortBy == "Price: Low to High") {
-        $sortBy = "price ASC";
-    } elseif ($sortBy == "Price: High to Low") {
-        $sortBy = "price DESC";
-    }
-
-    // Prepare the SQL query
-    $query = 'SELECT book_id, title, author, category, book_desc, price, publication_date, cover_img_url, audio_url FROM book 
-        WHERE (title LIKE :q OR author LIKE :q) 
-        ' . ($categoryCondition ? 'AND ' . $categoryCondition : '') . '
-        ' . ($priceCondition ? 'AND ' . $priceCondition : '') . '
-        ORDER BY ' . $sortBy . ' LIMIT :limit OFFSET :offset';
-
-    $this->database->query($query);
-    $this->database->bind('q', '%' . $q . '%');
-    
-    // Bind category parameter if it's not empty
-    if ($categoryCondition) {
-        $this->database->bind('category', $category);
-    }
-
-    $this->database->bind('limit', ROWS_PER_PAGE);
-    $this->database->bind('offset', ($page - 1) * ROWS_PER_PAGE);
-    
-    $books = $this->database->fetchAll();
-
-    // Count the total number of pages
-    $countQuery = 'SELECT CEIL(COUNT(book_id) / :rows_per_page) AS page_count 
-        FROM book 
-        WHERE (title LIKE :q OR author LIKE :q) 
-        ' . ($categoryCondition ? 'AND ' . $categoryCondition : '') . '
-        ' . ($priceCondition ? 'AND ' . $priceCondition : '');
-
-    $this->database->query($countQuery);
-    $this->database->bind('q', '%' . $q . '%');
-    
-    // Bind category parameter if it's not empty
-    if ($categoryCondition) {
-        $this->database->bind('category', $category);
-    }
-
-    $this->database->bind('rows_per_page', ROWS_PER_PAGE);
-    $book = $this->database->fetch();
-    $pageCount = $book->page_count;
-
-    $returnArr = ['books' => $books, 'pages' => $pageCount];
-    return $returnArr;
-}
     public function getOwnedBooksByQuery($q, $page, $category, $priceRange, $sortBy, $user_id)
     {
         // Prepare conditions for category and price
@@ -152,15 +153,15 @@ class BookModel
         }
 
         // Prepare the sort by parameter
-        $sortBy = 'publication_date DESC';
+        $sort = 'publication_date DESC';
         if ($sortBy == "Newest First") {
-            $sortBy = "publication_date DESC";
+            $sort = "publication_date DESC";
         } elseif ($sortBy == "Oldest First") {
-            $sortBy = "publication_date ASC";
+            $sort = "publication_date ASC";
         } elseif ($sortBy == "Price: Low to High") {
-            $sortBy = "price ASC";
+            $sort = "price ASC";
         } elseif ($sortBy == "Price: High to Low") {
-            $sortBy = "price DESC";
+            $sort = "price DESC";
         }
 
         // Fetch only user owned books
@@ -170,7 +171,7 @@ class BookModel
                 WHERE (b.title LIKE :q OR b.author LIKE :q) AND bo.user_id = :user_id 
                 ' . ($categoryCondition ? 'AND ' . $categoryCondition : '') . '
                 ' . ($priceCondition ? 'AND ' . $priceCondition : '') . '
-                ORDER BY ' . $sortBy . ' LIMIT :limit OFFSET :offset';
+                ORDER BY ' . $sort . ' LIMIT :limit OFFSET :offset';
 
         // Bind the search query parameter
         $this->database->query($query);

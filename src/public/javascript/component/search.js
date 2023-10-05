@@ -143,7 +143,6 @@ function updateSort(option) {
 categoryOptions.forEach(option => {
     option.addEventListener("click", () => {
         updateCategory(option);
-        console.log("Selected Category:", selectedCategory);
     });
 });
 
@@ -151,7 +150,6 @@ categoryOptions.forEach(option => {
 priceOptions.forEach(option => {
     option.addEventListener("click", () => {
         updatePrice(option);
-        console.log("Selected Price:", selectedPrice);
     });
 });
 
@@ -159,7 +157,6 @@ priceOptions.forEach(option => {
 sortOptions.forEach(option => {
     option.addEventListener("click", () => {
         updateSort(option);
-        console.log("Selected Sort:", selectedSort);
     });
 });
 
