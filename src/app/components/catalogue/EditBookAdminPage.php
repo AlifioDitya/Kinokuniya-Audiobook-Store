@@ -38,41 +38,41 @@
              <div class="input-container">
                 <div class="input-group">
                     <label for="Book Title">Book Title</label><br>
-                    <input class="input placeholder"type="text" id="Book Title">
+                    <input class="search-input input placeholder"type="search" id="Book Title" placeholder="Input Book Title . . .">
                 </div>
                 <div class="input-group">
                     <label for="Author">Author</label><br>
-                    <input class="input placeholder"type="text" id="Author">
+                    <input class="search-input input placeholder"type="search" id="Author" placeholder="Input Book Author . . .">
                 </div>
             </div>
             <div class="input-container">
                 <div class="input-group">
                     <label for="Category">Category</label><br>
-                    <input class="input placeholder"type="text" id="Category">
+                    <input class="search-input input placeholder"type="search" id="Category" placeholder="Input Book category . . .">
                 </div>
                 <div class="input-group">
                     <label for="Price">Price</label><br>
-                    <input class="input placeholder"type="text" id="Price">
+                    <input class="search-input input placeholder"type="search" id="Price" placeholder="Input Book Price . . .">
                 </div>
             </div>
             <div class="input-container">
                 <div class="input-group">
                     <label for="Publication">Publication Date</label><br>
-                    <input class="input placeholder"type="date" id="Publication">
+                    <input class="search-input input placeholder"type="date" id="Publication">
                 </div>
                 <div class="input-group">
                     <label for="summary">Upload Book Summary</label><br>
-                    <input class="input placeholder"type="file" id="summary">
+                    <input class="search-input input placeholder"type="file" id="summary">
                 </div>
             </div>
             <div class="input-container">
                 <div class="input-group">
                     <label for="textbook">Upload Text Book</label><br>
-                    <input class="input placeholder"type="file" id="textbook">
+                    <input class="search-input input placeholder"type="file" id="textbook">
                 </div>
                 <div class="input-group">
                     <label for="Audio">Upload Audio Book</label><br>
-                    <input class="input placeholder"type="file" id="Audio">
+                    <input class="search-input input placeholder"type="file" id="Audio">
                 </div>
                 
             </div>
