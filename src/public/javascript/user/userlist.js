@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="dropdown-menu">
                     <a href="#" class="active-option">Active</a>
                     <a href="#" class="inactive-option">Inactive</a>
+                    <a href="edituser">Edit</a>
                 </div>
             </td>
         `;
