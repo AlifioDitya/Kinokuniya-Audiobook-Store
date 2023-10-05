@@ -15,13 +15,10 @@ function getQueryParam(name) {
 // Get the query parameter 'q' from the URL
 const queryVal = getQueryParam("q");
 
-// Redirect to the catalogue page if the query parameter 'q' is not present
-if (queryVal === null || queryVal === "") {
-    window.location.href = "/public/catalogue";
+if (queryVal !== null) {
+    // Set the queryValue as the value of the input field
+    document.getElementById("query").value = queryVal;
+    
+    // Invoke "keyup" event on the input field to trigger the search
+    document.getElementById("query").dispatchEvent(new Event("keyup"));
 }
-
-// Set the queryValue as the value of the input field
-document.getElementById("query").value = queryVal;
-
-// Invoke "keyup" event on the input field to trigger the search
-document.getElementById("query").dispatchEvent(new Event("keyup"));
