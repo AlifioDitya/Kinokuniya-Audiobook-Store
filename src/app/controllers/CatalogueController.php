@@ -125,5 +125,45 @@ class CatalogueController extends Controller implements ControllerInterface
             http_response_code($e->getCode());
         }
     }
+
+    public function edit()
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+
+                    // Note: dont forget to check if user is admin
+
+                    $editBookAdminView = $this->view('catalogue', 'EditBookAdminView');
+                    $editBookAdminView->render();
+
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+        }
+    }
+
+    public function control()
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+
+                    // Note: dont forget to check if user is admin
+
+                    $homeView = $this->view('catalogue', 'AdminCatalogueView');
+                    $homeView->render();
+
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+        }
+    }
     
 }

@@ -174,4 +174,24 @@ class UserController extends Controller implements ControllerInterface
             exit;
         }
     }
+
+    public function edit()
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+
+                    // Note: dont forget to check if user is admin
+
+                    $editUserView = $this->view('user', 'EditUserView');
+                    $editUserView->render();
+
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+        }
+    }
 }
