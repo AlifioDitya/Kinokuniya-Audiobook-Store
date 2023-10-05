@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/topnav.css">
 
     <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/catalogue/bookpreview.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/catalogue/bookview.css">
 
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -34,7 +34,7 @@
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/lib/debounce.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
-    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/catalogue/bookpreview.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/catalogue/bookview.js" defer></script>
 </head>
 <body>
     <div id="root">
@@ -57,12 +57,25 @@
                         ?>
                     </div>
                     <div class="book-buttons-container">
-                        <div class="book-buttons">
+                        <!-- <div class="book-buttons">
                             <button class="icon-btn" id="play">
                                 <i class="bx bx-play"></i>
                                 <span>Play Audiobook</span>
                             </button>
+                        </div> -->
+                        <div class="audio-player">
+                            <button class="audio-control-button" id="play-pause-button">
+                                <i id="play-icon" class="fa fa-play"></i>
+                                <i id="pause-icon" class="fa fa-pause" style="display: none;"></i>
+                            </button>
+                            <div class="progress-container" id="progress-container">
+                                <div class="progress-bar" id="progress-bar"></div>
+                                <div class="thumb" id="thumb"></div>
+                            </div>
+                            <div class="time-left" id="time-left">0:00</div>
                         </div>
+
+                        <audio id="audio" src="<?php echo $this->data['bookData']->audio_url; ?>"></audio>
                     </div>
                 </div>
                 <div class="line">

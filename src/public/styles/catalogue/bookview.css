@@ -83,3 +83,52 @@
 .summary-text {
     font-size: 16px;
 }
+
+/* Basic styles for the audio player */
+.audio-player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Progress bar styles */
+.progress-container {
+    flex: 1;
+    height: 4px;
+    background-color: #ccc;
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer; /* Add cursor pointer for indicating clickability */
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #66acff;
+    border-radius: 2px;
+}
+
+/* Thumb (draggable circle) styles */
+.thumb {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #66acff;
+    border-radius: 50%;
+    top: -3px; /* Adjust the vertical position */
+    cursor: pointer;
+    transform: translateX(-50%);
+}
+
+/* Button styles */
+.audio-control-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Time left display styles */
+.time-left {
+    font-size: 12px;
+    color: #666;
+}

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/toast.css">
 
     <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/catalogue/bookpreview.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/catalogue/bookview.css">
 
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -36,7 +36,7 @@
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/lib/debounce.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/toast.js" defer></script>
-    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/catalogue/bookpreview.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/catalogue/bookview.js" defer></script>
 </head>
 <body>
     <div id="root">
