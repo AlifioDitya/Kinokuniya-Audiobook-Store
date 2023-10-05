@@ -38,7 +38,7 @@
             <div class="secondary-container">
                 <section class="hero-section">
                     <form role="search" id="input-form">
-                        <input type="search" id="query" class="search-input" name="q" placeholder="Search books or authors..." aria-label="Search through site content">
+                        <input type="search" id="query" class="search-input" name="q" placeholder="Search books or authors..." aria-label="Search through site content" autocomplete="off">
                         <button class="search-btn">
                             <i class="fas fa-search"></i>
                         </button>

@@ -44,7 +44,7 @@
             <div class="secondary-container">
                 <div class="search-panel">
                     <form role="search" id="input-form">
-                        <input type="search" id="query" class="search-input" name="q" placeholder="Search books or authors..." aria-label="Search through site content">
+                        <input type="search" id="query" class="search-input" name="q" placeholder="Search books or authors..." aria-label="Search through site content" autocomplete="off">
                         <button class="search-btn">
                             <i class="fas fa-search"></i>
                         </button>
@@ -56,7 +56,7 @@
                         </div>
                         <div class="options">
                             <div class="category-search">
-                                <input type="search" id="category-query" class="search-input" name="q" placeholder="Search..." aria-label="Search through categories">
+                                <input type="search" id="category-query" class="search-input" name="q" placeholder="Search..." aria-label="Search through categories" autocomplete="off">
                             </div>
                             <ul id="category-options">
                                 <?php

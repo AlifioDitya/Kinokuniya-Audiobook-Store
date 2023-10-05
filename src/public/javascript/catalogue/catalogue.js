@@ -15,7 +15,10 @@ function getQueryParam(name) {
 // Get the query parameter 'q' from the URL
 const queryVal = getQueryParam("q");
 
-console.log(queryVal);
+// Redirect to the catalogue page if the query parameter 'q' is not present
+if (queryVal === null || queryVal === "") {
+    window.location.href = "/public/catalogue";
+}
 
 // Set the queryValue as the value of the input field
 document.getElementById("query").value = queryVal;
