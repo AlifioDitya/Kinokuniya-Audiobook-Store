@@ -77,6 +77,11 @@ class CartController extends Controller implements ControllerInterface
                     // Converts it into a PHP object
                     $data = json_decode($json);
 
+                    // Check if the cart is empty
+                    if (empty($data->book_ids)) {
+                        throw new LoggedException('Cart is empty', 400);
+                    }
+
                     // Buy the books
                     $bookModel->buyBooks($_SESSION['user_id'], $data->book_ids);
 

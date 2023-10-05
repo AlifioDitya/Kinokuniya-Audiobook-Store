@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/globals.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/sidebar.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/topnav.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/toast.css">
 
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/catalogue/bookpreview.css">
@@ -34,6 +35,7 @@
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/lib/debounce.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/toast.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/catalogue/bookpreview.js" defer></script>
 </head>
 <body>
@@ -76,6 +78,7 @@
                         ?>
                     </p>
                 </div>
+                <?php include(dirname(__DIR__) . '/template/toast.php') ?>
             </div>
         </main>
     </div>

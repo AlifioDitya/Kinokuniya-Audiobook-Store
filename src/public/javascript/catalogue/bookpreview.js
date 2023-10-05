@@ -42,22 +42,16 @@ addToCartButton &&
         xhrPost.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE) {
                 if (xhrPost.status == 200) {
-                    // Parse the response
-                    let data = JSON.parse(this.responseText);
 
                     // If the book was added to the cart successfully, alert the user
-                    location.replace('/public/cart');
-                    alert("You have successfully added the book to your cart.");
-
-                    // Redirect to redirect_url
-                    location.replace(data.redirect_url);
+                    showSuccessToast("Success", "You have successfully added the book to your cart.");
 
                 } else if (xhrPost.status == 302) {
                     // Already in cart, alert the user
-                    alert("This book is already in your cart.");
+                    showErrorToast("Error", "This book is already in your cart.");
                 } else {
                     // If the book was not added to the cart successfully, alert the user
-                    alert(`There was an error adding the book to your cart. (${xhrPost.status})`);
+                    showErrorToast("Error", `There was an error adding the book to your cart. (${xhrPost.status})`);
                 }
             }
         }

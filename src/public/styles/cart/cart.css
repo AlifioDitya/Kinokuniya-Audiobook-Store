@@ -107,7 +107,7 @@
     cursor: pointer;
 }
 
-.bx-x {
+#remove-book {
     cursor: pointer;
     position: absolute;
     top: 0;
@@ -118,7 +118,7 @@
     border-radius: 50%;
 }
 
-.bx-x:hover {
+#remove-book:hover {
     color: red;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;

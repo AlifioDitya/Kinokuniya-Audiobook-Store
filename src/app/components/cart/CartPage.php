@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/globals.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/sidebar.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/topnav.css">
+    <lin rel="stylesheet" href="<?= BASE_URL ?>/styles/template/toast.css">
 
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/cart/cart.css">
@@ -28,6 +29,7 @@
 
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/toast.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/cart/cart.js" defer></script>
 </head>
 <body>
@@ -43,7 +45,7 @@
                                 <?php foreach ($this->data['cartBooks'] as $book) : ?>
                                     <div class="book-card-brief">
                                         <a class="remove-btn">
-                                            <i class="bx bx-x"></i>
+                                            <i class="bx bx-x" id="remove-book"></i>
                                         </a>
                                         <!-- Hidden book_id -->
                                         <div class="book-id-hidden" hidden><?= $book->book_id ?></div>
@@ -99,6 +101,7 @@
                         </div>
                     </div>
                 </section>
+                <?php include(dirname(__DIR__) . '/template/toast.php') ?>
             </div>
         </main>
     </div>

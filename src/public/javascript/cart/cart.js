@@ -34,13 +34,29 @@ checkoutButton.addEventListener("click", () => {
                 let data = JSON.parse(this.responseText);
 
                 // If the books were bought successfully, alert the user
-                alert("You have successfully bought the books in your cart.");
+                showSuccessToast("Success", "You have successfully bought the books in your cart.");
 
-                // Redirect to the my books page
-                location.replace(data.redirect_url);
+                // Redirect to the my books page when toast changes from active to inactive
+                const toast = document.querySelector(".toast");
+
+                toast.addEventListener("transitionend", () => {
+
+                    waitForTransitionEnd = new Promise(resolve => {
+                        setTimeout(() => {
+                            resolve();
+                        }, 3000);
+                    });
+
+                    waitForTransitionEnd.then(() => {
+                        location.replace(data.redirect_url);
+                    });
+                });
+            } else if (this.status === 400) {
+                // If the books were not bought successfully, alert the user
+                showErrorToast("Error", "Cart is empty.");
             } else {
                 // If the books were not bought successfully, alert the user
-                alert("There was an error buying the books in your cart.");
+                showErrorToast("Error", "There was an error buying the books in your cart.");
             }
         }
     }
@@ -65,14 +81,11 @@ removeButtons.forEach(removeButton => {
             if (this.readyState === XMLHttpRequest.DONE) {
                 if (this.status == 204) {
 
-                    // If the book was removed successfully, alert the user
-                    alert("You have successfully removed the book from your cart.");
-
                     // Reload the page
                     location.reload();
                 } else {
                     // If the book was not removed successfully, alert the user
-                    alert("There was an error removing the book from your cart.");
+                    showErrorToast("Error", "There was an error removing the book from your cart.");
                 }
             }
         }
