@@ -65,6 +65,13 @@ class BookModel
 
     public function getBooksByQuery($q, $page, $category, $priceRange, $sortBy)
     {
+        $categoryQuery = "";
+        if ($category == "All Categories") {
+            $categoryQuery = "category LIKE '%'";
+        } else {
+            $categoryQuery = "category = :category";
+        }
+
         $priceQuery = "";
         if ($priceRange == "< Rp500K") {
             $priceQuery = "price < 500000";
@@ -90,15 +97,15 @@ class BookModel
         }
 
         $query = 'SELECT title, author, category, book_desc, price, publication_date, cover_img_url, audio_url FROM book 
-        WHERE title LIKE :q OR author LIKE :q 
-        AND category = :category
+        WHERE (title LIKE :q OR author LIKE :q) 
+        AND :categoryQuery
         AND :priceQuery
         ORDER BY :sortQuery
         LIMIT :limit OFFSET :offset';
 
         $this->database->query($query);
         $this->database->bind('q', '%' . $q . '%');
-        $this->database->bind('category', $category);
+        $this->database->bind('categoryQuery', $categoryQuery);
         $this->database->bind('priceQuery', $priceQuery);
         $this->database->bind('sortQuery', $sortQuery);
         $this->database->bind('limit', ROWS_PER_PAGE);
@@ -106,17 +113,15 @@ class BookModel
         
         $books = $this->database->fetchAll();
 
-        print_r($books);
-
         $query = 'SELECT CEIL(COUNT(book_id) / :rows_per_page) AS page_count 
         FROM book 
-        WHERE title LIKE :q OR author LIKE :q
-        AND category = :category
+        WHERE (title LIKE :q OR author LIKE :q)
+        AND :categoryQuery
         AND :priceQuery';
 
         $this->database->query($query);
         $this->database->bind('q', '%' . $q . '%');
-        $this->database->bind('category', $category);
+        $this->database->bind('categoryQuery', $categoryQuery);
         $this->database->bind('priceQuery', $priceQuery);
         $this->database->bind('rows_per_page', ROWS_PER_PAGE);
         $book = $this->database->fetch();
@@ -128,6 +133,13 @@ class BookModel
 
     public function getOwnedBooksByQuery($q, $page, $category, $priceRange, $sortBy, $user_id)
     {
+        $categoryQuery = "";
+        if ($category == "All Categories") {
+            $categoryQuery = "category LIKE '%'";
+        } else {
+            $categoryQuery = "category = :category";
+        }
+
         $priceQuery = "";
         if ($priceRange == "< Rp500K") {
             $priceQuery = "price < 500000";
@@ -157,7 +169,7 @@ class BookModel
                 FROM book AS b
                 INNER JOIN book_ownership AS bo ON b.book_id = bo.book_id
                 WHERE (b.title LIKE :q OR b.author LIKE :q) AND bo.user_id = :user_id 
-                AND category = :category
+                AND :categoryQuery
                 AND :priceQuery
                 ORDER BY :sortQuery
                 LIMIT :limit OFFSET :offset';
@@ -165,7 +177,7 @@ class BookModel
         // Bind the search query parameter
         $this->database->query($query);
         $this->database->bind('q', '%' . $q . '%');
-        $this->database->bind('category', $category);
+        $this->database->bind('categoryQuery', $categoryQuery);
         $this->database->bind('priceQuery', $priceQuery);
         $this->database->bind('sortQuery', $sortQuery);
         $this->database->bind('user_id', $user_id);
@@ -180,13 +192,13 @@ class BookModel
                     FROM book AS b
                     INNER JOIN book_ownership AS bo ON b.book_id = bo.book_id
                     WHERE (b.title LIKE :q OR b.author LIKE :q) AND bo.user_id = :user_id
-                    AND category = :category
+                    AND :categoryQuery
                     AND :priceQuery';
 
         // Bind the search query parameter
         $this->database->query($countQuery);
         $this->database->bind('q', '%' . $q . '%');
-        $this->database->bind('category', $category);
+        $this->database->bind('categoryQuery', $categoryQuery);
         $this->database->bind('priceQuery', $priceQuery);
         $this->database->bind('user_id', $user_id);
         $this->database->bind('rows_per_page', ROWS_PER_PAGE);
