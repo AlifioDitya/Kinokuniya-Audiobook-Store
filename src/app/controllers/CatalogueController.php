@@ -172,8 +172,12 @@ class CatalogueController extends Controller implements ControllerInterface
                         header('Location: ' . BASE_URL);
                         exit;
                     }
+                    
+                    // connect database
+                    $bookModel = $this->model('BookModel');
+                    $allBooks = $bookModel->getAllBooks();
 
-                    $homeView = $this->view('catalogue', 'AdminCatalogueView');
+                    $homeView = $this->view('catalogue', 'AdminCatalogueView', ['books' => $allBooks]);
                     $homeView->render();
 
                     break;

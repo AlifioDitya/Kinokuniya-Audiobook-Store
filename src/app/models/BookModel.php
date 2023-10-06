@@ -400,4 +400,11 @@ class BookModel
         // Execute the query
         $this->database->execute();
     }
+    public function getAllBooks() 
+    {
+        $query = 'SELECT * FROM book';
+        $this->database->query($query);
+        return $this->database->fetchAll();
+    }
+    
 }
