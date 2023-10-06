@@ -9,14 +9,24 @@ let currentStep = 0;
 
 // Function to update the button states
 const updateBtn = () => {
-  // If we are at the last step
-  if (currentStep === 4) {
-    endBtn.disabled = true;
-    prevNext[1].disabled = true;
-  } else if (currentStep === 0) {
-    // If we are at the first step
+
+  if (numbers.length === 1) {
     startBtn.disabled = true;
     prevNext[0].disabled = true;
+    endBtn.disabled = true;
+    prevNext[1].disabled = true;
+  }
+  
+  if (currentStep === numbers.length - 1) {
+    endBtn.disabled = true;
+    prevNext[1].disabled = true;
+    startBtn.disabled = false;
+    prevNext[0].disabled = false;
+  } else if (currentStep === 0) {
+    startBtn.disabled = true;
+    prevNext[0].disabled = true;
+    endBtn.disabled = false;
+    prevNext[1].disabled = false;
   } else {
     endBtn.disabled = false;
     prevNext[1].disabled = false;
@@ -60,8 +70,6 @@ startBtn.addEventListener("click", () => {
   numbers[0].classList.add("active");
   currentStep = 0;
   updateBtn(); // Update the button states
-  endBtn.disabled = false;
-  prevNext[1].disabled = false;
 });
 
 // Add event listener to the "End" button
@@ -69,9 +77,7 @@ endBtn.addEventListener("click", () => {
   // Remove the "active" class from the previously active number link
   document.querySelector(".active").classList.remove("active");
   // Add the "active" class to the last number link
-  numbers[4].classList.add("active");
-  currentStep = 4;
+  numbers[numbers.length - 1].classList.add("active");
+  currentStep = numbers.length - 1;
   updateBtn(); // Update the button states
-  startBtn.disabled = false;
-  prevNext[0].disabled = false;
 });

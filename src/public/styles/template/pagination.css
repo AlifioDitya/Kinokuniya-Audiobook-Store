@@ -46,9 +46,8 @@
 }
 .pagination-button:hover,
 .p-link:hover {
-    color: #fff;
-    background: #66acff;
-    box-shadow: 1px 1px 0.5px 0.5px rgba(0, 0, 0, 0.10) inset;
+    background-color: transparent;
+    color: black;
 }
 .p-link.active {
     color: #fff;
