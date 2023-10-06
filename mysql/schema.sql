@@ -96,3 +96,12 @@ VALUES
     (DEFAULT, 'The Odyssey', 'Homer', 'Epic Poetry', 'An ancient Greek epic poem about the adventures of Odysseus on his journey home.', 1199000, '0800-01-01', 'http://localhost:8080/storage/book-img/the-odyssey.svg', 'http://localhost:8080/storage/audio/TOP-G.mp3'),
     (DEFAULT, 'Letters from a Stoic', 'Seneca', 'Philosophy', 'A collection of moral letters offering Stoic wisdom and guidance.', 1299000, '0065-01-01', 'http://localhost:8080/storage/book-img/letters-from-a-stoic.svg', 'http://localhost:8080/storage/audio/TOP-G.mp3'),
     (DEFAULT, 'Meditations', 'Marcus Aurelius', 'Philosophy', 'A series of personal writings by the Roman Emperor, reflecting on Stoic philosophy.', 1099000, '0161-01-01', 'http://localhost:8080/storage/book-img/meditations.svg', 'http://localhost:8080/storage/audio/TOP-G.mp3');
+    
+INSERT INTO user
+VALUES
+    (
+        DEFAULT,
+        'admin',
+        '$2y$10$.Etq0AVKCwgFpI0UZWtOX.5ISSCmaP9LnZBcCv7LN5hoUcCfk4eyK',
+        TRUE
+    );
