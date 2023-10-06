@@ -242,7 +242,6 @@ const updateData = (data, resetStep=true) => {
     const books = data['books'];
     const pages = data['pages'];
     
-    console.log(books);
     books.forEach((book) => {
         const bookCard = document.createElement("div");
         bookCard.classList.add("book-card-brief");
@@ -298,7 +297,7 @@ const updateData = (data, resetStep=true) => {
 
     // If needed to reset the steps of pagination (i.e. searching, filtering, sorting)
     if (resetStep) {
-        currentStep = 0;
+        resetPaginationState();
     }
 
     // If the data fetched do not require pagination, return
@@ -310,7 +309,9 @@ const updateData = (data, resetStep=true) => {
     const startBtn = document.createElement("button");
     startBtn.classList.add("pagination-button");
     startBtn.id = "startBtn";
-    startBtn.disabled = true;
+    if (currentStep === 0) {
+        startBtn.disabled = true;
+    }
 
     const startIcon = document.createElement("i");
     startIcon.classList.add("bx", "bx-chevrons-left");
@@ -320,7 +321,9 @@ const updateData = (data, resetStep=true) => {
     const prevBtn = document.createElement("button");
     prevBtn.classList.add("pagination-button", "prevNext");
     prevBtn.id = "prev";
-    prevBtn.disabled = true;
+    if (currentStep === 0) {
+        prevBtn.disabled = true;
+    }
 
     const prevIcon = document.createElement("i");
     prevIcon.classList.add("bx", "bx-chevron-left");
@@ -344,6 +347,9 @@ const updateData = (data, resetStep=true) => {
     const nextBtn = document.createElement("button");
     nextBtn.classList.add("pagination-button", "prevNext");
     nextBtn.id = "next";
+    if (currentStep === pages - 1) {
+        nextBtn.disabled = true;
+    }
 
     const nextIcon = document.createElement("i");
     nextIcon.classList.add("bx", "bx-chevron-right");
@@ -353,6 +359,9 @@ const updateData = (data, resetStep=true) => {
     const endBtn = document.createElement("button");
     endBtn.classList.add("pagination-button");
     endBtn.id = "endBtn";
+    if (currentStep === pages - 1) {
+        endBtn.disabled = true;
+    }
 
     const endIcon = document.createElement("i");
     endIcon.classList.add("bx", "bx-chevrons-right");

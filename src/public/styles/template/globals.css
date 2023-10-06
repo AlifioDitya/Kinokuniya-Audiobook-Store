@@ -310,12 +310,12 @@ body {
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 12px;
-    padding-bottom: 12px;
+    padding-bottom: 8px;
     grid-template-columns: repeat(auto-fit, minmax(124px, 140px));
     align-content: start;
-    row-gap: 4%;
+    row-gap: 24px;
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: scroll;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
 }

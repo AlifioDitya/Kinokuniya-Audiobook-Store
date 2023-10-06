@@ -4,10 +4,10 @@ let currentStep = 0;
 function addPaginationEventListeners() {
 
   // Selecting DOM elements
-  const startBtn = document.querySelector("#startBtn"),
-  endBtn = document.querySelector("#endBtn"),
-  prevNext = document.querySelectorAll(".prevNext"),
-  numbers = document.querySelectorAll(".p-link");
+  const startBtn = document.querySelector("#startBtn");
+  const endBtn = document.querySelector("#endBtn");
+  const prevNext = document.querySelectorAll(".prevNext");
+  const numbers = document.querySelectorAll(".p-link");
 
   // Function to update the button states
   const updateBtn = () => {
@@ -113,6 +113,7 @@ function addPaginationEventListeners() {
     document.querySelector(".active").classList.remove("active");
     // Add the "active" class to the first number link
     numbers[0].classList.add("active");
+
     currentStep = 0;
     updateBtn(); // Update the button states
 
@@ -144,6 +145,7 @@ function addPaginationEventListeners() {
     document.querySelector(".active").classList.remove("active");
     // Add the "active" class to the last number link
     numbers[numbers.length - 1].classList.add("active");
+
     currentStep = numbers.length - 1;
     updateBtn(); // Update the button states
 
@@ -169,4 +171,11 @@ function addPaginationEventListeners() {
   });
 }
 
+// Function to reset the pagination state
+function resetPaginationState() {
+  // Set current step to zero
+  currentStep = 0;
+}
+
+// Add event listeners when the DOM loads initially
 addPaginationEventListeners();
