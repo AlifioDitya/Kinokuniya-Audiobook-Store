@@ -87,7 +87,7 @@ class CatalogueController extends Controller implements ControllerInterface
                     // Get the ownership status
                     $owner = $bookModel->isOwnedByID($_GET['book_id'], $_SESSION['user_id']);
 
-                    // If the book is owned, redirect to owned book preview
+                    // If the book is owned, redirect to owned View Book
                     if ($owner) {
                         header('Location: ' . BASE_URL . '/mybooks/preview/?book_id=' . $_GET['book_id']);
                         exit;

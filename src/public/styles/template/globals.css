@@ -200,6 +200,8 @@ body {
     background: #fff;
     border: 0.5px solid var(--Subtle-Stroke, rgba(209, 209, 209, 0.50));
     box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.10);
+    max-height: 16.5rem;
+    overflow-y: scroll;
     display: none;
 }
 .select-menu.active .options{
@@ -309,7 +311,7 @@ body {
     padding-right: 20px;
     padding-top: 12px;
     padding-bottom: 12px;
-    grid-template-columns: repeat(auto-fit, minmax(124px, 148px));
+    grid-template-columns: repeat(auto-fit, minmax(124px, 140px));
     align-content: start;
     row-gap: 4%;
     overflow-x: hidden;

@@ -45,8 +45,8 @@
                     </form>
                     <div class="hero-banner">
                         <div class="hero-welcome">
-                            <h1 class="hero-header"><span style="color: #F18912">Broaden your Horizon</span> with our Education Books</h1>
-                            <p class="hero-desc">Embark on a journey of knowledge and discovery with our extensive collection of education books. Whether you're a student looking to excel in your studies, an educator seeking valuable resources, or a lifelong learner eager to expand your horizons, our carefully curated selection has something for everyone.</p>
+                            <h1 class="hero-header"><span style="color: #F18912">Broaden your Horizon</span> with our Extensive Collection of Books</h1>
+                            <p class="hero-desc">Embark on a journey of knowledge and discovery with our vast array of literary works. Whether you're a student looking to excel in your studies, an educator seeking valuable resources, or a lifelong learner eager to expand your horizons, our carefully curated selection has something for everyone.</p>
                             <div class="hero-btn">
                                 <a href="/public/catalogue">
                                     <button class="btn-standard" id="explore-btn">Explore More</button>
