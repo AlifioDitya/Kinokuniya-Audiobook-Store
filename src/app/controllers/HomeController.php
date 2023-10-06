@@ -26,7 +26,7 @@ class HomeController extends Controller implements ControllerInterface
                     $newestReleases = $bookModel->getNewestReleases();
 
                     // Get owned books from Book Model
-                    $res = $bookModel->getOwnedBooksByUserId($_SESSION['user_id'], 1);
+                    $res = $bookModel->getOwnedBooksByUserId($_SESSION['user_id'], 1, 6); // Exclusive to home page
                     $ownedBooks = $res['books'];
                     $pages = $res['pages'];
 

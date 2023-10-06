@@ -49,8 +49,7 @@ function addPaginationEventListeners() {
       // Add the "active" class to the clicked number link
       number.classList.add("active");
       updateBtn(); // Update the button states
-
-      // Open XHR to GET the page data
+      
       xhr = new XMLHttpRequest();
       xhr.open(
         "GET",

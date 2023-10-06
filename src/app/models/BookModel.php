@@ -234,7 +234,7 @@ class BookModel
         return $newestReleases;
     }
 
-    public function getOwnedBooksByUserId($userId, $page)
+    public function getOwnedBooksByUserId($userId, $page, $rowsPerPage = ROWS_PER_PAGE)
     {
         // Construct the SQL query to fetch owned books for a user
         $query = 'SELECT b.book_id, b.title, b.author, b.category, b.book_desc, b.price, b.publication_date, b.cover_img_url, b.audio_url
@@ -246,8 +246,8 @@ class BookModel
         // Bind the parameters
         $this->database->query($query);
         $this->database->bind('user_id', $userId);
-        $this->database->bind('limit', ROWS_PER_PAGE);
-        $this->database->bind('offset', ($page - 1) * ROWS_PER_PAGE);
+        $this->database->bind('limit', $rowsPerPage);
+        $this->database->bind('offset', ($page - 1) * $rowsPerPage);
 
         // Execute the query
         $ownedBooks = $this->database->fetchAll();
@@ -261,7 +261,7 @@ class BookModel
         // Bind the parameters
         $this->database->query($countQuery);
         $this->database->bind('user_id', $userId);
-        $this->database->bind('rows_per_page', ROWS_PER_PAGE);
+        $this->database->bind('rows_per_page', $rowsPerPage);
 
         // Execute the query
         $book = $this->database->fetch();
