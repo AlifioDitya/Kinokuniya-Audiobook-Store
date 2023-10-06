@@ -27,6 +27,7 @@
     <!-- JavaScript Constant and Variables -->
     <script type="text/javascript" defer>
         const DEBOUNCE_TIMEOUT = "<?= DEBOUNCE_TIMEOUT ?>";
+        const ROWS_PER_PAGE = "<?= ROWS_PER_PAGE ?>";
     </script>
 
     <!-- JavaScript DOM and AJAX -->

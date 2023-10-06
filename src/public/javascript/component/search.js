@@ -44,7 +44,7 @@ searchBar.addEventListener(
             if (this.readyState === XMLHttpRequest.DONE) {
                 if (this.status === 200) {
                     const data = JSON.parse(this.responseText);
-                    updateData(data['books']);
+                    updateData(data);
                 } else {
                     alert("An error occured, please try again!");
                 }
@@ -114,7 +114,7 @@ function updateCategory(option) {
         if (this.readyState === XMLHttpRequest.DONE) {
             if (this.status === 200) {
                 const data = JSON.parse(this.responseText);
-                updateData(data['books']);
+                updateData(data);
             } else {
                 alert("An error occured, please try again!");
             }
@@ -138,7 +138,7 @@ function updatePrice(option) {
         if (this.readyState === XMLHttpRequest.DONE) {
             if (this.status === 200) {
                 const data = JSON.parse(this.responseText);
-                updateData(data['books']);
+                updateData(data);
             } else {
                 alert("An error occured, please try again!");
             }
@@ -162,7 +162,7 @@ function updateSort(option) {
         if (this.readyState === XMLHttpRequest.DONE) {
             if (this.status === 200) {
                 const data = JSON.parse(this.responseText);
-                updateData(data['books']);
+                updateData(data);
             } else {
                 alert("An error occured, please try again!");
             }
@@ -235,11 +235,15 @@ function formatPrice(price) {
 }
 
 // To update the book page based on passed in data
-const updateData = (data) => {
+const updateData = (data, resetStep=true) => {
     const bookList = document.getElementById("book-list");
     bookList.innerHTML = "";
-
-    data.forEach((book) => {
+    
+    const books = data['books'];
+    const pages = data['pages'];
+    
+    console.log(books);
+    books.forEach((book) => {
         const bookCard = document.createElement("div");
         bookCard.classList.add("book-card-brief");
 
@@ -285,4 +289,109 @@ const updateData = (data) => {
 
         bookList.appendChild(bookCard);
     });
+
+    // Update the pagination
+    const pagination = document.querySelector(".pagination-panel");
+    const paginationContainer = pagination.querySelector(".pagination-container");
+
+    paginationContainer.innerHTML = "";
+
+    // If needed to reset the steps of pagination (i.e. searching, filtering, sorting)
+    if (resetStep) {
+        currentStep = 0;
+    }
+
+    // If the data fetched do not require pagination, return
+    if (pages <= 1) {
+        return;
+    }
+
+    // If the data fetched require pagination, recreate the pagination component
+    const startBtn = document.createElement("button");
+    startBtn.classList.add("pagination-button");
+    startBtn.id = "startBtn";
+    startBtn.disabled = true;
+
+    const startIcon = document.createElement("i");
+    startIcon.classList.add("bx", "bx-chevrons-left");
+
+    startBtn.appendChild(startIcon);
+
+    const prevBtn = document.createElement("button");
+    prevBtn.classList.add("pagination-button", "prevNext");
+    prevBtn.id = "prev";
+    prevBtn.disabled = true;
+
+    const prevIcon = document.createElement("i");
+    prevIcon.classList.add("bx", "bx-chevron-left");
+
+    prevBtn.appendChild(prevIcon);
+
+    const paginationLinks = document.createElement("div");
+    paginationLinks.classList.add("pagination-links");
+
+    for (let i = 1; i <= pages; i++) {
+        const link = document.createElement("a");
+        link.classList.add("p-link");
+        if (i === currentStep + 1) {
+            link.classList.add("active");
+        }
+        link.innerText = i;
+
+        paginationLinks.appendChild(link);
+    }
+
+    const nextBtn = document.createElement("button");
+    nextBtn.classList.add("pagination-button", "prevNext");
+    nextBtn.id = "next";
+
+    const nextIcon = document.createElement("i");
+    nextIcon.classList.add("bx", "bx-chevron-right");
+
+    nextBtn.appendChild(nextIcon);
+
+    const endBtn = document.createElement("button");
+    endBtn.classList.add("pagination-button");
+    endBtn.id = "endBtn";
+
+    const endIcon = document.createElement("i");
+    endIcon.classList.add("bx", "bx-chevrons-right");
+
+    endBtn.appendChild(endIcon);
+
+    paginationContainer.appendChild(startBtn);
+    paginationContainer.appendChild(prevBtn);
+    paginationContainer.appendChild(paginationLinks);
+    paginationContainer.appendChild(nextBtn);
+    paginationContainer.appendChild(endBtn);
+
+    // Add the event listeners to the pagination buttons
+    addPaginationEventListeners();
 };
+
+// Pagination component HTML
+/*
+<?php if (!empty($this->data['books']) && $this->data['pages'] > 1) : ?>
+    <div class="pagination-panel">
+        <div class="pagination-container">
+            <button class="pagination-button" id="startBtn" disabled>
+                <i class="bx bx-chevrons-left"></i>
+            </button>
+            <button class="pagination-button prevNext" id="prev" disabled>
+                <i class="bx bx-chevron-left"></i>
+            </button>
+            <div class="pagination-links">
+                <?php for ($i = 1; $i <= $this->data['pages']; $i++) : ?>
+                    <a class="p-link <?= $i == 1 ? 'active' : '' ?>"><?= $i ?></a>
+                <?php endfor; ?>
+            </div>
+            <button class="pagination-button prevNext" id="next">
+                <i class="bx bx-chevron-right"></i>
+            </button>
+            <button class="pagination-button" id="endBtn">
+                <i class="bx bx-chevrons-right"></i>
+            </button>
+        </div>
+    </div>
+<?php endif; ?>
+*/
