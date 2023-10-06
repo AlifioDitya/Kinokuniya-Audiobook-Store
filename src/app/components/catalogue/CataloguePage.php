@@ -90,7 +90,7 @@
                                     <span class="option-text">All Prices</span>
                                 </li>
                                 <li class="option">
-                                    <span class="option-text">< Rp500k</span>
+                                    <span class="option-text">< Rp500K</span>
                                 </li>
                                 <li class="option">
                                     <span class="option-text">Rp500K-Rp1M</span>

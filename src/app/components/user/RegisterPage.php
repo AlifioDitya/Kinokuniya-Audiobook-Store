@@ -23,7 +23,7 @@
 <body>
     <div class="login-container">
         <div class="registration form">
-            <header>Signup</header>
+            <header>Sign Up</header>
             <form id="registration-form" method="post" autocomplete="on">
                 <div class="error-message" id="username-error"></div>
                 <input type="text" id="username" name="username" placeholder="Enter a username">
