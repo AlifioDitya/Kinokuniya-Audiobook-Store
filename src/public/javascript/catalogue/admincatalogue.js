@@ -1,5 +1,5 @@
 // Change the topnav-page-text to the current page
-document.getElementById("topnav-page-text").innerHTML = "Catalogue";
+document.getElementById("topnav-page-text").innerHTML = "Catalogue Control";
 
 // Change the topnav-page-icon to the current page, delete the old icon classes and add the new icon classes
 let topnavPageIcon = document.getElementById("topnav-page-icon");
@@ -13,11 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
         dashboardLink.closest('li').style.display = 'none';
     }
 
-    // Remove "Settings" Text
-    // let settingsLink = Array.from(document.querySelectorAll('.nav-list li .links_name')).find(el => el.textContent.trim() === "Settings");
-    // if (settingsLink) {
-    //     settingsLink.closest('li').style.display = 'none';
-    // }
+    //Remove "Log Out" Text
+    let settingsLink = Array.from(document.querySelectorAll('.nav-list li .links_name')).find(el => el.textContent.trim() === "Log Out");
+    if (settingsLink) {
+        settingsLink.closest('li').style.display = 'none';
+    }
 
     let iconElement = document.querySelector(".bx-book");
 
@@ -26,12 +26,12 @@ document.addEventListener('DOMContentLoaded', function() {
         iconElement.classList.remove("bx-book");
         iconElement.classList.add("bxs-user-account");
     }
-    // Temukan elemen <a> yang mengandung ikon keranjang
+    // Find <a> element that contain cart icon
     const cartLink = document.querySelector(".bx.bx-cart-alt").closest('a');
 
     // Create new anchor (a) element
     const newLink = document.createElement("a");
-    newLink.href = "/public/editbookadmin"; // Set Url
+    newLink.href = "/public/catalogue/edit"; // Set Url
 
     // Create New Button
     const newButton = document.createElement("button");
@@ -50,10 +50,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // Insert new element to DOM before <a> element that contain cart 
     cartLink.parentNode.insertBefore(newLink, cartLink);
 
+    // Find <a> element that contain "Catalogue Control" text
+    let catalogueControlLink = Array.from(document.querySelectorAll('.nav-list li .links_name')).find(el => el.textContent.trim() === "Catalogue Control");
+    
+    if (catalogueControlLink) {
+        // Change href attribute from <a> element 
+        catalogueControlLink.closest('a').href = "/public/catalogue/control";
+    }
+
+    // Find <a> element that contain "Catalogue Control" text
+    let userControlLink = Array.from(document.querySelectorAll('.nav-list li .links_name')).find(el => el.textContent.trim() === "User Control");
+    
+    if (userControlLink) {
+        // Change href attribute from <a> element 
+        userControlLink.closest('a').href = "/public/user/edit";
+    }
+
 });
 
 
-// Chang Text
+// Change Text
 let links = document.querySelectorAll(".links_name");
 links.forEach(link => {
     if (link.innerText === "Catalogue") {
