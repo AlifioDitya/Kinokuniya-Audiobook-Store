@@ -138,7 +138,14 @@ class CatalogueController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
 
-                    // Note: dont forget to check if user is admin
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    try {
+                        $authMiddleware->isAdmin();
+                    } catch (Exception $e) {
+                        header('Location: ' . BASE_URL);
+                        exit;
+                    }
 
                     $editBookAdminView = $this->view('catalogue', 'EditBookAdminView');
                     $editBookAdminView->render();
@@ -158,7 +165,13 @@ class CatalogueController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
 
-                    // Note: dont forget to check if user is admin
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    try {
+                        $authMiddleware->isAdmin();
+                    } catch (Exception $e) {
+                        header('Location: ' . BASE_URL);
+                        exit;
+                    }
 
                     $homeView = $this->view('catalogue', 'AdminCatalogueView');
                     $homeView->render();

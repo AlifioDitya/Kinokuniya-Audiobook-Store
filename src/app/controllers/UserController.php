@@ -7,11 +7,16 @@ class UserController extends Controller implements ControllerInterface
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    // // Prevent Access except Admin
-                    // $authMiddleware = $this->middleware('AuthenticationMiddleware');
-                    // $authMiddleware->isAdmin();
+                    // Prevent Access except Admin
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    try {
+                        $authMiddleware->isAdmin();
+                    } catch (Exception $e) {
+                        header('Location: ' . BASE_URL);
+                        exit;
+                    }
 
-                    // // Grab user data
+                    // Grab user data
                     // $userModel = $this->model('UserModel');
                     // $res = $userModel->getUsers(1);
 
@@ -188,7 +193,13 @@ class UserController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
 
-                    // Note: dont forget to check if user is admin
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    try {
+                        $authMiddleware->isAdmin();
+                    } catch (Exception $e) {
+                        header('Location: ' . BASE_URL);
+                        exit;
+                    }
 
                     $editUserView = $this->view('user', 'EditUserView');
                     $editUserView->render();
