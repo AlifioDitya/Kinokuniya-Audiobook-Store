@@ -36,6 +36,7 @@ const updateBtn = () => {
 };
 
 // Add event listeners to the number links
+numbers &&
 numbers.forEach((number, numIndex) => {
   number.addEventListener("click", (e) => {
     e.preventDefault();
@@ -46,10 +47,31 @@ numbers.forEach((number, numIndex) => {
     // Add the "active" class to the clicked number link
     number.classList.add("active");
     updateBtn(); // Update the button states
+
+    // Open XHR to GET the page data
+    xhr = new XMLHttpRequest();
+    xhr.open(
+      "GET",
+      `/public/${currentPage}/search/?q=${queryValue}&page=${currentStep + 1}&category=${selectedCategory}&price=${selectedPrice}&sort=${selectedSort}`
+    )
+
+    xhr.send();
+
+    xhr.onreadystatechange = function () {
+      if (this.readyState === XMLHttpRequest.DONE) {
+        if (this.status === 200) {
+          const data = JSON.parse(this.responseText);
+          updateData(data['books']);
+        } else {
+          alert("An error occured, please try again!");
+        }
+      }
+    };
   });
 });
 
 // Add event listeners to the "Previous" and "Next" buttons
+prevNext &&
 prevNext.forEach((button) => {
   button.addEventListener("click", (e) => {
     // Increment or decrement the current step based on the button clicked
@@ -59,10 +81,31 @@ prevNext.forEach((button) => {
       number.classList.toggle("active", numIndex === currentStep);
       updateBtn(); // Update the button states
     });
+
+    // Open XHR to GET the page data
+    xhr = new XMLHttpRequest();
+    xhr.open(
+      "GET",
+      `/public/${currentPage}/search/?q=${queryValue}&page=${currentStep + 1}&category=${selectedCategory}&price=${selectedPrice}&sort=${selectedSort}`
+    )
+
+    xhr.send();
+
+    xhr.onreadystatechange = function () {
+      if (this.readyState === XMLHttpRequest.DONE) {
+        if (this.status === 200) {
+          const data = JSON.parse(this.responseText);
+          updateData(data['books']);
+        } else {
+          alert("An error occured, please try again!");
+        }
+      }
+    }
   });
 });
 
 // Add event listener to the "Start" button
+startBtn &&
 startBtn.addEventListener("click", () => {
   // Remove the "active" class from the previously active number link
   document.querySelector(".active").classList.remove("active");
@@ -70,9 +113,30 @@ startBtn.addEventListener("click", () => {
   numbers[0].classList.add("active");
   currentStep = 0;
   updateBtn(); // Update the button states
+
+  // Open XHR to GET the page data
+  xhr = new XMLHttpRequest();
+  xhr.open(
+    "GET",
+    `/public/${currentPage}/search/?q=${queryValue}&page=${currentStep + 1}&category=${selectedCategory}&price=${selectedPrice}&sort=${selectedSort}`
+  )
+
+  xhr.send();
+
+  xhr.onreadystatechange = function () {
+    if (this.readyState === XMLHttpRequest.DONE) {
+      if (this.status === 200) {
+        const data = JSON.parse(this.responseText);
+        updateData(data['books']);
+      } else {
+        alert("An error occured, please try again!");
+      }
+    }
+  }
 });
 
 // Add event listener to the "End" button
+endBtn &&
 endBtn.addEventListener("click", () => {
   // Remove the "active" class from the previously active number link
   document.querySelector(".active").classList.remove("active");
@@ -80,4 +144,24 @@ endBtn.addEventListener("click", () => {
   numbers[numbers.length - 1].classList.add("active");
   currentStep = numbers.length - 1;
   updateBtn(); // Update the button states
+
+  // Open XHR to GET the page data
+  xhr = new XMLHttpRequest();
+  xhr.open(
+    "GET",
+    `/public/${currentPage}/search/?q=${queryValue}&page=${currentStep + 1}&category=${selectedCategory}&price=${selectedPrice}&sort=${selectedSort}`
+  )
+
+  xhr.send();
+
+  xhr.onreadystatechange = function () {
+    if (this.readyState === XMLHttpRequest.DONE) {
+      if (this.status === 200) {
+        const data = JSON.parse(this.responseText);
+        updateData(data['books']);
+      } else {
+        alert("An error occured, please try again!");
+      }
+    }
+  }
 });

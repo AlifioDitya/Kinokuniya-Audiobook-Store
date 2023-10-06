@@ -151,7 +151,7 @@
                                 </button>
                                 <div class="pagination-links">
                                     <?php for ($i = 1; $i <= $this->data['pages']; $i++) : ?>
-                                        <a href="#" class="p-link <?= $i == 1 ? 'active' : '' ?>"><?= $i ?></a>
+                                        <a class="p-link <?= $i == 1 ? 'active' : '' ?>"><?= $i ?></a>
                                     <?php endfor; ?>
                                 </div>
                                 <button class="pagination-button prevNext" id="next">
