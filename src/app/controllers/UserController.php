@@ -69,7 +69,6 @@ class UserController extends Controller implements ControllerInterface
                     // Open middleware for authentication
                     $auth = $this->middleware('AuthenticationMiddleware');
 
-                    // Redirect to Login Page if not logged in
                     try {
                         $auth->isAuthenticated();
 
@@ -89,10 +88,18 @@ class UserController extends Controller implements ControllerInterface
                     $userId = $userModel->login($_POST['username'], $_POST['password']);
                     $_SESSION['user_id'] = $userId;
 
+                    // Set the redirect_url
+                    $redirect_url = BASE_URL . "/home";
+
+                    // If user is admin, redirect to admin page
+                    if ($userModel->isAdmin($userId)) {
+                        $redirect_url = BASE_URL . "/catalogue/control";
+                    }
+
                     // Return redirect_url
                     header('Content-Type: application/json');
                     http_response_code(201);
-                    echo json_encode(["redirect_url" => BASE_URL . "/home"]);
+                    echo json_encode(["redirect_url" => $redirect_url]);
                     exit;
 
                 default:
