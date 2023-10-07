@@ -26,8 +26,6 @@ const confirmButton = document.getElementById('confirmButton');
 const cancelButton = document.getElementById('cancelButton');
 const overlay = document.getElementById('overlay');
 
-
-
 cancelButton.addEventListener('click', () => {
     overlay.style.display = 'none';
 });

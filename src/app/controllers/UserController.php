@@ -221,4 +221,27 @@ class UserController extends Controller implements ControllerInterface
             http_response_code($e->getCode());
         }
     }
+
+    public function update()
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'POST':
+
+                    $userModel = $this->model('UserModel');
+                    $userModel->updateUserData($_POST['user_id'], $_POST['username'], $_POST['password']);
+
+                    // Return redirect_url
+                    header('Content-Type: application/json');
+                    http_response_code(201);
+                    echo json_encode(["redirect_url" => BASE_URL . "/settings"]);
+
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+        }
+    }
 }

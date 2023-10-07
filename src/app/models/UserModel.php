@@ -110,4 +110,20 @@ class UserModel
 
         return $user->is_admin;
     }
+
+    public function updateUserData($user_id, $username, $password)
+    {
+        $query = 'UPDATE user SET username = :username, password = :password WHERE user_id = :user_id';
+
+        $options = [
+            'cost' => BCRYPT_COST
+        ];
+
+        $this->database->query($query);
+        $this->database->bind('user_id', $user_id);
+        $this->database->bind('username', $username);
+        $this->database->bind('password', password_hash($password, PASSWORD_BCRYPT, $options));
+
+        $this->database->execute();
+    }
 }

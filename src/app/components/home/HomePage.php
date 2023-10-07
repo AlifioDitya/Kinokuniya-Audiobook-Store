@@ -29,7 +29,6 @@
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/sidebar.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/home/home.js" defer></script>
-    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/pagination.js" defer></script>
 </head>
 <body>
     <div id="root">

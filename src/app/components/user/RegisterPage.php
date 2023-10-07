@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "icon" href = "https://ugc.production.linktr.ee/HgDUQezLRzaAhdOsHX7E_757110a46f23cdba31b42e43f2c1a7fb.png" 
     type = "image/x-icon">
-    <title>Register </title>
+    <title>Register</title>
     
     <!-- CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/user/login-register.css">
