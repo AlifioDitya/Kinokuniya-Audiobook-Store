@@ -6,72 +6,84 @@ let topnavPageIcon = document.getElementById("topnav-page-icon");
 topnavPageIcon.classList.remove("bx-grid-alt", "bx-book", "bx-cog", "bx-library");
 topnavPageIcon.classList.add("bx-cog");
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Remove "Dashboard" Text
-    let dashboardLink = Array.from(document.querySelectorAll('.nav-list li .links_name')).find(el => el.textContent.trim() === "Dashboard");
-    if (dashboardLink) {
-        dashboardLink.closest('li').style.display = 'none';
-    }
+const title = document.getElementById("Book Title");
+const author = document.getElementById("Author");
+const publisher = document.getElementById("Publisher");
+const category = document.getElementById("Category");
+const price = document.getElementById("Price");
+const publication = document.getElementById("Publication");
+const summary = document.getElementById("Summary");
+const cover = document.getElementById("Cover");
+const audio = document.getElementById("Audio");
+const save_btn = document.getElementById("Save-btn");
 
-    //Remove "Log Out" Text
-    // let settingsLink = Array.from(document.querySelectorAll('.nav-list li .links_name')).find(el => el.textContent.trim() === "Log Out");
-    // if (settingsLink) {
-    //     settingsLink.closest('li').style.display = 'none';
-    // }
-
-    let iconElement = document.querySelector(".bx-book");
-
-    // Change Icon 
-    if (iconElement) {
-        iconElement.classList.remove("bx-book");
-        iconElement.classList.add("bxs-user-account");
-    }
-
-     // Find <a> element that contain "Catalogue Control" text
-     let catalogueControlLink = Array.from(document.querySelectorAll('.nav-list li .links_name')).find(el => el.textContent.trim() === "Catalogue Control");
+save_btn.addEventListener("click", (e) => {
+    e.preventDefault();
     
-     if (catalogueControlLink) {
-         // Change href attribute from <a> element 
-         catalogueControlLink.closest('a').href = "/public/catalogue/control";
-     }
- 
-     // Find <a> element that contain "Catalogue Control" text
-     let userControlLink = Array.from(document.querySelectorAll('.nav-list li .links_name')).find(el => el.textContent.trim() === "User Control");
-     
-     if (userControlLink) {
-         // Change href attribute from <a> element 
-         userControlLink.closest('a').href = "/public/user/edit";
-     }
-
-});
-
-
-// Change Text
-let links = document.querySelectorAll(".links_name");
-links.forEach(link => {
-    if (link.innerText === "Catalogue") {
-        link.innerText = "Catalogue Control";
+    // validasi input
+    if (title.value === "") {
+        alert("Title must be filled out");
+        return false;
     }
-});
-
-let tooltips = document.querySelectorAll(".tooltip");
-tooltips.forEach(tooltip => {
-    if (tooltip.innerText === "Catalogue") {
-        tooltip.innerText = "Catalogue Control";
+    if (author.value === "") {
+        alert("Author must be filled out");
+        return false;
     }
-});
-
-let links2 = document.querySelectorAll(".links_name");
-links.forEach(link => {
-    if (link.innerText === "My Books") {
-        link.innerText = "User Control";
+    if (publisher.value === "") {
+        alert("Publisher must be filled out");
+        return false;
     }
-});
+    if (category.value === "") {
+        alert("Category must be filled out");
+        return false;
+    }
+    if (price.value === "") {
+        alert("Price must be filled out");
+        return false;
+    }
+    if (publication.value === "") {
+        alert("Publication must be filled out");
+        return false;
+    }
+    if (summary.value === "") {
+        alert("Summary must be filled out");
+        return false;
+    }
+    if (cover.value === "") {
+        alert("Cover must be filled out");
+        return false;
+    }
+    if (audio.value === "") {
+        alert("Audio must be filled out");
+        return false;
+    }
+    
+    // AJAX
+    const xhr = new XMLHttpRequest();
+    xhr.open("PUT", `/public/catalogue/edit/`, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify({
+        title: title.value,
+        author: author.value,
+        publisher: publisher.value, 
+        category: category.value,
+        price: price.value,
+        publication_date: publication.value,
+        book_desc: summary.value,
+        cover_img_url: 'storage/book-img/' + cover.value,
+        audio_url: 'storage/book-audio/' + audio.value,
+      
+    }));
 
-let tooltips2 = document.querySelectorAll(".tooltip");
-tooltips.forEach(tooltip => {
-    if (tooltip.innerText === "My Books") {
-        tooltip.innerText = "User Control";
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const res = JSON.parse(this.responseText);
+            if (res.status === 200) {
+                window.location.href = "/public/catalogue/control";
+            } else {
+                alert("Error");
+            }
+        }
     }
 });
 

@@ -406,5 +406,37 @@ class BookModel
         $this->database->query($query);
         return $this->database->fetchAll();
     }
-        
+
+    public function editBook($book_id, $title, $author, $category, $book_desc, $price, $publication_date, $cover_img_url, $audio_url)
+    {
+        $query = 'UPDATE book SET title = :title, author = :author, category = :category, book_desc = :book_desc, price = :price, publication_date = :publication_date, cover_img_url = :cover_img_url, audio_url = :audio_url WHERE book_id = :book_id';
+        $this->database->query($query);
+        $this->database->bind('book_id', $book_id);
+        $this->database->bind('title', $title);
+        $this->database->bind('author', $author);
+        $this->database->bind('category', $category);
+        $this->database->bind('book_desc', $book_desc);
+        $this->database->bind('price', $price);
+        $this->database->bind('publication_date', $publication_date);
+        $this->database->bind('cover_img_url', $cover_img_url);
+        $this->database->bind('audio_url', $audio_url);
+        $this->database->execute();
+    
+    }
+    
+    public function addBook($book_id, $title, $author, $category, $book_desc, $price, $publication_date, $cover_img_url, $audio_url)
+    {
+        $query = 'INSERT INTO book (book_id, title, author, category, book_desc, price, publication_date, cover_img_url, audio_url) VALUES (:book_id, :title, :author, :category, :book_desc, :price, :publication_date, :cover_img_url, :audio_url)';
+        $this->database->query($query);
+        $this->database->bind('book_id', $book_id);
+        $this->database->bind('title', $title);
+        $this->database->bind('author', $author);
+        $this->database->bind('category', $category);
+        $this->database->bind('book_desc', $book_desc);
+        $this->database->bind('price', $price);
+        $this->database->bind('publication_date', $publication_date);
+        $this->database->bind('cover_img_url', $cover_img_url);
+        $this->database->bind('audio_url', $audio_url);
+        $this->database->execute();
+    }
 }

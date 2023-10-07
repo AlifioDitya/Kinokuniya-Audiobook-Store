@@ -62,13 +62,13 @@
                 </div>
                 <div class="input-group">
                     <label for="summary">Upload Book Summary</label><br>
-                    <input class="search-input input placeholder"type="file" id="summary">
+                    <input class="search-input input placeholder"type="file" id="Summary">
                 </div>
             </div>
             <div class="input-container">
                 <div class="input-group">
-                    <label for="textbook">Upload Text Book</label><br>
-                    <input class="search-input input placeholder"type="file" id="textbook">
+                    <label for="textbook">Upload Book Cover</label><br>
+                    <input class="search-input input placeholder"type="file" id="Cover">
                 </div>
                 <div class="input-group">
                     <label for="Audio">Upload Audio Book</label><br>
@@ -77,7 +77,7 @@
                 
             </div>
             <div class="input-group">
-                    <button class="save">Save</button>
+                    <button class="save" id="Save-btn">Save</button>
                 </div> 
         </main>
 
