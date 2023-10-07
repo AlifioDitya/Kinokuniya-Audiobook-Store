@@ -57,7 +57,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <!-- Data added by JavaScript-->
+                    <?php foreach ($this->data['users'] as $user): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($user->username) ?></td>
+                                <td><!-- registration date --></td>
+                                <td><!-- books owned --></td>
+                                <td><!-- status --></td>
+                                <td class="editCell">
+                                    <div class="select-btn">
+                                        <span class="select-btn-text"></span>
+                                        <i class="bx bx-chevron-down"></i>
+                                    </div>
+                                    <div class="dropdown-menu">
+                                        <a href="#">Active</a>
+                                        <a href="#">Inactive</a>
+                                        <a href="edit">Edit</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
                 <!-- sssssss -->

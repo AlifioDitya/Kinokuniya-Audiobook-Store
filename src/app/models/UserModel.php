@@ -83,4 +83,13 @@ class UserModel
 
         return $user;
     }
+    public function getAllUsers()
+    {
+        $query = 'SELECT * FROM user';
+
+        $this->database->query($query);
+        $users = $this->database->fetchAll();
+
+        return $users;
+    }
 }
