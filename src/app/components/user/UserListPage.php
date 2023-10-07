@@ -50,9 +50,7 @@
                     <thead>
                         <tr>
                             <th>Username</th>
-                            <th>Date</th>
                             <th>Books Owned</th>
-                            <th>Status</th>
                             <th>Edits</th>
                         </tr>
                     </thead>
@@ -60,20 +58,8 @@
                     <?php foreach ($this->data['users'] as $user): ?>
                             <tr>
                                 <td><?= htmlspecialchars($user->username) ?></td>
-                                <td><!-- registration date --></td>
                                 <td><?= $user->books_owned ?></td>
-                                <td><!-- status --></td>
-                                <td class="editCell">
-                                    <div class="select-btn">
-                                        <span class="select-btn-text"></span>
-                                        <i class="bx bx-chevron-down"></i>
-                                    </div>
-                                    <div class="dropdown-menu">
-                                        <a href="#">Active</a>
-                                        <a href="#">Inactive</a>
-                                        <a href="edit">Edit</a>
-                                    </div>
-                                </td>
+                                <td> <!-- edit --> </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
