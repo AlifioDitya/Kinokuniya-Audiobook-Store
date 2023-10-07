@@ -19,6 +19,11 @@ class CartController extends Controller implements ControllerInterface
                         exit;
                     }
 
+                    // For navbar, get info if user is admin
+                    $userModel = $this->model('UserModel');
+                    $isAdmin = $userModel->isAdmin($_SESSION['user_id']);
+                    
+                    // Render the cart page
                     $bookModel = $this->model('BookModel');
 
                     $cartBooks = $bookModel->getBooksInCart($_SESSION['user_id']);
@@ -27,7 +32,7 @@ class CartController extends Controller implements ControllerInterface
                         $cartBooks = [];
                     }
 
-                    $cartView = $this->view('cart', 'CartView', ['cartBooks' => $cartBooks]);
+                    $cartView = $this->view('cart', 'CartView', ['cartBooks' => $cartBooks, 'isAdmin' => $isAdmin]);
                     $cartView->render();
 
                     break;

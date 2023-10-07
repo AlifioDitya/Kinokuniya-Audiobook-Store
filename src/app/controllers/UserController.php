@@ -16,14 +16,13 @@ class UserController extends Controller implements ControllerInterface
                         exit;
                     }
 
-                    // Grab user data
-                    // $userModel = $this->model('UserModel');
-                    // $res = $userModel->getUsers(1);
-
                     $userModel = $this->model('UserModel');
                     $allusers = $userModel->getUsersWithBookCount();
 
-                    $userListView = $this->view('user', 'UserListView', ['users' => $allusers]);
+                    // For navbar, get info if user is admin
+                    $isAdmin = $userModel->isAdmin($_SESSION['user_id']);
+
+                    $userListView = $this->view('user', 'UserListView', ['users' => $allusers, 'isAdmin' => $isAdmin]);
                     $userListView->render();
                     exit;
 

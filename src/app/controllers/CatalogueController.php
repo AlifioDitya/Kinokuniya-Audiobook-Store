@@ -19,6 +19,11 @@ class CatalogueController extends Controller implements ControllerInterface
                         exit;
                     }
 
+                    // For navbar, get info if user is admin
+                    $userModel = $this->model('UserModel');
+                    $isAdmin = $userModel->isAdmin($_SESSION['user_id']);
+
+                    // Render the catalogue page
                     $bookModel = $this->model('BookModel');
 
                     $bookList = $bookModel->getBooks(1);
@@ -26,7 +31,7 @@ class CatalogueController extends Controller implements ControllerInterface
                     $books = $bookList['books'];
                     $pages = $bookList['pages'];
 
-                    $catalogueView = $this->view('catalogue', 'CatalogueView', ['bookCategories' => $bookCategories, 'books' => $books, 'pages' => $pages]);
+                    $catalogueView = $this->view('catalogue', 'CatalogueView', ['bookCategories' => $bookCategories, 'books' => $books, 'pages' => $pages, 'isAdmin' => $isAdmin]);
                     $catalogueView->render();
 
                     break;
@@ -78,6 +83,10 @@ class CatalogueController extends Controller implements ControllerInterface
                         exit;
                     }
 
+                    // For navbar, get info if user is admin
+                    $userModel = $this->model('UserModel');
+                    $isAdmin = $userModel->isAdmin($_SESSION['user_id']);
+
                     // Open connection to Book Model
                     $bookModel = $this->model('BookModel');
 
@@ -95,6 +104,7 @@ class CatalogueController extends Controller implements ControllerInterface
 
                     $bookView = $this->view('catalogue', 'BookPreviewView', [
                         'bookData' => $book,
+                        'isAdmin' => $isAdmin
                     ]);
                     
                     $bookView->render();
@@ -147,7 +157,11 @@ class CatalogueController extends Controller implements ControllerInterface
                         exit;
                     }
 
-                    $editBookAdminView = $this->view('catalogue', 'EditBookAdminView');
+                    // For navbar, get info if user is admin
+                    $userModel = $this->model('UserModel');
+                    $isAdmin = $userModel->isAdmin($_SESSION['user_id']);
+
+                    $editBookAdminView = $this->view('catalogue', 'EditBookAdminView', ['isAdmin' => $isAdmin]);
                     $editBookAdminView->render();
 
                     break;
@@ -189,6 +203,10 @@ class CatalogueController extends Controller implements ControllerInterface
                         exit;
                     }
 
+                    // For navbar, get info if user is admin
+                    $userModel = $this->model('UserModel');
+                    $isAdmin = $userModel->isAdmin($_SESSION['user_id']);
+
                     $bookModel = $this->model('BookModel');
 
                     $bookList = $bookModel->getBooks(1);
@@ -196,7 +214,7 @@ class CatalogueController extends Controller implements ControllerInterface
                     $books = $bookList['books'];
                     $pages = $bookList['pages'];
 
-                    $catalogueView = $this->view('catalogue', 'AdminCatalogueView', ['bookCategories' => $bookCategories, 'books' => $books, 'pages' => $pages]);
+                    $catalogueView = $this->view('catalogue', 'AdminCatalogueView', ['bookCategories' => $bookCategories, 'books' => $books, 'pages' => $pages, 'isAdmin' => $isAdmin]);
                     $catalogueView->render();
 
                     break;

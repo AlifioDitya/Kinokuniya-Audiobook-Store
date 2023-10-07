@@ -19,6 +19,10 @@ class HomeController extends Controller implements ControllerInterface
                         exit;
                     }
 
+                    // For navbar, get info if user is admin
+                    $userModel = $this->model('UserModel');
+                    $isAdmin = $userModel->isAdmin($_SESSION['user_id']);
+
                     // Open connection to Book Model
                     $bookModel = $this->model('BookModel');
 
@@ -33,7 +37,8 @@ class HomeController extends Controller implements ControllerInterface
                     $homeView = $this->view('home', 'MainView', [
                         'newestReleases' => $newestReleases,
                         'ownedBooks' => $ownedBooks,
-                        'pages' => $pages
+                        'pages' => $pages,
+                        'isAdmin' => $isAdmin
                     ]);
                     
                     $homeView->render();
