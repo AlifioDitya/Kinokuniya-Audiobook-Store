@@ -203,6 +203,14 @@ class CatalogueController extends Controller implements ControllerInterface
                         exit;
                     }
 
+                    // Redirect 404 if not admin
+                    try {
+                        $auth->isAdmin();
+                    } catch (Exception $e) {
+                        header('Location: ' . BASE_URL);
+                        exit;
+                    }
+
                     // For navbar, get info if user is admin
                     $userModel = $this->model('UserModel');
                     $isAdmin = $userModel->isAdmin($_SESSION['user_id']);
