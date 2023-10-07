@@ -38,7 +38,7 @@
         <ul class="nav-list">
             <li>
                 <a href="/public/catalogue/control" >
-                    <i class='bx bx-grid-alt'></i>
+                    <i class='bx bx-library'></i>
                     <span class="links_name">Catalogue Control</span>
                 </a>
                 <span class="tooltip">Catalogue Control</span>

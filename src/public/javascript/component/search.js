@@ -10,12 +10,20 @@ const priceOptions = priceMenu.querySelectorAll(".option");
 const sortMenu = document.getElementById("sort-menu");
 const sortOptions = sortMenu.querySelectorAll(".option");
 
+const adminInfo = document.getElementById("is-admin");
+let isAdmin = false;
+
+if (adminInfo) {
+    isAdmin = (adminInfo.innerText == 1);
+}
+
+console.log(isAdmin);
+
 // Initialize variables to store selected filter values
 let queryValue = searchBar.value.trim();
 let selectedCategory = "All Categories";
 let selectedPrice = "All Prices";
 let selectedSort = "Newest First";
-let order = "desc";
 let page = 1; // Change this later to the current page
 
 /* SEARCH BAR */
@@ -247,7 +255,11 @@ const updateData = (data, resetStep=true) => {
         bookCard.classList.add("book-card-brief");
 
         const bookLink = document.createElement("a");
-        bookLink.href = `/public/catalogue/preview/?book_id=${book.book_id}`;
+        if (!isAdmin) {
+            bookLink.href = `/public/catalogue/preview/?book_id=${book.book_id}`;
+        } else {
+            bookLink.href = `/public/catalogue/edit/?book_id=${book.book_id}`;
+        }
 
         const bookImg = document.createElement("img");
         bookImg.classList.add("book-img-brief");
@@ -377,30 +389,3 @@ const updateData = (data, resetStep=true) => {
     // Add the event listeners to the pagination buttons
     addPaginationEventListeners();
 };
-
-// Pagination component HTML
-/*
-<?php if (!empty($this->data['books']) && $this->data['pages'] > 1) : ?>
-    <div class="pagination-panel">
-        <div class="pagination-container">
-            <button class="pagination-button" id="startBtn" disabled>
-                <i class="bx bx-chevrons-left"></i>
-            </button>
-            <button class="pagination-button prevNext" id="prev" disabled>
-                <i class="bx bx-chevron-left"></i>
-            </button>
-            <div class="pagination-links">
-                <?php for ($i = 1; $i <= $this->data['pages']; $i++) : ?>
-                    <a class="p-link <?= $i == 1 ? 'active' : '' ?>"><?= $i ?></a>
-                <?php endfor; ?>
-            </div>
-            <button class="pagination-button prevNext" id="next">
-                <i class="bx bx-chevron-right"></i>
-            </button>
-            <button class="pagination-button" id="endBtn">
-                <i class="bx bx-chevrons-right"></i>
-            </button>
-        </div>
-    </div>
-<?php endif; ?>
-*/

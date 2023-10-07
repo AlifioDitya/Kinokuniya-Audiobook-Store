@@ -33,6 +33,7 @@
 </head>
 <body>
     <div id="root">
+        <div id="is-admin" hidden><?= $this->data['isAdmin'] ?></div>
         <?php include(dirname(__DIR__) . '/template/sidebar.php') ?>
         <main class="main-container">
             <?php include(dirname(__DIR__) . '/template/topnav.php') ?>
