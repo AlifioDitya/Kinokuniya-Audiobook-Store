@@ -6,6 +6,19 @@ let topnavPageIcon = document.getElementById("topnav-page-icon");
 topnavPageIcon.classList.remove("bx-grid-alt", "bx-book", "bx-cog", "bx-library", "bx-cart");
 topnavPageIcon.classList.add("bx-cart");
 
+// Add a back button to the topnav, before the topnav-page-icon
+const topnavLabel = document.querySelector(".topnav-label");
+const topnavBackBtn = document.createElement("i");
+topnavBackBtn.classList.add("bx", "bx-chevron-left", "topnav-page-icon");
+topnavBackBtn.style.fontSize = "1.5rem";
+topnavBackBtn.style.cursor = "pointer";
+topnavLabel.insertBefore(topnavBackBtn, topnavLabel.childNodes[0]);
+
+// Handle back button click
+topnavBackBtn.addEventListener("click", () => {
+    window.history.back();
+});
+
 // Confirm or cancel the checkout
 const checkoutButton = document.getElementById("checkout-btn");
 const confirmationPopup = document.getElementById('confirmationPopup');
