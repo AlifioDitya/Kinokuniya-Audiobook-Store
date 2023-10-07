@@ -85,11 +85,12 @@ class UserModel
     }
     public function getAllUsers()
     {
-        $query = 'SELECT * FROM user';
+        $query = 'SELECT * FROM user where is_admin = 0';
 
         $this->database->query($query);
         $users = $this->database->fetchAll();
 
         return $users;
     }
+    
 }
