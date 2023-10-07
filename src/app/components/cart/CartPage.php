@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/globals.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/sidebar.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/topnav.css">
-    <lin rel="stylesheet" href="<?= BASE_URL ?>/styles/template/toast.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/toast.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/popup.css">
 
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/cart/cart.css">
@@ -102,6 +103,18 @@
                     </div>
                 </section>
                 <?php include(dirname(__DIR__) . '/template/toast.php') ?>
+            </div>
+            <div class="overlay" id="overlay">
+                <div class="confirmationPopup" id="confirmationPopup">
+                    <div class="popupContent">
+                        <h2 class="popupTitle">Confirm Checkout</h2>
+                        <p class="popupConfirmText">Are you sure you want to proceed with the checkout?</p>
+                        <div class="popupButtons">
+                            <button class="btn-standard" id="cancelButton">Cancel</button>
+                            <button class="btn-standard" id="confirmButton">Confirm</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>

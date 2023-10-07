@@ -6,11 +6,27 @@ let topnavPageIcon = document.getElementById("topnav-page-icon");
 topnavPageIcon.classList.remove("bx-grid-alt", "bx-book", "bx-cog", "bx-library", "bx-cart");
 topnavPageIcon.classList.add("bx-cart");
 
-// Get the checkout button
+// Confirm or cancel the checkout
 const checkoutButton = document.getElementById("checkout-btn");
+const confirmationPopup = document.getElementById('confirmationPopup');
+const confirmButton = document.getElementById('confirmButton');
+const cancelButton = document.getElementById('cancelButton');
+const overlay = document.getElementById('overlay');
+
+
+
+cancelButton.addEventListener('click', () => {
+    overlay.style.display = 'none';
+});
+
+checkoutButton.addEventListener('click', () => {
+    overlay.style.display = 'block';
+});
 
 // Add a click event listener to the checkout button
-checkoutButton.addEventListener("click", () => {
+confirmButton.addEventListener("click", () => {
+
+    overlay.style.display = 'none';
 
     // Get all the book-id-hidden elements
     const bookIdHiddenElements = document.querySelectorAll(".book-id-hidden");
