@@ -21,7 +21,7 @@ class UserController extends Controller implements ControllerInterface
                     // $res = $userModel->getUsers(1);
 
                     $userModel = $this->model('UserModel');
-                    $allusers = $userModel->getAllUsers();
+                    $allusers = $userModel->getUsersWithBookCount();
 
                     $userListView = $this->view('user', 'UserListView', ['users' => $allusers]);
                     $userListView->render();

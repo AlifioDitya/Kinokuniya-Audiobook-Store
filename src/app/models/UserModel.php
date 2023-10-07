@@ -83,14 +83,20 @@ class UserModel
 
         return $user;
     }
-    public function getAllUsers()
-    {
-        $query = 'SELECT * FROM user where is_admin = 0';
+    
+    public function getUsersWithBookCount()
+{
+    $query = 'SELECT u.user_id, u.username, COUNT(bo.book_id) as books_owned 
+              FROM user u 
+              LEFT JOIN book_ownership bo ON u.user_id = bo.user_id 
+              WHERE u.is_admin = 0 
+              GROUP BY u.user_id, u.username';
 
-        $this->database->query($query);
-        $users = $this->database->fetchAll();
+    $this->database->query($query);
+    $users = $this->database->fetchAll();
 
-        return $users;
-    }
+    return $users;
+}
+
     
 }

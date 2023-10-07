@@ -61,7 +61,7 @@
                             <tr>
                                 <td><?= htmlspecialchars($user->username) ?></td>
                                 <td><!-- registration date --></td>
-                                <td><!-- books owned --></td>
+                                <td><?= $user->books_owned ?></td>
                                 <td><!-- status --></td>
                                 <td class="editCell">
                                     <div class="select-btn">
