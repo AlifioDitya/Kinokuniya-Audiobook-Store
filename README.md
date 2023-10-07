@@ -179,9 +179,9 @@ With our easy-to-use platform, you can browse, discover, and purchase your favor
 | Book Details Page        | 13521142 | Enrique Alifio Ditya |
 | Cart                     | 13521142 | Enrique Alifio Ditya |
 | Catalogue Control Page   | 13521142 | Enrique Alifio Ditya |
-| User Control Page        | 13521142 | Ezra M C M H         |
-| Edit Book Page           | 13521142 | Ezra M C M H         |
-| Edit User Page           | 13521142 | Ezra M C M H         |
+| User Control Page        | 13521073 | Ezra M C M H         |
+| Edit Book Page           | 13521073 | Ezra M C M H         |
+| Edit User Page           | 13521073 | Ezra M C M H         |
 
 ### Models
 | Models                   | NIM      | Name                 |
