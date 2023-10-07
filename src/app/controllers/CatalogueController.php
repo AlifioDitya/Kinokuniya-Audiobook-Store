@@ -165,20 +165,26 @@ class CatalogueController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
 
-                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    // Open middleware for authentication
+                    $auth = $this->middleware('AuthenticationMiddleware');
+
+                    // Redirect to Login Page if not logged in
                     try {
-                        $authMiddleware->isAdmin();
+                        $auth->isAuthenticated();
                     } catch (Exception $e) {
-                        header('Location: ' . BASE_URL);
+                        header('Location: ' . BASE_URL . '/user/login');
                         exit;
                     }
-                    
-                    // connect database
-                    $bookModel = $this->model('BookModel');
-                    $allBooks = $bookModel->getAllBooks();
 
-                    $homeView = $this->view('catalogue', 'AdminCatalogueView', ['books' => $allBooks]);
-                    $homeView->render();
+                    $bookModel = $this->model('BookModel');
+
+                    $bookList = $bookModel->getBooks(1);
+                    $bookCategories = $bookModel->getBookCategories();
+                    $books = $bookList['books'];
+                    $pages = $bookList['pages'];
+
+                    $catalogueView = $this->view('catalogue', 'AdminCatalogueView', ['bookCategories' => $bookCategories, 'books' => $books, 'pages' => $pages]);
+                    $catalogueView->render();
 
                     break;
                 default:
