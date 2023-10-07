@@ -406,5 +406,5 @@ class BookModel
         $this->database->query($query);
         return $this->database->fetchAll();
     }
-    
+        
 }

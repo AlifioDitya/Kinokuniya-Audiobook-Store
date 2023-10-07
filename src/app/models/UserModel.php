@@ -99,4 +99,16 @@ class UserModel
 }
 
     
+
+    public function isAdmin($user_id)
+    {
+        $query = 'SELECT is_admin FROM user WHERE user_id = :user_id LIMIT 1';
+
+        $this->database->query($query);
+        $this->database->bind('user_id', $user_id);
+
+        $user = $this->database->fetch();
+
+        return $user->is_admin;
+    }
 }
