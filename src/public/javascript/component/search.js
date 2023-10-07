@@ -17,8 +17,6 @@ if (adminInfo) {
     isAdmin = (adminInfo.innerText == 1);
 }
 
-console.log(isAdmin);
-
 // Initialize variables to store selected filter values
 let queryValue = searchBar.value.trim();
 let selectedCategory = "All Categories";

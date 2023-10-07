@@ -1,5 +1,16 @@
 // Change the topnav-page-text to the current page
-document.getElementById("topnav-page-text").innerHTML = "Catalogue";
+const admin_info = document.getElementById("is-admin");
+let is_admin = false;
+
+if (admin_info) {
+    is_admin = (admin_info.innerText == 1);
+}
+
+if (is_admin) {
+    document.getElementById("topnav-page-text").innerHTML = "Catalogue Control";
+} else {
+    document.getElementById("topnav-page-text").innerHTML = "Catalogue";
+}
 
 // Change the topnav-page-icon to the current page, delete the old icon classes and add the new icon classes
 let topnavPageIcon = document.getElementById("topnav-page-icon");
