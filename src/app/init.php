@@ -10,7 +10,7 @@ require_once 'core/Database.php';
 require_once 'core/Tables.php';
 
 // Storage Access
-
+require_once 'core/StorageAccess.php';
 
 // Exceptions
 require_once 'exceptions/LoggedException.php';

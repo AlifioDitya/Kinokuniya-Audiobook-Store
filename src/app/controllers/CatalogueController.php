@@ -245,5 +245,27 @@ class CatalogueController extends Controller implements ControllerInterface
             http_response_code($e->getCode());
         }
     }
+
+    public function findbook()
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+
+                    $bookModel = $this->model('BookModel');
+                    $bookexist = $bookModel->doesTitleExist($_GET['title']);
+
+                    header('Content-Type: application/json');
+                    http_response_code(200);
+                    echo json_encode(['bookexist' => $bookexist]);
+                    
+                    exit;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+        }
+    }
     
 }

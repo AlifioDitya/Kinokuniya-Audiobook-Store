@@ -439,4 +439,14 @@ class BookModel
         $this->database->bind('audio_url', $audio_url);
         $this->database->execute();
     }
+
+    public function doesTitleExist($title)
+    {
+        $query = 'SELECT COUNT(*) AS count FROM book WHERE title = :title';
+        $this->database->query($query);
+        $this->database->bind('title', $title);
+        $result = $this->database->fetch();
+        return $result->count > 0;
+    }
 }
+

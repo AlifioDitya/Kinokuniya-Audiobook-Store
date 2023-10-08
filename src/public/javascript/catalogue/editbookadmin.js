@@ -19,47 +19,74 @@ const audio = document.getElementById("Audio");
 const save_btn = document.getElementById("Save-btn");
 const errorMessageDiv = document.getElementById("error-message");
 
+
+
 save_btn.addEventListener("click", (e) => {
     e.preventDefault();
     errorMessageDiv.textContent = "";
+
     // validasi input
     if (title.value === "") {
         alert("Title must be filled out");
         return false;
     }
-    if (author.value === "") {
-        alert("Author must be filled out");
-        return false;
+    const xhr2 = new XMLHttpRequest();
+    xhr2.open("GET", `/public/catalogue/findbook/?title=${title.value}`, true);
+    xhr2.setRequestHeader("Content-Type", "application/json");
+    xhr2.send();
+    xhr2.onreadystatechange = function() {
+        if (this.readyState == XMLHttpRequest.DONE) {
+            if (this.status == 200) {
+                const data = JSON.parse(this.responseText);
+                if (data['bookexist']== true){
+                    alert("Title already exist");
+                    return false;
+                }else{
+                    validateOtherFields();
+                }
+            } else {
+                alert("Error");
+            }
+        }
     }
-    if (category.value === "") {
-        alert("Category must be filled out");
-        return false;
+
+    function validateOtherFields(){
+        if (author.value === "") {
+            alert("Author must be filled out");
+            return false;
+        }
+        if (category.value === "") {
+            alert("Category must be filled out");
+            return false;
+        }
+        if (price.value === "") {
+            alert("Price must be filled out");
+            return false;
+        }
+         // Check if price is a number
+         if (isNaN(price.value) || price.value < 0) {
+            alert("Price must be a positive number");
+            return false;
+        }
+        if (publication.value === "") {
+            alert("Publication Date must be filled out");
+            return false;
+        }
+        if (summary.value === "") {
+            alert("Summary must be filled out");
+            return false;
+        }
+        if (cover.value === "") {
+            alert("Cover must be filled out");
+            return false;
+        }
+        if (audio.value === "") {
+            alert("Audio must be filled out");
+            return false;
+        }
     }
-    if (price.value === "") {
-        alert("Price must be filled out");
-        return false;
-    }
-     // Check if price is a number
-     if (isNaN(price.value) || price.value < 0) {
-        alert("Price must be a positive number");
-        return false;
-    }
-    if (publication.value === "") {
-        alert("Publication Date must be filled out");
-        return false;
-    }
-    if (summary.value === "") {
-        alert("Summary must be filled out");
-        return false;
-    }
-    if (cover.value === "") {
-        alert("Cover must be filled out");
-        return false;
-    }
-    if (audio.value === "") {
-        alert("Audio must be filled out");
-        return false;
-    }
+
+    
 
     // Extract the filename from the selected file
     const coverFilename = cover.files[0].name;
