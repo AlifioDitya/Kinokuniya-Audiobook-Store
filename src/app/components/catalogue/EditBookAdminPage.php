@@ -72,11 +72,11 @@
                 <div class="input-container">
                     <div class="input-group">
                         <label for="textbook">Upload Book Cover</label><br>
-                        <input class="search-input input placeholder"type="file" id="Cover">
+                        <input class="search-input input placeholder"type="file" id="Cover" name="bookCover">
                     </div>
                     <div class="input-group">
                         <label for="Audio">Upload Audio Book</label><br>
-                        <input class="search-input input placeholder"type="file" id="Audio">
+                        <input class="search-input input placeholder"type="file" id="Audio" name="audioBook">
                     </div>
                 </div>
                 <div class="input-group">

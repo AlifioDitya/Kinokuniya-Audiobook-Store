@@ -39,6 +39,11 @@ save_btn.addEventListener("click", (e) => {
         alert("Price must be filled out");
         return false;
     }
+     // Check if price is a number
+     if (isNaN(price.value) || price.value < 0) {
+        alert("Price must be a positive number");
+        return false;
+    }
     if (publication.value === "") {
         alert("Publication Date must be filled out");
         return false;
