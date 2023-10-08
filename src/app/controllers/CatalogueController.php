@@ -185,7 +185,6 @@ class CatalogueController extends Controller implements ControllerInterface
                     
                     // Parse the JSON data into a PHP associative array
                     $requestData = json_decode($rawData, true);
-                    
 
                     $bookmodel->addBook($requestData['book_id'], $requestData['title'], $requestData['author'], $requestData['category'], $requestData['book_desc'], $requestData['price'] ,$requestData['publication_date'], $requestData['cover_img_url'], $requestData['audio_url']);
                     http_response_code(200);

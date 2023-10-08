@@ -100,8 +100,12 @@ With our easy-to-use platform, you can browse, discover, and purchase your favor
 ![Register Page](./screenshots/register.png)
 
 ## Home Page
+### Desktop View
 ![Home Page](./screenshots/home1.png)
 ![Home Page](./screenshots/home2.png)
+
+### Tablet View
+<img src="./screenshots/home3.png" alt="Home Page" width="300">
 
 ## Catalogue and My Books Page
 ![Catalogue Page](./screenshots/catalogue.png)
