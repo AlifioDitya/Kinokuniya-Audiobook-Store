@@ -60,12 +60,11 @@
                             <tr>
                                 <td><?= htmlspecialchars($user->username) ?></td>
                                 <td><?= $user->books_owned ?></td>
-                                <td> <!-- edit --> </td>
+                                <td> <i class="fas fa-trash">  </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <!-- sssssss -->
                 </div> 
                 
             </div>

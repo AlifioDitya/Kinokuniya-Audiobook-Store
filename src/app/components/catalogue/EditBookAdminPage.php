@@ -1,3 +1,31 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    echo "Form has been submitted!";
+    $bookcover_dir = "storage/book-img/";
+    $audio_dir = "storage/book-audio/";
+
+    // Handle Book Cover Upload
+    if (isset($_FILES["bookCover"])) {
+        $target_file = $bookcover_dir . basename($_FILES["bookCover"]["name"]);
+        if (move_uploaded_file($_FILES["bookCover"]["tmp_name"], $target_file)) {
+            echo "Book cover uploaded successfully.";
+        } else {
+            echo "Error uploading book cover.";
+        }
+    }
+
+    // Handle Audio Book Upload
+    if (isset($_FILES["audioBook"])) {
+        $target_file = $audio_dir . basename($_FILES["audioBook"]["name"]);
+        if (move_uploaded_file($_FILES["audioBook"]["tmp_name"], $target_file)) {
+            echo "Audio book uploaded successfully.";
+        } else {
+            echo "Error uploading audio book.";
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,24 +90,26 @@
                     <input class="search-input input placeholder"type="date" id="Publication">
                 </div>
                 <div class="input-group">
-                    <label for="summary">Upload Book Summary</label><br>
-                    <input class="search-input input placeholder"type="file" id="Summary">
+                    <label for="summary">Book Summary</label><br>
+                    <textarea class="search-input summary-textarea" rows="5" type="file" id="Summary"></textarea>
                 </div>
             </div>
+            <form action="editbookadminpage.php" method="POST" enctype="multipart/form-data">
             <div class="input-container">
-                <div class="input-group">
-                    <label for="textbook">Upload Book Cover</label><br>
-                    <input class="search-input input placeholder"type="file" id="Cover">
+                    <div class="input-group">
+                        <label for="textbook">Upload Book Cover</label><br>
+                        <input class="search-input input placeholder"type="file" id="Cover" name="bookCover">
+                    </div>
+                    <div class="input-group">
+                        <label for="Audio">Upload Audio Book</label><br>
+                        <input class="search-input input placeholder"type="file" id="Audio" name="audioBook">
+                    </div>
+                    
                 </div>
                 <div class="input-group">
-                    <label for="Audio">Upload Audio Book</label><br>
-                    <input class="search-input input placeholder"type="file" id="Audio">
-                </div>
-                
-            </div>
-            <div class="input-group">
-                    <button class="save" id="Save-btn">Save</button>
-                </div> 
+                        <button class="save" id="Save-btn">Save</button>
+                    </div> 
+                </form>
         </main>
 
     </div>   

@@ -178,6 +178,19 @@ class CatalogueController extends Controller implements ControllerInterface
                     $bookmodel->editbook($requestData['book_id'], $requestData['title'], $requestData['author'], $requestData['category'], $requestData['book_desc'], $requestData['price'] ,$requestData['publication_date'], $requestData['cover_img_url'], $requestData['audio_url']);
                     http_response_code(200);
 
+                case 'POST':
+
+                    $bookmodel = $this->model('BookModel');
+                    // Get the raw data from the request body
+                    $rawData = file_get_contents('php://input');
+                    
+                    // Parse the JSON data into a PHP associative array
+                    $requestData = json_decode($rawData, true);
+                    
+
+                    $bookmodel->addBook($requestData['book_id'], $requestData['title'], $requestData['author'], $requestData['category'], $requestData['book_desc'], $requestData['price'] ,$requestData['publication_date'], $requestData['cover_img_url'], $requestData['audio_url']);
+                    http_response_code(200);
+
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
             }

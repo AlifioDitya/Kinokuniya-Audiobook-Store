@@ -51,3 +51,13 @@
     font-family: 'karla';
     font-size: 16px;
 }
+
+.summary-textarea {
+    width: 54%;       
+    height: 80px;      
+    padding: 10px;     
+    box-sizing: border-box;  
+    border: 1px solid #ccc;  
+    border-radius: 5px;      
+    resize: vertical;        
+}
