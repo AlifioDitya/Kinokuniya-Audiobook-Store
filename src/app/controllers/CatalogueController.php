@@ -168,11 +168,11 @@ class CatalogueController extends Controller implements ControllerInterface
                     
                     $bookmodel = $this->model('BookModel');
 
-                    // Get the raw data from the request body
-                    $rawData = file_get_contents('php://input');
+                    // Takes raw data from the request
+                    $json = file_get_contents('php://input');
                     
                     // Parse the JSON data into a PHP associative array
-                    $requestData = json_decode($rawData, true);
+                    $requestData = json_decode($json);
                     
                     $bookmodel->editBook($requestData['book_id'], $requestData['title'], $requestData['author'], $requestData['category'], $requestData['book_desc'], $requestData['price'] ,$requestData['publication_date'], $requestData['cover_img_url'], $requestData['audio_url']);
                     http_response_code(200);

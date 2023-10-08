@@ -77,10 +77,12 @@ save_btn.addEventListener("click", (e) => {
     }));
 
     xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            window.location.href = "/public/catalogue/control";
-        } else {
-            alert("Error");
+        if (this.readyState == XMLHttpRequest.DONE) {
+            if (this.status == 200) {
+                window.location.href = "/public/catalogue/control";
+            } else {
+                alert("Error");
+            }
         }
     }
 });
