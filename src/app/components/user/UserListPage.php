@@ -60,13 +60,12 @@
                             <tr>
                                 <td><?= htmlspecialchars($user->username) ?></td>
                                 <td><?= $user->books_owned ?></td>
-                                <td> <i class="fas fa-trash">  </td>
+                                <td><i class="fas fa-trash" data-user-id="<?= $user->user_id ?>"></i></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
                 </div> 
-                
             </div>
         </main>
     </div>

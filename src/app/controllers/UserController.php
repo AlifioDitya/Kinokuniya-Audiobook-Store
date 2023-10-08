@@ -244,4 +244,20 @@ class UserController extends Controller implements ControllerInterface
             http_response_code($e->getCode());
         }
     }
+    public function deleteUser($userId) {
+        try {
+            $userModel = $this->model('UserModel');
+            $userModel->deleteUserById($userId);
+    
+            // Send a success response
+            header('Content-Type: application/json');
+            echo json_encode(['success' => true]);
+        } catch (Exception $e) {
+            // Handle the error
+            header('Content-Type: application/json');
+            http_response_code(400);
+            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+        }
+    }
+    
 }

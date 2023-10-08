@@ -126,4 +126,11 @@ class UserModel
 
         $this->database->execute();
     }
+    public function deleteUserById($userId) {
+        $query = 'DELETE FROM user WHERE user_id = :user_id';
+        $this->database->query($query);
+        $this->database->bind('user_id', $userId);
+        $this->database->execute();
+    }
+    
 }
