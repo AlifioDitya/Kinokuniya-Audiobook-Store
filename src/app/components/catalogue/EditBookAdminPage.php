@@ -1,31 +1,3 @@
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    echo "Form has been submitted!";
-    $bookcover_dir = "storage/book-img/";
-    $audio_dir = "storage/book-audio/";
-
-    // Handle Book Cover Upload
-    if (isset($_FILES["bookCover"])) {
-        $target_file = $bookcover_dir . basename($_FILES["bookCover"]["name"]);
-        if (move_uploaded_file($_FILES["bookCover"]["tmp_name"], $target_file)) {
-            echo "Book cover uploaded successfully.";
-        } else {
-            echo "Error uploading book cover.";
-        }
-    }
-
-    // Handle Audio Book Upload
-    if (isset($_FILES["audioBook"])) {
-        $target_file = $audio_dir . basename($_FILES["audioBook"]["name"]);
-        if (move_uploaded_file($_FILES["audioBook"]["tmp_name"], $target_file)) {
-            echo "Audio book uploaded successfully.";
-        } else {
-            echo "Error uploading audio book.";
-        }
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div id="is-admin" hidden><?= $this->data['isAdmin'] ?></div>
         <?php include(dirname(__DIR__) . '/template/sidebar.php') ?>
         <main class="main-container">
+        <div id="error-message" style="color: red; font-weight: bold; margin-bottom: 10px;"></div>
             <?php include(dirname(__DIR__) . '/template/topnav.php') ?>
              <div class="input-container">
                 <div class="input-group">
@@ -98,11 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="input-container">
                     <div class="input-group">
                         <label for="textbook">Upload Book Cover</label><br>
-                        <input class="search-input input placeholder"type="file" id="Cover" name="bookCover">
+                        <input class="search-input input placeholder"type="file" id="Cover">
                     </div>
                     <div class="input-group">
                         <label for="Audio">Upload Audio Book</label><br>
-                        <input class="search-input input placeholder"type="file" id="Audio" name="audioBook">
+                        <input class="search-input input placeholder"type="file" id="Audio">
                     </div>
                     
                 </div>

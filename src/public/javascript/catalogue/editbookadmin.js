@@ -15,11 +15,13 @@ const publication = document.getElementById("Publication");
 const summary = document.getElementById("Summary");
 const cover = document.getElementById("Cover");
 const audio = document.getElementById("Audio");
+
 const save_btn = document.getElementById("Save-btn");
+const errorMessageDiv = document.getElementById("error-message");
 
 save_btn.addEventListener("click", (e) => {
     e.preventDefault();
-    
+    errorMessageDiv.textContent = "";
     // validasi input
     if (title.value === "") {
         alert("Title must be filled out");
@@ -42,7 +44,7 @@ save_btn.addEventListener("click", (e) => {
         return false;
     }
     if (publication.value === "") {
-        alert("Publication must be filled out");
+        alert("Publication Date must be filled out");
         return false;
     }
     if (summary.value === "") {
@@ -92,11 +94,6 @@ save_btn.addEventListener("click", (e) => {
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if (this.responseText.trim().startsWith('<')) {
-                console.error("Received non-JSON response:", this.responseText);
-                alert("Server error. Please check the console for more details.");
-                return;
-            }
             const res = JSON.parse(this.responseText);
             if (res.status === 200) {
                 window.location.href = "/public/catalogue/control";
