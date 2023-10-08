@@ -15,11 +15,13 @@ const publication = document.getElementById("Publication");
 const summary = document.getElementById("Summary");
 const cover = document.getElementById("Cover");
 const audio = document.getElementById("Audio");
+
 const save_btn = document.getElementById("Save-btn");
+const errorMessageDiv = document.getElementById("error-message");
 
 save_btn.addEventListener("click", (e) => {
     e.preventDefault();
-    
+    errorMessageDiv.textContent = "";
     // validasi input
     if (title.value === "") {
         alert("Title must be filled out");
@@ -38,7 +40,7 @@ save_btn.addEventListener("click", (e) => {
         return false;
     }
     if (publication.value === "") {
-        alert("Publication must be filled out");
+        alert("Publication Date must be filled out");
         return false;
     }
     if (summary.value === "") {
