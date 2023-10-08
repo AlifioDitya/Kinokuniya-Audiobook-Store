@@ -114,6 +114,9 @@ With our easy-to-use platform, you can browse, discover, and purchase your favor
 ## Cart Page
 ![Cart Page](./screenshots/cart.png)
 
+## Settings Page
+![Settings Page](./screenshots/settings.png)
+
 # Task Distribution
 
 ## UI/UX Design

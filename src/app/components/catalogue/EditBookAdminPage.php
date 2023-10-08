@@ -60,8 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <div id="root">
-        <div id="is-admin" hidden><?= $this->data['isAdmin'] ?></div>
-        <?php include(dirname(__DIR__) . '/template/sidebar.php') ?>
+    <div id="is-admin" hidden><?= $this->data['isAdmin'] ?></div>
+    <div id="book-id-hidden" hidden><?= $this->data['book_id'] ?></div>
+    <?php include(dirname(__DIR__) . '/template/sidebar.php') ?>
         <main class="main-container">
             <?php include(dirname(__DIR__) . '/template/topnav.php') ?>
              <div class="input-container">
@@ -94,8 +95,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <textarea class="search-input summary-textarea" rows="5" type="file" id="Summary"></textarea>
                 </div>
             </div>
-            <form action="editbookadminpage.php" method="POST" enctype="multipart/form-data">
-            <div class="input-container">
+            <form action="upload.php" method="POST" enctype="multipart/form-data">
+                <div class="input-container">
                     <div class="input-group">
                         <label for="textbook">Upload Book Cover</label><br>
                         <input class="search-input input placeholder"type="file" id="Cover" name="bookCover">
@@ -104,12 +105,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="Audio">Upload Audio Book</label><br>
                         <input class="search-input input placeholder"type="file" id="Audio" name="audioBook">
                     </div>
-                    
                 </div>
                 <div class="input-group">
-                        <button class="save" id="Save-btn">Save</button>
-                    </div> 
-                </form>
+                    <input type="submit" class="save" id="Save-btn" value="Save">
+                </div> 
+            </form>
         </main>
 
     </div>   

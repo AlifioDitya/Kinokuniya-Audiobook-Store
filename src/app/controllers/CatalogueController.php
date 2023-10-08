@@ -149,7 +149,6 @@ class CatalogueController extends Controller implements ControllerInterface
                 case 'GET':
 
                     $authMiddleware = $this->middleware('AuthenticationMiddleware');
-                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
                     try {
                         $authMiddleware->isAdmin();
                     } catch (Exception $e) {
@@ -161,21 +160,21 @@ class CatalogueController extends Controller implements ControllerInterface
                     $userModel = $this->model('UserModel');
                     $isAdmin = $userModel->isAdmin($_SESSION['user_id']);
 
-                    $editBookAdminView = $this->view('catalogue', 'EditBookAdminView', ['isAdmin' => $isAdmin]);
+                    $editBookAdminView = $this->view('catalogue', 'EditBookAdminView', ['isAdmin' => $isAdmin, 'book_id' => $_GET['book_id']]);
                     $editBookAdminView->render();
 
                     break;
                 case 'PUT':
                     
                     $bookmodel = $this->model('BookModel');
+
                     // Get the raw data from the request body
                     $rawData = file_get_contents('php://input');
                     
                     // Parse the JSON data into a PHP associative array
                     $requestData = json_decode($rawData, true);
                     
-
-                    $bookmodel->editbook($requestData['book_id'], $requestData['title'], $requestData['author'], $requestData['category'], $requestData['book_desc'], $requestData['price'] ,$requestData['publication_date'], $requestData['cover_img_url'], $requestData['audio_url']);
+                    $bookmodel->editBook($requestData['book_id'], $requestData['title'], $requestData['author'], $requestData['category'], $requestData['book_desc'], $requestData['price'] ,$requestData['publication_date'], $requestData['cover_img_url'], $requestData['audio_url']);
                     http_response_code(200);
 
                 case 'POST':
