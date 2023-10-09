@@ -29,12 +29,11 @@ With our easy-to-use platform, you can browse, discover, and purchase your favor
 ```bash
     $ cp .env.example .env
 ```
-4. Open the `.env` file and change the following lines
+4. Open the `.env` file and complete the following lines
 ```bash
-    DB_HOST=db
-    DB_USERNAME=root
-    DB_PASSWORD=secret
-    DB_DATABASE=audiobook
+    MYSQL_ROOT_PASSWORD=
+    MYSQL_USER=
+    MYSQL_PASSWORD=
 ```
 5. Make sure the database `scheme.sql` is in `/mysql` directory. If not, copy the `scheme.sql` file to the `/mysql` directory
 
