@@ -123,8 +123,9 @@ With our easy-to-use platform, you can browse, discover, and purchase your favor
 ## Admin Panel
 ### Catalogue Control Page
 ![Catalogue Control Page](./screenshots/admin1.png)
-### Add Book Page
+### Add and Edit Book Page
 ![Add Book Page](./screenshots/admin2.png)
+![Edit Book Page](./screenshots/admin4.png)
 ### User Control Page
 ![User Control Page](./screenshots/admin3.png)
 
