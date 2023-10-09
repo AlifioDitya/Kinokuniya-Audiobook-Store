@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/sidebar.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/topnav.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/template/pagination.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/catalogue/admincatalogue.css">
 
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -122,6 +123,9 @@
                             </li>
                         </ul>
                     </div>
+                    <button id="add-books-btn">
+                        <i class="bx bx-plus"></i>
+                    </button>
                 </div>
                 <section class="books-section">
                     <div class="card-grid-pagination" id="book-list">

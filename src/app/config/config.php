@@ -30,8 +30,9 @@ define('MAX_SIZE', 10 * 1024 * 1024);
 define('ALLOWED_AUDIOS', [
     'audio/mpeg' => '.mp3'
 ]);
+
 define('ALLOWED_IMAGES', [
     'image/jpeg' => '.jpeg',
     'image/png' => '.png',
-    'image/svg' => '.svg'
+    'image/svg+xml' => '.svg'
 ]);

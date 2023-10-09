@@ -22,11 +22,11 @@ class SettingsController extends Controller implements ControllerInterface
         $isAdmin = $user->is_admin;
         $username = $user->username;
 
-        $notFoundView = $this->view('settings', 'SettingsView', [
+        $settingsView = $this->view('settings', 'SettingsView', [
             'isAdmin' => $isAdmin,
             'user_id' => $_SESSION['user_id'],
             'username' => $username
         ]);
-        $notFoundView->render();
+        $settingsView->render();
     }
 }

@@ -170,6 +170,7 @@ With our easy-to-use platform, you can browse, discover, and purchase your favor
 | Cart                     | 13521142 | Enrique Alifio Ditya |
 | Settings                 | 13521142 | Enrique Alifio Ditya |
 | Catalogue Control Page   | 13521142 | Enrique Alifio Ditya |
+| Add Book Page            | 13521142 | Enrique Alifio Ditya |
 | User Control Page        | 13521073 | Ezra M C M H         |
 | Edit Book Page           | 13521073 | Ezra M C M H         |
 | Edit User Page           | 13521073 | Ezra M C M H         |
@@ -188,6 +189,7 @@ With our easy-to-use platform, you can browse, discover, and purchase your favor
 | Cart                     | 13521142 | Enrique Alifio Ditya |
 | Settings                 | 13521142 | Enrique Alifio Ditya |
 | Catalogue Control Page   | 13521142 | Enrique Alifio Ditya |
+| Add Book Page            | 13521142 | Enrique Alifio Ditya |
 | User Control Page        | 13521073 | Ezra M C M H         |
 | Edit Book Page           | 13521073 | Ezra M C M H         |
 | Edit User Page           | 13521073 | Ezra M C M H         |

@@ -33,3 +33,10 @@ if (queryVal !== null) {
     // Invoke "keyup" event on the input field to trigger the search
     document.getElementById("query").dispatchEvent(new Event("keyup"));
 }
+
+const addBooksButton = document.getElementById("add-books-btn");
+
+addBooksButton &&
+    addBooksButton.addEventListener("click", () => {
+        window.location.href = "/public/catalogue/add";
+    });

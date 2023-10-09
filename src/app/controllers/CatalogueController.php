@@ -245,7 +245,7 @@ class CatalogueController extends Controller implements ControllerInterface
         }
     }
 
-    public function findbook()
+    public function title()
     {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
@@ -261,6 +261,87 @@ class CatalogueController extends Controller implements ControllerInterface
                     exit;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+        }
+    }
+
+    public function add()
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+
+                    // Open middleware for authentication
+                    $auth = $this->middleware('AuthenticationMiddleware');
+
+                    // Redirect to Login Page if not logged in
+                    try {
+                        $auth->isAuthenticated();
+                    } catch (Exception $e) {
+                        header('Location: ' . BASE_URL . '/user/login');
+                        exit;
+                    }
+
+                    // Redirect 404 if not admin
+                    try {
+                        $auth->isAdmin();
+                    } catch (Exception $e) {
+                        header('Location: ' . BASE_URL);
+                        exit;
+                    }
+
+                    // For navbar, get info if user is admin
+                    $userModel = $this->model('UserModel');
+                    $user = $userModel->getUserFromID($_SESSION['user_id']);
+                    $isAdmin = $user->is_admin;
+
+                    $addBookView = $this->view('catalogue', 'addBookView', [
+                        'isAdmin' => $isAdmin,
+                        'user_id' => $_SESSION['user_id']
+                    ]);
+                    $addBookView->render();
+
+                    exit;
+
+                case 'POST':
+
+                    // Open middleware for authentication
+                    $auth = $this->middleware('AuthenticationMiddleware');
+
+                    // Redirect to Login Page if not logged in
+                    try {
+                        $auth->isAuthenticated();
+                    } catch (Exception $e) {
+                        header('Location: ' . BASE_URL . '/user/login');
+                        exit;
+                    }
+
+                    // Redirect 404 if not admin
+                    try {
+                        $auth->isAdmin();
+                    } catch (Exception $e) {
+                        header('Location: ' . BASE_URL);
+                        exit;
+                    }
+
+                    $storageAccessImg = new StorageAccess(StorageAccess::IMAGE_PATH);
+                    $storageAccessAudio = new StorageAccess(StorageAccess::AUDIO_PATH);
+
+                    // Upload the files
+                    $imageFilename = $storageAccessImg->saveImage($_FILES['cover']['tmp_name']);
+                    $audioFilename = $storageAccessAudio->saveAudio($_FILES['audio']['tmp_name']);
+
+                    $imageFilename = STORAGE_URL . '/' . StorageAccess::IMAGE_PATH . '/' . $imageFilename;
+                    $audioFilename = STORAGE_URL . '/' . StorageAccess::AUDIO_PATH . '/' . $audioFilename;
+
+                    $bookModel = $this->model('BookModel');
+                    $bookModel->addBook($_POST['title'], $_POST['author'], $_POST['category'], $_POST['summary'], $_POST['price'], $_POST['publication-date'], $imageFilename, $audioFilename);
+                    http_response_code(200);
+
+                    header("Location: " . BASE_URL . "/catalogue/control");
+                    exit;
             }
         } catch (Exception $e) {
             http_response_code($e->getCode());

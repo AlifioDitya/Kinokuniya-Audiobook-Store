@@ -31,7 +31,7 @@ save_btn.addEventListener("click", (e) => {
         return false;
     }
     const xhr2 = new XMLHttpRequest();
-    xhr2.open("GET", `/public/catalogue/findbook/?title=${title.value}`, true);
+    xhr2.open("GET", `/public/catalogue/title/?title=${title.value}`, true);
     xhr2.setRequestHeader("Content-Type", "application/json");
     xhr2.send();
     xhr2.onreadystatechange = function() {

@@ -424,11 +424,10 @@ class BookModel
     
     }
     
-    public function addBook($book_id, $title, $author, $category, $book_desc, $price, $publication_date, $cover_img_url, $audio_url)
+    public function addBook($title, $author, $category, $book_desc, $price, $publication_date, $cover_img_url, $audio_url)
     {
-        $query = 'INSERT INTO book (book_id, title, author, category, book_desc, price, publication_date, cover_img_url, audio_url) VALUES (:book_id, :title, :author, :category, :book_desc, :price, :publication_date, :cover_img_url, :audio_url)';
+        $query = 'INSERT INTO book (book_id, title, author, category, book_desc, price, publication_date, cover_img_url, audio_url) VALUES (DEFAULT, :title, :author, :category, :book_desc, :price, :publication_date, :cover_img_url, :audio_url)';
         $this->database->query($query);
-        $this->database->bind('book_id', $book_id);
         $this->database->bind('title', $title);
         $this->database->bind('author', $author);
         $this->database->bind('category', $category);
