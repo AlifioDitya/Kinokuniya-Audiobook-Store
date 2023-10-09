@@ -121,6 +121,14 @@ With our easy-to-use platform, you can browse, discover, and purchase your favor
 ## Settings Page
 ![Settings Page](./screenshots/settings.png)
 
+## Admin Panel
+### Catalogue Control Page
+![Catalogue Control Page](./screenshots/admin1.png)
+### Add Book Page
+![Add Book Page](./screenshots/admin2.png)
+### User Control Page
+![User Control Page](./screenshots/admin3.png)
+
 # Task Distribution
 
 ## UI/UX Design
@@ -135,8 +143,8 @@ With our easy-to-use platform, you can browse, discover, and purchase your favor
 | Settings                 | 13521142 | Enrique Alifio Ditya |
 | Catalogue Control Page   | 13521142 | Enrique Alifio Ditya |
 | User Control Page        | 13521142 | Enrique Alifio Ditya |
+| Add Book Page            | 13521142 | Enrique Alifio Ditya |
 | Edit Book Page           | 13521142 | Enrique Alifio Ditya |
-| Edit User Page           | 13521142 | Enrique Alifio Ditya |
 
 ## Setup
 | Requirements             | NIM      | Name                 |
@@ -173,7 +181,6 @@ With our easy-to-use platform, you can browse, discover, and purchase your favor
 | Add Book Page            | 13521142 | Enrique Alifio Ditya |
 | User Control Page        | 13521073 | Ezra M C M H         |
 | Edit Book Page           | 13521073 | Ezra M C M H         |
-| Edit User Page           | 13521073 | Ezra M C M H         |
 
 ## Server Side
 
@@ -192,7 +199,6 @@ With our easy-to-use platform, you can browse, discover, and purchase your favor
 | Add Book Page            | 13521142 | Enrique Alifio Ditya |
 | User Control Page        | 13521073 | Ezra M C M H         |
 | Edit Book Page           | 13521073 | Ezra M C M H         |
-| Edit User Page           | 13521073 | Ezra M C M H         |
 
 ### Models
 | Models                   | NIM      | Name                 |
