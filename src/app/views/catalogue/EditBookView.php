@@ -1,6 +1,6 @@
 <?php
 
-class EditBookAdminView implements ViewInterface
+class EditBookView implements ViewInterface
 {
     public $data;
     public function __construct($data = []) {
@@ -8,6 +8,6 @@ class EditBookAdminView implements ViewInterface
     }
 
     public function render() {
-        require_once __DIR__ . '/../../components/catalogue/EditBookAdminPage.php';
+        require_once __DIR__ . '/../../components/catalogue/EditBookPage.php';
     }
 }

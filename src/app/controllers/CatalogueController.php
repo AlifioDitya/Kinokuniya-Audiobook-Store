@@ -77,9 +77,22 @@ class CatalogueController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
 
+                    // Open middleware for authentication
+                    $auth = $this->middleware('AuthenticationMiddleware');
+
                     // Redirect to Login Page if not logged in
-                    if (!isset($_SESSION['user_id'])) {
+                    try {
+                        $auth->isAuthenticated();
+                    } catch (Exception $e) {
                         header('Location: ' . BASE_URL . '/user/login');
+                        exit;
+                    }
+
+                    // Redirect 404 if not admin
+                    try {
+                        $auth->isAdmin();
+                    } catch (Exception $e) {
+                        header('Location: ' . BASE_URL);
                         exit;
                     }
 
@@ -148,9 +161,20 @@ class CatalogueController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
 
-                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    // Open middleware for authentication
+                    $auth = $this->middleware('AuthenticationMiddleware');
+
+                    // Redirect to Login Page if not logged in
                     try {
-                        $authMiddleware->isAdmin();
+                        $auth->isAuthenticated();
+                    } catch (Exception $e) {
+                        header('Location: ' . BASE_URL . '/user/login');
+                        exit;
+                    }
+
+                    // Redirect 404 if not admin
+                    try {
+                        $auth->isAdmin();
                     } catch (Exception $e) {
                         header('Location: ' . BASE_URL);
                         exit;
@@ -158,36 +182,54 @@ class CatalogueController extends Controller implements ControllerInterface
 
                     // For navbar, get info if user is admin
                     $userModel = $this->model('UserModel');
-                    $isAdmin = $userModel->isAdmin($_SESSION['user_id']);
+                    $user = $userModel->getUserFromID($_SESSION['user_id']);
+                    $isAdmin = $user->is_admin;
 
-                    $editBookAdminView = $this->view('catalogue', 'EditBookAdminView', ['isAdmin' => $isAdmin, 'book_id' => $_GET['book_id']]);
+                    // Get book by ID
+                    $bookModel = $this->model('BookModel');
+                    $book = $bookModel->getBookByID($_GET['book_id']);
+
+                    $editBookAdminView = $this->view('catalogue', 'EditBookView', ['isAdmin' => $isAdmin, 'bookData' => $book, 'user_id' => $_SESSION['user_id']]);
                     $editBookAdminView->render();
 
                     break;
-                case 'PUT':
-                    
-                    $bookmodel = $this->model('BookModel');
-
-                    // Takes raw data from the request
-                    $json = file_get_contents('php://input');
-                    
-                    // Parse the JSON data into a PHP associative array
-                    $requestData = json_decode($json);
-                    
-                    $bookmodel->editBook($requestData['book_id'], $requestData['title'], $requestData['author'], $requestData['category'], $requestData['book_desc'], $requestData['price'] ,$requestData['publication_date'], $requestData['cover_img_url'], $requestData['audio_url']);
-                    http_response_code(200);
-
                 case 'POST':
 
-                    $bookmodel = $this->model('BookModel');
-                    // Get the raw data from the request body
-                    $rawData = file_get_contents('php://input');
-                    
-                    // Parse the JSON data into a PHP associative array
-                    $requestData = json_decode($rawData, true);
+                    // Open middleware for authentication
+                    $auth = $this->middleware('AuthenticationMiddleware');
 
-                    $bookmodel->addBook($requestData['book_id'], $requestData['title'], $requestData['author'], $requestData['category'], $requestData['book_desc'], $requestData['price'] ,$requestData['publication_date'], $requestData['cover_img_url'], $requestData['audio_url']);
+                    // Redirect to Login Page if not logged in
+                    try {
+                        $auth->isAuthenticated();
+                    } catch (Exception $e) {
+                        header('Location: ' . BASE_URL . '/user/login');
+                        exit;
+                    }
+
+                    // Redirect 404 if not admin
+                    try {
+                        $auth->isAdmin();
+                    } catch (Exception $e) {
+                        header('Location: ' . BASE_URL);
+                        exit;
+                    }
+
+                    $storageAccessImg = new StorageAccess(StorageAccess::IMAGE_PATH);
+                    $storageAccessAudio = new StorageAccess(StorageAccess::AUDIO_PATH);
+
+                    // Upload the files
+                    $imageFilename = $storageAccessImg->saveImage($_FILES['cover']['tmp_name']);
+                    $audioFilename = $storageAccessAudio->saveAudio($_FILES['audio']['tmp_name']);
+
+                    $imageFilename = STORAGE_URL . '/' . StorageAccess::IMAGE_PATH . '/' . $imageFilename;
+                    $audioFilename = STORAGE_URL . '/' . StorageAccess::AUDIO_PATH . '/' . $audioFilename;
+
+                    $bookModel = $this->model('BookModel');
+                    $bookModel->editBook($_POST['book_id'], $_POST['title'], $_POST['author'], $_POST['category'], $_POST['summary'], $_POST['price'], $_POST['publication-date'], $imageFilename, $audioFilename);
                     http_response_code(200);
+
+                    header("Location: " . BASE_URL . "/catalogue/control");
+                    exit;
 
                 default:
                     throw new LoggedException('Method Not Allowed', 405);

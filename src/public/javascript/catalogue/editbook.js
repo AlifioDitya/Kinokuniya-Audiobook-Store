@@ -1,5 +1,5 @@
 // Change the topnav-page-text to the current page
-document.getElementById("topnav-page-text").innerHTML = "Add Book";
+document.getElementById("topnav-page-text").innerHTML = "Edit Book";
 
 // Change the topnav-page-icon to the current page, delete the old icon classes and add the new icon classes
 let topnavPageIcon = document.getElementById("topnav-page-icon");
@@ -27,6 +27,7 @@ const priceInput = document.querySelector("#price");
 const summaryInput = document.querySelector("#summary");
 const coverInput = document.querySelector("#cover");
 const audioInput = document.querySelector("#audio");
+const summaryHiddenInput = document.querySelector(".summary-hidden");
 
 const titleError = document.querySelector("#title-error");
 const authorError = document.querySelector("#author-error");
@@ -38,6 +39,9 @@ const coverError = document.querySelector("#cover-error");
 const audioError = document.querySelector("#audio-error");
 
 const form = document.querySelector("#add-book-form");
+
+// Set the default value of the summary input to the value of the hidden input
+summaryInput.value = summaryHiddenInput.innerText;
 
 // Regex to check input contains only alphanumeric characters and spaces
 const titleRegex = /^[\w\s]+$/;
@@ -69,7 +73,7 @@ titleInput &&
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     const res = JSON.parse(this.responseText);
-                    if (this.status === 200 && res['bookexist'] == true) {
+                    if (this.status === 200 && res['bookexist'] == true && title !== titleInput.defaultValue) {
                         titleError.innerText = "Title already exist!";
                         titleValid = false;
                     } else if (!titleRegex.test(title)) {
@@ -210,6 +214,30 @@ cancelButton.addEventListener('click', () => {
 
 saveButton.addEventListener("click", (e) => {
     e.preventDefault();
+
+    if (titleInput.value === titleInput.defaultValue) {
+        titleValid = true;
+    }
+
+    if (authorInput.value === authorInput.defaultValue) {
+        authorValid = true;
+    }
+
+    if (categoryInput.value === categoryInput.defaultValue) {
+        categoryValid = true;
+    }
+
+    if (publicationDateInput.value === publicationDateInput.defaultValue) {
+        publicationDateValid = true;
+    }
+
+    if (priceInput.value === priceInput.defaultValue) {
+        priceValid = true;
+    }
+
+    if (summaryInput.value === summaryHiddenInput.innerText) {
+        summaryValid = true;
+    }
 
     if (!titleValid) {
         if (titleInput.value === "") {
